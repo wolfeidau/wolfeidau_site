@@ -1,0 +1,173 @@
+/*
+ *
+ * 1A1D1F 
+ * 3E4852
+ * 6B7E8C
+ * A9C3CC
+ * E6F5F7
+ *
+ *
+ */
+
+/*
+ * Firefox fixes for HTML5 elements
+ */
+header { display: block; }
+footer { display: block; }
+section { display: block; }
+article { display: block; }
+
+body {
+  font-size: 14px;
+  line-height: 1.45em;
+  font-family: "Droid Serif", Georgia, serif;
+  color: #3E4852;
+}
+
+h2, h3, h4, h5, h6 {
+  font-family: "Droid Sans", Arial, serif;
+}
+
+header {
+  background-color: #3E4852; /* old browsers */
+  color: #FFFFFF;
+  margin: 1em 0 1em 0;
+  font-family: "Droid Sans", Arial, serif;
+
+  background-image: -moz-linear-gradient(top, #3E4852, #6B7E8C); /* FF3.6 */
+  background-image: -o-linear-gradient(top, #3E4852, #6B7E8C); /* Opera 11.10+ */
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3E4852),color-stop(1, #6B7E8C)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(#3E4852, #6B7E8C); /* Chrome 10+, Saf5.1+ */
+  background-image: linear-gradient(top, #3E4852, #6B7E8C);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3E4852', EndColorStr='#6B7E8C'); /* IE6–IE9 */
+  
+}
+
+header p {
+  color: #47DB53;
+  padding: 0px;
+  margin: 0px;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+
+a {
+  color: #6B7E8C;
+  text-decoration: none;
+}
+
+nav {
+  text-align: right;
+}
+
+nav ul {
+  padding: 12px;
+  margin-top: 38px;
+}
+
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
+}
+
+nav a {
+  padding: 5px 15px;
+  color: #FFFFFF;
+}
+
+.feed {
+  margin-left: 3px;
+  padding: 0 0 0 19px;
+  background: url("../images/feed-icon-14x14.png") no-repeat 0 50%;
+}
+
+section[role="main"] {
+  margin-top: 20px;
+}
+
+#beta {
+  border-right:1px solid #ccc;
+}
+
+.entry-date {
+  float: left;
+  margin-left: -70px;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #6B7E8C;
+  color: #FFFFFF;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border:1px solid #ccc;
+  font-family: "Droid Sans", Arial, serif;
+}
+
+.entry-date div {
+  font-size: 1.5em;
+}
+
+.entry-comments {
+  background-image: url(../images/bubble.png);
+  float: left;
+  width: 54px;
+  height: 52px;
+  line-height: 32px;
+  margin-right: 8px;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+
+
+div#entry-footer p {
+ line-height: 100%; 
+ margin: 0.4em 0;
+}
+
+.box_rounded {
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border:1px solid #ccc;
+}
+
+.shadow {	text-shadow:1px 1px 1px #666; 
+	 	}/*<-- edit the color you wish to use in your shadows */
+	
+.box_shadow {
+	-webkit-box-shadow: 3px 3px 3px #ccc;
+	-moz-box-shadow: 3px 3px 3px #ccc;
+	box-shadow: 3px 3px 3px #ccc;
+}
+
+footer {
+  margin-top: 20px;
+  background: #f6f8f9; /* old browsers */
+  background: -moz-linear-gradient(top, #f6f8f9 0%, #e5ebee 4%, #A9C3CC 5%, #FFFFFF 10%); /* firefox */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6f8f9), color-stop(4%,#e5ebee), color-stop(5%,#A9C3CC), color-stop(10%,#FFFFFF)); /* webkit */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#FFFFFF',GradientType=0 ); /* ie */
+}
+
+#blurb {
+  color: #A9C3CC;
+}
+
+#badges {
+  padding-top: 20px;
+  text-align: center;
+}
+
+#badges img{
+  border-style: none;
+}
+
+#copyright {
+  text-align: right;
+  color: #A9C3CC;
+}
+

@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+{% assign post = page %}
+{% assign detail = true %}
+
+{% include post_content.html %}
+
+<div id="pagination">
+	{% if page.previous %}
+		<a class="prev" href="{{ page.previous.url }}">&laquo; {{ page.previous.title | truncatewords:5 }}</a>
+	{% endif %}
+
+	{% if page.next %}
+		<a class="next" href="{{ page.next.url }}">{{ page.next.title | truncatewords:5 }} &raquo;</a>
+	{% endif %}
+</div>
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="Jekyll">
+    <meta name="author" content="{{ site.author.name }}">
+    <meta name="description" content="{{ site.description }}">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,italic,bold" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans:regular,italic,bold" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://960ls.atomidata.com/static/cssserve/2011/3/14/2cf56f21ef9c4bbebad93d5cda38ae30.css">
+    <link rel="stylesheet" href="/css/wolfeidau.css" type="text/css">
+  </head>
+  <body>
+    <div id="wrapper" class="container_12">
+      <header id="head" class="container_12 box_rounded box_shadow">
+        <div class="grid_7 prefix_1">
+          <h1 class="shadow">Mark Wolfe's Blog</h1>
+          <p>// {{ site.description }}</p>
+        </div>
+        <nav class="grid_4">
+          <ul>
+            <li><a href="http://github.com/wolfeidau">Code</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a class="feed" href="/feed.xml">Follow</a></li>
+          </ul>
+        </nav>
+        <div class="clear"></div><!-- clear -->
+      </header>
+      <div class="container_12">
+        <section role="main">
+          <div id="beta" class="grid_8 push_1">
+            {{ content }}
+            <div class="clear"></div><!-- clear -->
+          </div>
+          <div id="gamma" class="grid_3 push_1">
+            <h3>Twitter Feed</h3>
+            <div class="clear"></div><!-- clear -->
+          </div>
+          <div class="clear"></div><!-- clear -->
+        </section>
+      </div>
+
+      <footer class="container_12">
+        <div id="blurb" class="grid_5">
+          <p>Powered by <a href="http://nginx.net/">nginx</a></p>
+        </div>
+        <div id="badges" class="grid_2">
+          <a href="http://www.w3.org/html/logo/">
+            <img src="/images/HTML5_Badge_32.png" alt="HTML 5 Badge"/>
+          </a>
+        </div>
+        <div id="copyright" class="grid_5">
+          <p>{{ site.copyright }}</p>
+        </div>
+        <div class="clear"></div><!-- clear -->
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,1 +1,26 @@
-markdown: rdiscount
+markdown:       rdiscount
+paginate:       5
+
+exclude: 
+    - README.md
+
+title:          wolfeidau
+description:    "Observations and musings of Mark Wolfe, a Linux, Java and Networks guy."
+
+author:
+    name:       Mark Wolfe
+    email:      mark.wolfe@hsd.com.au
+    twitter:    wolfeidau
+
+disqus:
+    id:         wolfeidau
+
+nav:
+    - name: Weblog
+      url:  /
+
+    - name: About
+      url: /about/
+
+
+copyright: "&copy; Copyright 2011, Mark Wolfe.<br> All Rights Reserved."
