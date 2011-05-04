@@ -1,0 +1,18 @@
+<div class="widget">
+  <h3>About Me</h3>
+  <p>I am currently a systems adminstrator working with Linux, Java and a variety of network equipment. I live in not so sunny Melbourne, Australia.</p>
+  <p>I have a keen interest in databases, <a href="http://postgresql.org">PostgreSQL</a> is my favourite, along with a touch of NoSQL, mostly around <a href=http://basho.com">riak</a>.<p> 
+</div>
+
+<div class="widget">
+  <h3>Recent Entries</h3>
+  <ul>
+    {% for post in site.posts limit:5 %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div id="mozwidget">
+  <a href='https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array' title='JS Array sort'><img src='http://static.jsconf.us/promotejsv.gif' height='280' width='160' alt='JS Array sort'/></a>
+</div>

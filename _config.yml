@@ -1,5 +1,6 @@
-markdown:       rdiscount
+pygments:       true
 paginate:       5
+permalink:      /:year/:month/:day/:title/
 
 exclude: 
     - README.md
@@ -13,7 +14,7 @@ author:
     twitter:    wolfeidau
 
 disqus:
-    id:         wolfeidau
+    id:         markwolfesblog
 
 nav:
     - name: Weblog

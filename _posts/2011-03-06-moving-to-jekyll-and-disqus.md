@@ -1,10 +1,11 @@
 --- 
 layout:   post
 title:    Moving to Jekyll and Disqus
-category: personal
+category: html
 ---
 
 First post from my newly migrated blog reviewing migration from wordpress to Jekyll and Disqus.
 
-[JQuery](http://jquery.com)
-[Jekyll](http://github.com/mojombo/jekyll)
+* [Jekyll](http://github.com/mojombo/jekyll) for site generation.
+* [JQuery](http://jquery.com) for all the dynamic window dressing.
+
