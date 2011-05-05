@@ -38,7 +38,7 @@ header {
 header p {
   color: #47DB53;
   padding: 0px;
-  margin: 0px;
+  margin-bottom: 20px;
 }
 
 a:hover, a:focus {
@@ -55,8 +55,7 @@ nav {
 }
 
 nav ul {
-  padding: 12px;
-  margin-top: 38px;
+  padding: 0px;
 }
 
 nav ul li {
@@ -80,9 +79,10 @@ section[role="main"] {
   margin-top: 20px;
 }
 
-#beta {
-  border-right:1px solid #ccc;
+.entry {
+  margin-bottom: 45px;
 }
+
 
 .entry-date {
   float: left;
@@ -107,7 +107,7 @@ section[role="main"] {
   background-image: url(../images/bubble.png);
   float: left;
   width: 34px;
-  height: 49px;
+  height: 46px;
   line-height: 32px;
   margin-right: 8px;
   text-align: center;
@@ -115,10 +115,15 @@ section[role="main"] {
   color: white;
 }
 
+.entry-footer{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 
-div#entry-footer p {
+
+.entry-footer p {
  line-height: 100%; 
- margin: 0.4em 0;
+ margin: 0.5em 0;
 }
 
 .box_rounded {
@@ -129,7 +134,7 @@ div#entry-footer p {
 }
 
 .shadow {
-  text-shadow:1px 1px 1px #666;
+  text-shadow:1px 1px 1px #1A1D1F;
 }
 
 .box_shadow {
