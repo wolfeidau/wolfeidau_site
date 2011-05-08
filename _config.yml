@@ -4,6 +4,8 @@ permalink:      /:year/:month/:day/:title/
 
 exclude: 
     - README.md
+    - Rakefile
+    - artwork
 
 title:          wolfeidau
 description:    "Observations and musings of Mark Wolfe, a Linux, Java and Networks guy."
