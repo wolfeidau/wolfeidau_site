@@ -9,6 +9,7 @@ First post from my newly migrated blog reviewing migration from wordpress to Jek
 * [Jekyll](http://github.com/mojombo/jekyll) for site generation.
 * [Sass](http://sass-lang.com/) for simplified css goodness.
 * [Pygments](http://pygments.org/) code highlighting.
+* [Disqus](http://disqus.com/)
 
 Following some of the sites which use Jekyll, I generated the skeleton and began building my site using Jekyll. After trialing some of the code highlighting options I selected pygments, this was to ensure my code samples looked good. 
 
