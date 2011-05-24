@@ -126,6 +126,18 @@ Also you will need to configure the bamboo.home in _/usr/share/atlassian-bamboo-
 bamboo.home=/var/lib/atlassian-bamboo
 {% endhighlight %}
 
+Before we start tomcat we need to increase the amount of memory available to tomcat as well as some other params. This is done by editing _/etc/default/tomcat6_
+
+Open the file as root and edit to the following line.
+{% highlight text %}
+JAVA_OPTS="-Djava.awt.headless=true -Xmx128m"
+{% endhighlight %}
+
+Change it to the following value.
+{% highlight text %}
+JAVA_OPTS="-server -XX:MaxPermSize=256m -Djava.awt.headless=true -Xmx512m"
+{% endhighlight %}
+
 Now start tomcat and then tail the server log file.
 {% highlight bash %}
 $ sudo /etc/init.d/tomcat6 start
