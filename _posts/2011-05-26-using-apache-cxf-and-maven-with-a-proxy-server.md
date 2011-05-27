@@ -18,8 +18,9 @@ Once we had overcome this issue we hit another interesting hurdle. My integratio
 </http-conf:conduit>
 {% endhighlight %}
 
-So in summary if your working behind a corporate firewall building web services projects using Maven and Apache CXF you will need to do the following.
-1. Configure a proxy in your Maven configuration so that assets can be retrieved, this is done as follows in your _settings.xml_.
+So in summary if your working behind a proxy server building web services projects using Maven and Apache CXF you will need to do the following.
+
+Configure a proxy in your Maven configuration so that assets can be retrieved, this is done as follows in your _settings.xml_.
 {% highlight xml %}
      <proxy>
        <id>optional</id>
@@ -31,12 +32,12 @@ So in summary if your working behind a corporate firewall building web services 
      </proxy>
 {% endhighlight %}
 
-2. Whenever you invoke any tests or calls which invoke wsdl2java you will need to pass the proxy settings in as previously described.
+Whenever you invoke any tests or calls which invoke wsdl2java you will need to pass the proxy settings in as previously described.
 {% highlight bash %}
 $ mvn -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 package
 {% endhighlight %}
 
-3. When running any tests or routines which use Apache CXF driven web services you will need the condiut configured, in this example it is global and applies to all http connections.
+When running any tests or routines which use Apache CXF driven web services you will need the condiut configured, in this example it is global and applies to all http connections.
 {% highlight xml %}
 <http-conf:conduit name="*.http-conduit">
     <http-conf:client ProxyServer="squid.wolfe.id.au" ProxyServerPort="3128"/>
