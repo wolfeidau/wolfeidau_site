@@ -27,13 +27,18 @@ article { display: block; }
 
 body {
   font-size: 14px;
-  line-height: 1.45em;
   font-family: "Droid Serif", Georgia, serif;
   color: $main-font-color;
+  line-height: 1.45em;
 }
 
 h2, h3, h4, h5, h6 {
   font-family: "Droid Sans", Arial, serif;
+}
+
+p code {
+  padding: 2px;
+  background-color: #E6F5F7;
 }
 
 header {
@@ -62,18 +67,9 @@ a {
   text-decoration: none;
 }
 
-nav {
+nav div {
   text-align: right;
-}
-
-nav img {
-	margin: 18px 18px;
-}
-
-.feed {
-  margin-left: 3px;
-  padding: 0 0 0 19px;
-  background: url("../images/feed-icon-14x14.png") no-repeat 0 50%;
+  margin-top: 10px;
 }
 
 section[role="main"] {
@@ -84,7 +80,6 @@ section[role="main"] {
   margin-bottom: 45px;
 }
 
-
 .entry-date {
   float: left;
   margin-left: -70px;
@@ -92,7 +87,7 @@ section[role="main"] {
   text-align: center;
   text-transform: uppercase;
   background-color: $highlight-color;
-  color: #FFFFFF;
+  color: #E6F5F7;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -170,8 +165,9 @@ img{
   color: #A9C3CC;
 }
 
-#mozwidget {
+.navwidget {
 	padding-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 }
 
