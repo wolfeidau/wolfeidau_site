@@ -1,14 +1,17 @@
-
+#
+# Rake file for wolfe.id.au website.
+#
+# author: Mark Wolfe<mark@wolfe.id.au>
+#
+# Usage:
+#
+# rake deploy
+#
+# rake newpost TITLE="Some new post to rant in"
+#
 require 'date'
 
-#class String
-#  def to_underscore!
-#    self.gsub!(/(.)([A-Z])/,'\1_\2').downcase!
-#  end
-#  def to_underscore
-#    self = self.clone.to_underscore!
-#  end
-#end
+
 def underscore(sentence)
   sentence.to_s.tr(" ", "-").downcase
 end
