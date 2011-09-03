@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JIRA and the not so great installer
+title: JIRA and the not so great new installer
 category: JIRA Linux Packaging
 ---
 The following post is a review of the new installer added in 4.4 of Atlassian JIRA. It details my experience with this installer and provides some advice on how to improve it.
