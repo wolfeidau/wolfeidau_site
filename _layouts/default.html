@@ -49,9 +49,7 @@
           <p>Powered by <a href="http://nginx.net/">nginx</a></p>
         </div>
         <div id="badges" class="grid_2">
-          <a href="http://www.w3.org/html/logo/">
-            <img src="/images/HTML5_Badge_32.png" alt="HTML 5 Badge"/>
-          </a>
+          <a href="http://www.w3.org/html/logo/"><img src="/images/HTML5_Badge_32.png" alt="HTML 5 Badge"/></a>
         </div>
         <div id="copyright" class="grid_5">
           <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
@@ -60,26 +58,26 @@
       </footer>
     </div>
     <script type="text/javascript">
-			(function(){
-				var links = document.getElementsByTagName('a');
-				var query = '?';
-				for (var i = 0; i < links.length; i++){
-					if (links[i].href.indexOf('#disqus_thread') >= 0){
-						query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-					}
-				}
-				document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{{ site.disqus.id }}/get_num_replies.js' + query + '"></' + 'script>');
-			})();
-	</script>
-  <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-  </script>
-  <script type="text/javascript">
-    try{ 
-    var pageTracker = _gat._getTracker("UA-10420512-2");
-    pageTracker._trackPageview();
-    } catch(err) {} 
-  </script>
+      (function(){
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for (var i = 0; i < links.length; i++){
+          if (links[i].href.indexOf('#disqus_thread') >= 0){
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+          }
+        }
+        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{{ site.disqus.id }}/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+    </script>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      </script>
+      <script type="text/javascript">
+        try{ 
+          var pageTracker = _gat._getTracker("UA-10420512-2");
+          pageTracker._trackPageview();
+        } catch(err) {} 
+    </script>
   </body>
 </html>
