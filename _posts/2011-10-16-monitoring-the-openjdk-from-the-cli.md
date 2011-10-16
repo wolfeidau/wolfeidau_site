@@ -4,7 +4,7 @@ title: Monitoring the OpenJDK from the CLI
 category: Java Performance Monitoring
 ---
 
-Currently I do quite a bit of work in and around the [Java virtual machine](http://openjdk.java.net/) \(JVM), most of the time on Linux. When things go awry and I am trying to establish why I reach for the Java performance analysis tools. These tools come in two forms, the wonderful GUI known as [visualvm](http://visualvm.java.net/) which I use when I am working on my local machine, and the cli tools packaged with the Java Development Kit (JDK) which I use when working remotely.
+Currently I do quite a bit of work in and around the [Java virtual machine](http://openjdk.java.net/) \(JVM), most of the time on Linux. When things go awry and I am trying to establish why, I reach for the Java performance analysis tools. These tools come in two forms, the wonderful GUI known as [visualvm](http://visualvm.java.net/), which I use when I am working on my local machine, and the cli tools packaged with the Java Development Kit (JDK), which I use when working remotely.
 
 The CLI tools I am referring to are:
 
@@ -13,15 +13,23 @@ The CLI tools I am referring to are:
 * [jhat - Java Heap Analysis Tool](http://download.oracle.com/javase/6/docs/technotes/tools/share/jhat.html)
 * [jstack - Java Stack Trace Tool](http://download.oracle.com/javase/6/docs/technotes/tools/share/jstack.html)
 
-The tools I use most commonly which are jps, jstat and jstack, the jhat tool is also very handy but really needs an entire blog post to itself as it crazy what you can do with it. In this post I have put together some tips, observations and sample outputs from them.
+The tools I use most commonly are jps, jstat and jstack, the jhat tool is also very handy but really needs an entire blog post to itself as it crazy what you can do with it. In this post I have put together some tips, observations and sample outputs to illustrate how I use them.
 
-To get started install the JDK, if you don't already have it, in my case I am using [ubuntu](http://www.ubuntu.com/) 11.10 so I run the following command to install it. 
+As I am using [ubuntu](http://www.ubuntu.com/) 11.10, which only installs the Java runtime environment (JRE) I will need to install the JDK. In my case I decided to give openjdk 7 a shot, but version 6 would work just fine.
+
 {% highlight bash %}
 root@oneric:~# apt-get install openjdk-7-jdk
 {% endhighlight %}
-Next I want to list the Java processes, note that it is best to assume the same user account as the service when doing this. On ubuntu I would firstly su to the user account, in this case I have to override the shell as it is _/bin/nologin_ and run jps.
 
-This command outputs the PID of the java process along with the main class name and the argument(s) passed to it on startup.
+To try out these commands I have installed tomcat7 this can be done through apt on ubuntu, again the previous version being tomcat 6 would be fine.
+
+{% highlight bash %}
+root@oneric:~# apt-get install tomcat7
+{% endhighlight %}
+
+Now that I have tomcat installed I want to list the Java processes, note that it is best to assume the same user account as the service when doing this. On ubuntu I would su to the user account, as the tomcat7 user is a system account I have to override the shell as it is _/bin/nologin_ by default, I can then run jps as this user.
+
+The _jps_ command outputs the PID of the java process along with the main class name and the argument(s) passed to it on startup.
 
 {% highlight bash %}
 root@oneric:~# su - tomcat7 -s /bin/bash 
