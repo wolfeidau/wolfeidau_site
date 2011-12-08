@@ -127,3 +127,4 @@ I plan on doing a bit of work on some visualisation tools, in [jruby](http://jru
 
 * [Chuk-Munn Lee of Sun Microsystems Troubleshoots Java SE 6 Deployment](http://java.sun.com/developer/technicalArticles/javase/troubleshoot/)
 * [Explaining java.lang.OutOfMemoryError: PermGen space](http://www.freshblurbs.com/explaining-java-lang-outofmemoryerror-permgen-space)
+
