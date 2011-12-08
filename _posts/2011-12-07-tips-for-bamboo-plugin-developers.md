@@ -14,7 +14,9 @@ The entire plugin development kit revolves around it so you need to understand i
 
 The first thing I do when coming back to maven is practice the release process, for most developers this is one of the most frustrating and complicated areas of maven so practice it. 
 
-Generate a fictional Java project using the basic archetype, and push it up to my version control site of choice which is either [bitbucket](http://bitbucket.org/) or [github](http://github.com) and work through the development cycle. Make a few changes check them in and then perform a release, this process normally takes me a few goes to get all the settings right in maven but eventually I get back into the swing of it. I recommend you use this project to familiarise yourself with the release process after any long breaks as well, this will ensure maven hasn't change since you last did it.
+Generate a test Java project using the basic archetype, and push it up to your version control site of choice, either [bitbucket](http://bitbucket.org/) or [github](http://github.com) is fine, and work through the development cycle. Make a few changes check them in and then perform a release, this process normally takes me a few goes to get all the settings right in your maven project. 
+
+I recommend you use this approach to re-familiarise yourself with the release process after any long breaks as well, this will ensure maven hasn't change since you last did it, and you don't make a mess of your plugin project.
 
 Once you have created your plugin project ensure you fill out all the relevant meta information in your maven pom file, as seen in the sample below. In addition to it being a good practice to do so this information can be used by maven plugins you may include in your project in the future.
 
@@ -45,10 +47,10 @@ Once you have created your plugin project ensure you fill out all the relevant m
 
 {% endhighlight %}
 
-Next thing I do is run a few maven commands on my newly minted plugin project to pull down the internet, this involves running the following commands and going to get lunch. Note as I do all my development on Unix systems the command will only work in those environments.
+Next thing I do is run a few maven commands on my newly created plugin project to "download the internet", this involves running the following targets and then going out to get lunch. 
 
 {% highlight bash %}
-atlas-mvn clean && atlas-mvn test && atlas-mvn integration-test && atlas-mvn install
+atlas-mvn clean integration-test install
 {% endhighlight %}
 
 Once completed you should have most of the stuff you need.
