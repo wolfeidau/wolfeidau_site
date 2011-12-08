@@ -1,3 +1,4 @@
 # ignore the generated site directory
 .idea
 _site/*
+*.swp

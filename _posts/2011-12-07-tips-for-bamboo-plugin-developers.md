@@ -47,17 +47,9 @@ Once you have created your plugin project ensure you fill out all the relevant m
 
 {% endhighlight %}
 
-Next thing I do is run a few maven commands on my newly created plugin project to "download the internet", this involves running the following targets and then going out to get lunch. 
-
-{% highlight bash %}
-atlas-mvn clean integration-test install
-{% endhighlight %}
-
-Once completed you should have most of the stuff you need.
-
 # The Java Ecosystem
 
-A small part of which maven has downloaded to your system is what your will be using to do most of the work in your plugin. So you should do a little bit of reading on the libraries which you will be using in this project.
+A small part of this ecosystem is downloaded to your system when you run maven to build your plugin, so I recommend you do a little bit of reading on some of them, the ones I have listed below are a few of my favourites. I myself are a big proponent of the old saying "When in Rome, do as the Romans do", for this reason I will always try and use the libraries which are already in the SDK.
 
 * [Google Collections](http://code.google.com/p/guava-libraries/), in my view one of the core libraries which a Java developer should know.
 * [SLF4J](http://www.slf4j.org/), one of the many logging abstractions which are used in Java projects but the one I tend to prefer.
@@ -65,8 +57,6 @@ A small part of which maven has downloaded to your system is what your will be u
 * [Spring Framework](http://www.springframework.org), most of the Atlassian products are built using this dependency injection framework so it is handy to understand a bit of how this works.
 * [JUnit](http://junit.org), this unit testing framework has been around for a long time for good reason, learn how to use it.
 * [Mockito](http://code.google.com/p/mockito/), because mocking is a BIG must when building something in a large application so learn this API and ensure it is included in your plugin project from the start.
-
-I myself are a big proponent of the old saying "When in Rome, do as the Romans do", for this reason I will always try and use the libraries which are already in the SDK.
 
 # Development process
 
