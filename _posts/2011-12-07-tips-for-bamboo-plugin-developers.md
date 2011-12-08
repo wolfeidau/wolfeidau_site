@@ -10,7 +10,7 @@ So to start with there are some things you should learn before beginning:
 
 # Maven
 
-The entire plugin development kit revolves around it so you need to understand it. 
+The entire plugin development kit revolves around it so you need to understand it, have a read over the [Maven Reference](http://www.sonatype.com/books/mvnref-book/reference/) and add it to your bookmarks.
 
 The first thing I do when coming back to maven is practice the release process, for most developers this is one of the most frustrating and complicated areas of maven so practice it. 
 
