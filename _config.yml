@@ -6,6 +6,8 @@ exclude:
     - README.md
     - Rakefile
     - artwork
+    - Gemfile
+    - Gemfile.lock
 
 title:          wolfeidau
 description:    "Observations and musings of Mark Wolfe, a Linux, Java and Networks guy."
