@@ -27,4 +27,6 @@ One thing to note is you will need to serve the site using a web server of some 
 $ python -m SimpleHTTPServer
 {% endhighlight %}
 
+I have posted a sample project up on github [lesscss_watch_example_site](https://github.com/wolfeidau/lesscss_watch_example_site "Sample LessCSS Project").
+
 Next thing I am working on is live reloading of page fragments using [Ember](http://emberjs.com/ "Ember Website") and [Handlebars](http://handlebarsjs.com/ "Handlebars Website").
