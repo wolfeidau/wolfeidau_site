@@ -29,4 +29,4 @@ $ python -m SimpleHTTPServer
 
 To illustrate this feature I have created a sample project up on github [lesscss_watch_example_site](https://github.com/wolfeidau/lesscss_watch_example_site "Sample LessCSS Project").
 
-I am currently working on a site which will live reload page fragments using [Ember](http://emberjs.com/ "Ember Website") and [Handlebars](http://handlebarsjs.com/ "Handlebars Website").
+I am currently working on a site which will also live reload page fragments using [Ember](http://emberjs.com/ "Ember Website") and [Handlebars](http://handlebarsjs.com/ "Handlebars Website").
