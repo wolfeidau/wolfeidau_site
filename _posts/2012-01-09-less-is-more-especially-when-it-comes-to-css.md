@@ -4,7 +4,7 @@ title: Less is more especially when it comes to CSS
 category: JavaScript HTML5
 ---
 
-I am currently working on new design for my site using HTML5, CSS and a sprinkling of JavaScript. Once I started building my basic design I was re-acquainted with a process that really, really annoys me; the constant tweak refresh loop associated with building a design. So in true yak shaving fashion I decided to find a solution to this problem.
+I am currently working on new design for my site using HTML5, CSS and a sprinkling of JavaScript. Once I started building my basic design I was re-acquainted with a process that really, really annoys me; the constant tweak refresh loop associated with developing a new site layout. So in true yak shaving sysadmin fashion I got side tracked looking for a solution to this problem.
 
 After considering the issue for a bit it dawned on me that this may be a good excuse to try out [LessCSS](http://lesscss.org "LessCSS Website") JavaScript library. When incorporated into a website this library enables the developer to use a CSS like markup which significantly reduce the amount of duplication and redundancy in the style sheet. The markup is processed on the client using JavaScript and has an API to mess around with how the styles are loaded.
 
@@ -27,6 +27,6 @@ One thing to note is you will need to serve the site using a web server of some 
 $ python -m SimpleHTTPServer
 {% endhighlight %}
 
-I have posted a sample project up on github [lesscss_watch_example_site](https://github.com/wolfeidau/lesscss_watch_example_site "Sample LessCSS Project").
+To illustrate this feature I have created a sample project up on github [lesscss_watch_example_site](https://github.com/wolfeidau/lesscss_watch_example_site "Sample LessCSS Project").
 
-Next thing I am working on is live reloading of page fragments using [Ember](http://emberjs.com/ "Ember Website") and [Handlebars](http://handlebarsjs.com/ "Handlebars Website").
+I am currently working on a site which will live reload page fragments using [Ember](http://emberjs.com/ "Ember Website") and [Handlebars](http://handlebarsjs.com/ "Handlebars Website").
