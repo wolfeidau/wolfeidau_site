@@ -179,3 +179,11 @@ pre {
 	margin: 5px;
 	font-size: 12px;
 }
+
+div.entry-contents > p > img {
+  margin: 20px; 
+   -webkit-box-shadow: 3px 3px 3px #ccc;
+  -moz-box-shadow: 3px 3px 3px #ccc;
+  box-shadow: 3px 3px 3px #ccc;
+  border: 1px solid #ccc;
+}
