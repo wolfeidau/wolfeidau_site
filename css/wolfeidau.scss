@@ -187,3 +187,12 @@ div.entry-contents > p > img {
   box-shadow: 3px 3px 3px #ccc;
   border: 1px solid #ccc;
 }
+
+section.default div.highlight {
+  overflow: auto;
+  width: 100%;
+}
+
+section.default p > img {
+  width: 100%;
+}
