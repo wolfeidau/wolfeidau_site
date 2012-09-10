@@ -28,11 +28,11 @@ is retrieving a specific revision based on the raw link in the gist this may cha
 ssh admin@ubuntuserver -t -C 'curl https://raw.github.com/gist/3328844/2f4d74d49f8f7a2cd0b7a83a23fafe75d21241cf/gistfile1.sh | sudo bash'
 {% endhighlight %}
 
-In the next few steps I export my chef-solo template project to the system and build up a recipe for producing this
+In the next few steps I export my `chef-solo` template project to the system and build up a recipe for producing this
 type of system. You may do this differently, I have a script with all these commands in it but I have exploded it
 for this example.
 
-I start my dev cycle by generating a new ssh key pair and upload that to github or bitbucket depending who you use.
+I start my dev cycle by generating a new ssh key pair and upload that to [github](https://github.com) or [bitbucket](https://bitbucket.org/) depending which one you use.
 
 {% highlight bash %}
 ssh admin@ubuntuserver -t -C "ssh-keygen -t rsa -b 4096 && cat ~/.ssh/id_rsa.pub"
@@ -44,25 +44,31 @@ Make the chef directory and chown it for my admin user.
 ssh admin@ubuntuserver -t -C "sudo su - -c '(mkdir /var/chef && chown admin:admin /var/chef)'"
 {% endhighlight %}
 
-Clone my git project whilst retaining ownership of the files by my admin user.
+Clone my `git` project whilst retaining ownership of the files by my admin user, for those new to git see the awesome [git book](http://git-scm.com/book).
 
 {% highlight bash %}
 ssh admin@ubuntuserver -t -C "git clone git@github.com:wolfeidau/chef-solo-base.git /var/chef"
 {% endhighlight %}
 
-Initialise the sub modules and update them, this is something I always forget unless I have a script to follow..
+Initialise the sub-modules and update them, this is something I always forget unless I have a script to follow..
 
 {% highlight bash %}
 ssh admin@ubuntuserver -t -C "cd /var/chef && git submodule init && git submodule update"
 {% endhighlight %}
 
-Now you can run chef-solo just to ensure it is all running as expected.
+Now you can run `chef-solo` just to ensure it is all running as expected.
 
 ssh admin@ubuntuserver -t -C 'sudo chef-solo -c /var/chef/solo.rb -j /var/chef/node.json'
 
 In my example I have commented out a whole section of example code which bootstraps my CI server using chef, this is
 gives me some starting points. Note that I am not an authority on either chef or ruby so my scrappy sysadmin code may
 make some people grimace but it is a starting point.
+
+Once your ready to start hacking remove the remote repo and add your own.
+
+{% highlight bash %}
+git remote rm origin
+{% endhighlight %}
 
 Next some rules I try and live by when using chef:
 
