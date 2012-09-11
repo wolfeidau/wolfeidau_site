@@ -21,7 +21,7 @@ Because I am doing this on a local server I normally use `ssh-copy-id` to copy o
 
 ssh-copy-id admin@ubuntuserver
 
-Next I run my [bootstap](https://gist.github.com/3328844) script to install my environment on the server, note the link below
+Next I run my [bootstrap](https://gist.github.com/3328844) script to install my environment on the server, note the link below
 is retrieving a specific revision based on the raw link in the gist this may change based on my updates.
 
 {% highlight bash %}
@@ -136,7 +136,7 @@ Again I run `ssh-copy-id` to copy my ssh key.
 ssh-copy-id admin@ubuntuserver
 {% endhighlight %}
 
-Bootstap chef onto the server.
+Bootstrap chef onto the server.
 
 {% highlight bash %}
 ssh admin@ubuntuserver -t -C 'curl https://raw.github.com/gist/3328844/2f4d74d49f8f7a2cd0b7a83a23fafe75d21241cf/gistfile1.sh | sudo bash'
