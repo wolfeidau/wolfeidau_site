@@ -58,7 +58,9 @@ ssh admin@ubuntuserver -t -C "cd /var/chef && git submodule init && git submodul
 
 Now you can run `chef-solo` just to ensure it is all running as expected.
 
+{% highlight bash %}
 ssh admin@ubuntuserver -t -C 'sudo chef-solo -c /var/chef/solo.rb -j /var/chef/node.json'
+{% endhighlight %}
 
 This template is comprised of:
 
