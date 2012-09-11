@@ -109,7 +109,7 @@ In my example I have commented out a whole section of example code which bootstr
 gives me some starting points. Note that I am not an authority on either chef or ruby so my scrappy sysadmin code may
 make some people grimace but it is a starting point.
 
-Once your ready to start hacking remove the remote repo and add your own.
+Once you're ready to start hacking remove the remote repo and add your own.
 
 {% highlight bash %}
 git remote rm origin
