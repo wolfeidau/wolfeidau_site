@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What is HMAC Authentication why is it useful?
+title: What is HMAC Authentication and why is it useful?
 category: OpenSSL, NodeJS, Ruby, Java
 ---
 
