@@ -28,7 +28,7 @@ encryption as the user name and password are presented with ever request. For mo
 Digest Authentication
 -------------
 
-This is actually quite a bit closer to hmac than digest, it uses md5 to hash the authentication attributes in a way which
+This is actually quite a bit closer to HMAC than basic, it uses md5 to hash the authentication attributes in a way which
 makes it much more difficult to intercept and compromise the username and password attributes. Note I recommend reading over
 the [Wikipedia page](http://en.wikipedia.org/wiki/Digest_access_authentication) on the subject, in short it is more than
 secure than basic auth, however it is entirely dependent on how many of the safeguards are implemented in the client
