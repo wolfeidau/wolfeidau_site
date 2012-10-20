@@ -1,7 +1,7 @@
 ---
 layout: post
 title: What is HMAC Authentication why is it useful?
-category: openssl nodejs Ruby
+category: OpenSSL, NodeJS, Ruby, Java
 ---
 
 To start with a little background, then I will outline the options for authentication of HTTP based server APIs with a focus on
@@ -34,7 +34,7 @@ the [Wikipedia page](http://en.wikipedia.org/wiki/Digest_access_authentication) 
 secure than basic auth, however it is entirely dependent on how many of the safeguards are implemented in the client
 software and the complexity of the password is a factor.
 
-Note unlike basic authentication, this does not require an SSL connection, that said make sure you read the wikipedia article
+Note unlike basic authentication, this does not require an SSL connection, that said make sure you read the Wikipedia article
 as there are some issues with man in the middle attacks.
 
 HMAC Authentication
@@ -63,6 +63,18 @@ The following example is from [Amazon S3 documentation](http://s3.amazonaws.com/
                    + DATE + "\n"
                    + CanonicalizedAmzHeaders + "\n"
                    + CanonicalizedResource))
+{% endhighlight %}
+
+Which results in a HTTP request, with headers which looks like this.
+
+{% highlight text %}
+PUT /quotes/nelson HTTP/1.0
+Authorization: AWS 44CF9590006BF252F707:jZNOcbfWmD/A/f3hSvVzXZjM2HU=
+Content-Md5: c8fdb181845a4ca6b8fec737b3581d76
+Content-Type: text/html
+Date: Thu, 17 Nov 2005 18:49:58 GMT
+X-Amz-Meta-Author: foo@bar.com
+X-Amz-Magic: abracadabra
 {% endhighlight %}
 
 Note the AWS after the colon is sometimes known as the service label, most services I have seen follow the convention of changing this to
