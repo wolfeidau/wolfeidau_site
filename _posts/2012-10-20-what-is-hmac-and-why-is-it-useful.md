@@ -95,7 +95,7 @@ As far as disadvantages, there are indeed some:
 
 1. Not a lot of consistency in the implementations outside of the ones which interface with Amazon.
 2. Server side implementations are few in number, and also very inconsistent.
-3. Cryptography is hard, a single character difference will result in a completely different value.
+3. Cryptographic APIs like OpenSSL can be hard to those who haven't used them directly before, a single character difference will result in a completely different value.
 4. In cases where all headers within a request are signed you need to be VERY careful at the server or client
 side to avoid headers being injected or modified by your libraries (more details below).
 
