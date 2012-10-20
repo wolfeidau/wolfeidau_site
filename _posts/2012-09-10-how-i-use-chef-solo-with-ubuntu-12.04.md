@@ -121,6 +121,8 @@ Next some rules I try and live by when using chef:
 2. Don't use chef as an alternate package manager, make packages using fpm and install them.
 3. Please reread #1.
 
+Most importantly get started with this tool you will never look back once you have a few systems built using it.
+
 To add more recipes from [opscode-cookbooks](https://github.com/opscode-cookbooks) account simply navigate to the base of your project and run something like the
 following example.
 

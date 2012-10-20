@@ -26,7 +26,7 @@ section { display: block; }
 article { display: block; }
 
 body {
-  font-size: 14px;
+  font-size: 16px;
   font-family: "Droid Serif", Georgia, serif;
   color: $main-font-color;
   line-height: 1.45em;
@@ -195,4 +195,12 @@ section.default div.highlight {
 
 section.default p > img {
   width: 100%;
+}
+
+div.entry-contents h2 {
+  font-weight: normal;
+}
+
+div.entry-contents li {
+  padding-bottom: 0.6em;
 }
