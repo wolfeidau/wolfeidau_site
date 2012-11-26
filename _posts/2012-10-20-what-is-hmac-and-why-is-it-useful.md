@@ -40,7 +40,10 @@ as there are some issues with man in the middle attacks.
 HMAC Authentication
 -------------
 
-Unlike the previous authentication methods there isn't, as far as I can tell a standard way to do this, that said as this
+Hash-based message authentication code (HMAC) is a mechanism for calculating a message authentication code involving a hash function
+in combination with a secret key. This can be used to verify the integrity and authenticity of a a message.
+
+Unlike the previous authentication methods there isn't, as far as I can tell a standard way to do this within HTTP, that said as this
 is the main authentication method used by [Amazon Web Services](http://aws.amazon.com) it is very well understood, and there are a number of
 libraries which implement it. To use this form of authentication you utilise a key identifier and a secret key, with both
 of these typically generated in an admin interface (more details below).
@@ -105,7 +108,7 @@ As I am currently developing, and indeed rewriting some of my existing implement
 list of tips for library authors.
 
 1. When writing the API ensure you check your request on the wire to ensure nothing has been changed or "tweaked" by the HTTP
-library your using, mine added a character encoding attribute to the Content-Type.
+library you're using, mine added a character encoding attribute to the Content-Type.
 2. Test that order of your headers is correct on dispatch of the request as well, libraries my use an hash map (natural ordered),
 this may break your signature depending on the implementation. In the case of Amazon they require you to sort your "extra"
 headers alphabetically and lower case the header names before computing the signature.
@@ -124,6 +127,35 @@ From a security stand point a couple of basic recommendations.
 the web logs (again ideally this would be encoded like what ruby inspect does).
 
 So in closing I certainly recommend using HMAC authentication, but be prepared to learn a lot about how HTTP works and a
-little Cryptography, this in my view cant hurt either way if your building server side APIs.
+little Cryptography, this in my view cant hurt either way if you're building server side APIs.
+
+Update
+-------------
+
+Based on some of the comments made when I submitted this to [hacker news](http://news.ycombinator.com/item?id=4676676) I have
+compiled some extra links and observations.
+
+One interesting point made was the issue of replay attacks, which is where a valid message is maliciously or fraudulently repeated or delayed. This is
+either performed by the originator or by a man in the middle who retransmits the message, possibly as a part of a denial of service.
+
+nonce
+-------------
+
+To protect from these types of attacks a [Cryptographic nonce](http://en.wikipedia.org/wiki/Cryptographic_nonce), which is an arbitrary number usable only
+once in a message exchange between a client and a server. These are in fact optionally used within Digest authentication mentioned previously.
+
+One of the comments linked an article which suggested use of nonce with HMAC as described in [RFC 5849 The OAuth 1.0 Protocol](http://tools.ietf.org/html/rfc5849#page-17). In this
+specification an nonce is paired a timestamp and included with each message, the timestamp can be used to avoid the need to retain an infinite number of nonce values for
+future checks, the server can reject messages with timestamps older than window of time nonce values are retained.
+
+Based on the original post I have developed a flexible hmac authentication library called [Ofuda](https://github.com/wolfeidau/ofuda) for [nodejs](http://nodejs.org), this currently contains
+a small routine to hmac sign a list of headers for a given request. In the near future I plan to add validation of a signature and an implementation of nonce based on the
+aforementioned strategy.
+
+
+
+
+
+
 
 
