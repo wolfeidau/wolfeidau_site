@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Raspberry Pi Temperature and Humidity Project Construction
-category: raspberrpi, nodejs, hardware
+category: raspberrpi, hardware
 ---
 
 For some time I have had a [Raspberry Pi](http://www.raspberrypi.org/) languishing on my desk, like many I bought one early on and played around with
