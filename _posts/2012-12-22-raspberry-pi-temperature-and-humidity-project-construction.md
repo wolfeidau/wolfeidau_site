@@ -4,7 +4,7 @@ title: Raspberry Pi Temperature and Humidity Project Construction
 category: raspberrpi, nodejs, hardware
 ---
 
-For some time I have had a Raspberry Pi languishing on my desk, like many I bought one early on and played around with
+For some time I have had a [Raspberry Pi](http://www.raspberrypi.org/) languishing on my desk, like many I bought one early on and played around with
 it for a while and then got busy with other stuff. Recently however I have been looking into distributed sensor networks
 which led me to consider how I could use the Raspberry Pi to aid in my research. If I could get a number of these devices
 connected up together gathering some measurements of some sort, I could a) make some graphs, b) produce some useful
