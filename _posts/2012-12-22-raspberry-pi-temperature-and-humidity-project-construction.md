@@ -4,48 +4,48 @@ title: Raspberry Pi Temperature and Humidity Project Construction
 category: raspberrpi, nodejs, hardware
 ---
 
-For some time I have had a Raspberry Pi languishing on my desk not really being used for much at all, like many I bought
-one early on and played around with it for a while and then got busy with other stuff. Recently however I have been
-researching distributed systems, which led me to looking into distributed sensor networks and back to my RaspberryPi. If
-I could get a number of these devices connected up together gathering some measurements of some sort I could do something
-interesting and useful while producing some useful test data.
+For some time I have had a Raspberry Pi languishing on my desk, like many I bought one early on and played around with
+it for a while and then got busy with other stuff. Recently however I have been looking into distributed sensor networks
+which led me to consider how I could use the Raspberry Pi to aid in my research. If I could get a number of these devices
+connected up together gathering some measurements of some sort, I could a) make some graphs, b) produce some useful
+test data and c) get some real world experience with sensor networks.
 
-So I did a bit of research on what hardware I could connect up to the Raspberry Pi with the least amount of circuitry to
-gather some interesting data, this led me to the AdaFruit site and this article [DHT Humidity Sensing on Raspberry Pi with GDocs Logging](http://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/overview)
-which as almost what I was after but still had a little to much "construction". After searching around I managed to
-deduce that a small pre-made Arduino compatible board existed with all the circuitry already done! All that remained was
-to solder 3 wires onto the board and get this connected to the Raspberry Pi. So after some searching around in my computer
+So I did a bit of research on what hardware I could connect up to the Raspberry Pi with the least amount of circuitry
+this led me to the AdaFruit site and in particular this article [DHT Humidity Sensing on Raspberry Pi with GDocs Logging](http://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/overview).
+This was as almost what I was after but still had a little to much "construction". After searching around I managed to
+deduce that a small pre-made Arduino compatible board existed with all the circuitry already assembled,  all that remained was
+to solder 3 wires onto the board and get this connected to the Raspberry Pi. After some foraging around in my computer
 "junk" I found some old case wiring which had small 4 pin connectors which could be plugged into the gpio header and could
 have their pins rejigged into any combination of one, two or 4 pin headers for maximum flexibility.
 
 So to build this project you will need.
 
-1 x Raspberry Pi
-1 x 700mW power supply
-1 x freetronics [Humidity and Tempreture Sensor Module](http://www.freetronics.com/humid)
-2 x 4 pin connectors, as found in old PC cases or CD drive audio cables
+* 1 x Raspberry Pi
+* 1 x 700mW power supply
+* 1 x freetronics [Humidity and Temperature Sensor Module](http://www.freetronics.com/humid)
+* 2 x 4 pin connectors, as found in old PC cases or CD drive audio cables
 
 Assembly is quite simple.
 
-1. Solder three wires into the freetronics board, in my case I had red which i soldered into the data pin, white which
+Solder three wires into the freetronics board, in my case I had red which i soldered into the data pin, white which
 I soldered into the 3.3v pin and black which I soldered into the ground pin.
 
 ![Sensor Connection](/images/2012-12-21_RaspberryPi_Project_Sensor.jpg)
 
-2. Move the ground wire into it's own 4 pin connector, and put the 3.3v and data pins at either end of another 4 port connector.
+Move the ground wire into it's own 4 pin connector, and put the 3.3v and data pins at either end of another 4 port connector.
 
 ![Four pin Connectors](/images/2012-12-21_RaspberryPi_Project_Connectors.jpg)
 
-3. Connect these as illustrated to the Raspberry Pi, being sure to triple check the location.
+Connect these as illustrated to the Raspberry Pi, being sure to triple check the location.
 
-![Connected to the Raspberry Pi](images/2012-12-21_RaspberryPi_Project_Connection.jpg)
+![Connected to the Raspberry Pi](/images/2012-12-21_RaspberryPi_Project_Connection.jpg)
 
-4. Bask in the glow of the little LED on the addon board which indicates you have powered it up.
+Bask in the glow of the little LED on the addon board which indicates you have powered it up.
 
 ![Finished project connected to the network](/images/2012-12-21_RaspberryPi_Project.jpg)
 
-5. First you will need to grab and install the bcm2835
-library before building it. I grabbed the latest sources for [Mike McCauley's bcm2835 library](http://www.open.com.au/mikem/bcm2835/) and installed them on the pi.
+First you will need to grab and install the bcm2835 library before building it. I grabbed the latest sources for
+[Mike McCauley's bcm2835 library](http://www.open.com.au/mikem/bcm2835/) and installed them on the pi.
 
 {% highlight bash %}
 pi@raspberrypi ~ $ wget http://www.open.com.au/mikem/bcm2835/bcm2835-1.14.tar.gz
@@ -55,8 +55,9 @@ pi@raspberrypi ~/bcm2835-1.14 $ ./configure
 pi@raspberrypi ~/bcm2835-1.14 $ make
 ...
 pi@raspberrypi ~/bcm2835-1.14 $ sudo make install
+{% endhighlight %}
 
-6. Download the software as instructed in the linked ADAFruit article, you will need git so install that first.
+Download the software as instructed in the linked ADAFruit article, you will need git so install that first.
 
 {% highlight bash %}
 pi@raspberrypi ~ $ apt-get install git
@@ -65,7 +66,7 @@ pi@raspberrypi ~ $ cd Adafruit-Raspberry-Pi-Python-Code/
 pi@raspberrypi ~/Adafruit-Raspberry-Pi-Python-Code $ cd Adafruit_DHT_Driver
 {% endhighlight %}
 
-7. Made a small change to the Make file.
+Made a small change to the Make file.
 
 {% highlight bash %}
 pi@raspberrypi ~/Adafruit-Raspberry-Pi-Python-Code/Adafruit_DHT_Driver $ git diff
@@ -84,13 +85,13 @@ index 5a91e39..51deb4b 100644
  OBJ = Adafruit_DHT.o
 {% endhighlight %}
 
-8. Build the software.
+Build the software.
 
 {% highlight bash %}
 pi@raspberrypi ~/Adafruit-Raspberry-Pi-Python-Code/Adafruit_DHT_Driver $ make
 {% endhighlight %}
 
-9. Run the Adafruit_DHT command.
+Run the Adafruit_DHT command.
 
 {% highlight bash %}
 pi@raspberrypi ~/Adafruit-Raspberry-Pi-Python-Code/Adafruit_DHT_Driver $ sudo ./Adafruit_DHT 2302 4
