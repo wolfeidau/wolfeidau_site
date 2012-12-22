@@ -18,12 +18,14 @@ to solder 3 wires onto the board and get this connected to the Raspberry Pi. Aft
 "junk" I found some old case wiring which had small 4 pin connectors which could be plugged into the gpio header and could
 have their pins rejigged into any combination of one, two or 4 pin headers for maximum flexibility.
 
-So to build this project you will need.
+So to build this project you will need the following items, I have included the approximate cost.
 
-* 1 x Raspberry Pi
-* 1 x 700mW power supply
-* 1 x freetronics [Humidity and Temperature Sensor Module](http://www.freetronics.com/humid)
+* 1 x Raspberry Pi ($42)
+* 1 x 700mW power supply ($12)
+* 1 x freetronics [Humidity and Temperature Sensor Module](http://www.freetronics.com/humid) ($20)
 * 2 x 4 pin connectors, as found in old PC cases or CD drive audio cables
+
+Total cost $74.
 
 Assembly is quite simple.
 
