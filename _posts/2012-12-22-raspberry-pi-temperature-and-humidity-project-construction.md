@@ -68,25 +68,6 @@ pi@raspberrypi ~ $ cd Adafruit-Raspberry-Pi-Python-Code/
 pi@raspberrypi ~/Adafruit-Raspberry-Pi-Python-Code $ cd Adafruit_DHT_Driver
 {% endhighlight %}
 
-Made a small change to the Make file.
-
-{% highlight bash %}
-pi@raspberrypi ~/Adafruit-Raspberry-Pi-Python-Code/Adafruit_DHT_Driver $ git diff
-diff --git a/Adafruit_DHT_Driver/Adafruit_DHT b/Adafruit_DHT_Driver/Adafruit_DHT
-index 40f4c41..c06bef0 100755
-Binary files a/Adafruit_DHT_Driver/Adafruit_DHT and b/Adafruit_DHT_Driver/Adafru
-diff --git a/Adafruit_DHT_Driver/Makefile b/Adafruit_DHT_Driver/Makefile
-index 5a91e39..51deb4b 100644
---- a/Adafruit_DHT_Driver/Makefile
-+++ b/Adafruit_DHT_Driver/Makefile
-@@ -1,5 +1,5 @@
- CC = gcc
--CFLAGS =  -std=c99 -I. -lbcm2835
-+CFLAGS =  -std=c99 -I. -lbcm2835 -lrt
- DEPS =
- OBJ = Adafruit_DHT.o
-{% endhighlight %}
-
 Build the software.
 
 {% highlight bash %}
@@ -107,3 +88,8 @@ I am working on another post with some details of how I am using this device, an
 this should go out in the next couple of weeks.
 
 Hope others find this useful.
+
+Update
+-------------
+
+`2013-02-28` Removed the change to small change to the make file as it is not required anymore.

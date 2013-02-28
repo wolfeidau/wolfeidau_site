@@ -1,7 +1,7 @@
 Licence
 =======
 
-The following directories and thier contents is copyright Mark Wolfe:
+The following directories and their contents is copyright Mark Wolfe:
 
 * \_posts
 * images
