@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Presentation</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="components/bespoke.js/demo/themes.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="classic">
+<div id="main">
+    <article class="bespoke-parent">
+        <section><p id="heading">Introduction to </p><img id="logo" src="img/hapi.png">
+
+            <p id="by">By Mark Wolfe</p></section>
+        <section><h1>What is hapi?</h1>
+            <ul>
+                <li>Built on top of Node.JS</li>
+                <li>Developed by a team at Walmart Labs</li>
+                <li>Out of the box it includes:</li>
+                <ul>
+                    <li>Authentication</li>
+                    <li>Validation</li>
+                    <li>Caching</li>
+                    <li>Batching</li>
+                    <li>And more..</li>
+                </ul>
+            </ul>
+        </section>
+        <section><h1>Auth</h1><img src="img/hawk.png" class="hawk">
+            <ul>
+                <li>Out of the box supports:</li>
+                <ul>
+                    <li>Basic</li>
+                    <li>Cookie</li>
+                </ul>
+                <li>Also includes Hawk</li>
+                <ul>
+                    <li>MAC based authetication</li>
+                </ul>
+                <li>passport.js plugin in the works.</li>
+                <ul>
+                    <li>OAuth for GitHub, Twitter..</li>
+                </ul>
+            </ul>
+        </section>
+        <section><h1>Validation</h1><img src="img/joi.png" class="module">
+            <ul>
+                <li>Stand alone validation library</li>
+                <li>Validates JSON Data</li>
+                <ul>
+                    <li>Type checking Strings, Numbers, Array</li>
+                    <li>Required/Optional</li>
+                    <li>Check against a list of values</li>
+                </ul>
+                <li>API enables grouping of validations into schemas</li>
+            </ul>
+        </section>
+        <section><h1>Caching</h1><img src="img/catbox.png" class="module">
+            <ul>
+                <li>Caching and Prefetch hooks</li>
+                <li>Rule based</li>
+                <li>Provides engines for:</li>
+                <ul>
+                    <li>Memory (Experimental)</li>
+                    <li>Redis</li>
+                    <li>MongoDB</li>
+                </ul>
+            </ul>
+        </section>
+        <section><h1>Monitoring</h1><img src="img/good.png" class="module">
+            <ul>
+                <li>Request Logging</li>
+                <li>System and process performance</li>
+                <li>General events</li>
+                <li>Can be written to:</li>
+                <ul>
+                    <li>Console</li>
+                    <li>File</li>
+                    <li>HTTP</li>
+                </ul>
+            </ul>
+        </section>
+        <section><h1>Testing</h1><img src="img/shot.png" class="module">
+            <ul>
+                <li>Request injection</li>
+                <li>Doesn't require socket connection</li>
+                <li>Libraries I use to test:</li>
+                <ul>
+                    <li>mocha</li>
+                    <li>sinon.js</li>
+                    <li>chai</li>
+                </ul>
+            </ul>
+        </section>
+        <section><h1>Batching</h1><img src="img/bassmaster.png" class="module">
+            <ul>
+                <li>Invoke a batch of operations</li>
+                <li>Designed for use within mobile applications</li>
+                <li>Mobile networks SUCK</li>
+                <ul>
+                    <li>Trains</li>
+                    <li>Large events</li>
+                </ul>
+                <li>Similar boost to combining assets</li>
+            </ul>
+        </section>
+        <section><h1>Interesting Features</h1>
+            <ul>
+                <li>Request Tails</li>
+                <ul>
+                    <li>Executed after response completion</li>
+                    <li>Asyncronis</li>
+                    <li>Good for idempotent operations</li>
+                </ul>
+                <li>Per route cache configuration</li>
+                <li>Live request debugging</li>
+            </ul>
+        </section>
+        <section><h1>Observations</h1>
+            <ul>
+                <li>New framework</li>
+                <li>Modular reusable components</li>
+                <li>API is still a moving target (1.0 soon)</li>
+                <li>Open to contributions</li>
+                <li>Prepare to read the code</li>
+                <li>Documentation needs more examples</li>
+            </ul>
+        </section>
+        <section><h1>Questions?</h1>
+            <ul>
+                <li>Links</li>
+                <ul>
+                    <li>http://hapijs.com</li>
+                    <li>http://hueniverse.com/</li>
+                    <li>@wolfeidau on twitter and github</li>
+                </ul>
+            </ul>
+        </section>
+    </article>
+</div>
+<script src="components/bespoke.js/dist/bespoke.min.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

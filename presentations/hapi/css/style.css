@@ -1,0 +1,142 @@
+body {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+/*
+    transform: scale(2.1,4);
+    zoom: 1.8;
+    -moz-transform: scale(1.2);
+    -moz-transform-origin: 0 0;
+*/
+}
+
+article {
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    -ms-perspective: 600px;
+    -o-perspective: 600px;
+    perspective: 600px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+section {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+    background: #c0c0c0;
+    border-radius: 30px;
+    width: 512px;
+    height: 380px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -256px;
+    margin-top: -220px;
+    opacity: 0;
+}
+body,
+section.bespoke-slide {
+    -webkit-transition: -webkit-transform .7s ease, opacity .7s ease, background-color .7s ease;
+    -moz-transition: -moz-transform .7s ease, opacity .7s ease, background-color .7s ease;
+    -ms-transition: -ms-transform .7s ease, opacity .7s ease, background-color .7s ease;
+    -o-transition: -o-transform .7s ease, opacity .7s ease, background-color .7s ease;
+    transition: transform .7s ease, opacity .7s ease, background-color .7s ease;
+}
+section.bespoke-active {
+    opacity: 1;
+    z-index: 1;
+}
+
+h1 {
+    color: white;
+    font-family: Gill Sans, Segoe UI Light, Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 50px;
+    font-weight: normal;
+    text-shadow: 0 0 1px white, 0 0 1px white, 0 0 1px white;
+    margin: 0;
+    margin-top: 50px;
+}
+
+li, p {
+    -webkit-transition: opacity 2s ease;
+    -moz-transition: opacity 2s ease;
+    -ms-transition: opacity 2s ease;
+    -o-transition: opacity 2s ease;
+    transition: opacity 2s ease;
+    line-height: 1.6;
+    font-family: Gill Sans, Segoe UI Light, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 200;
+    color: white;
+    opacity: 0.9;
+}
+
+ul {
+    padding-left: 100px;
+}
+
+ul ul {
+    padding-left: 20px;
+}
+
+img#logo {
+    margin-left: 65px;
+    width: 250px;
+    height: auto;
+
+}
+
+img.module {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 150px;
+    height: auto;
+
+}
+
+img.hawk {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    height: 150px;
+}
+
+p#heading {
+    color: white;
+    font-family: Gill Sans, Segoe UI Light, Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 32px;
+}
+
+p#by {
+    text-align: right;
+    padding-right: 80px;
+    font-size: 24px;
+}
+
+.classic {
+    background: rgba(100, 135, 231, 0.3);
+}
+.classic section,
+.classic .arrow:hover {
+    background: rgb(100, 135, 231);
+}
+.classic a {
+    color: rgb(86, 174, 231);
+}
