@@ -5,7 +5,7 @@ layout: default
 {% for post in paginator.posts %}
 {% include post_content.html %}
 {% endfor %}
-<div>
+<div class="pure-u-1 pagination">
     <ul class="pure-paginator pagination-centered">
         <li>
             {% if paginator.previous_page %}

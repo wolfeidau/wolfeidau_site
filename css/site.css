@@ -1,7 +1,7 @@
-.sidebar a, .sidebar a:hover,
-.sidebar a:focus {
-     text-decoration: none;
-     color: #fff;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 a {
@@ -11,10 +11,6 @@ a {
 a:hover,
 a:focus {
     text-decoration: underline;
-}
-
-a.title {
- color: #000;
 }
 
 /* LAYOUT CSS */
@@ -89,9 +85,7 @@ a.title {
 
 .post {
     padding-bottom: 2em;
-    border-bottom: 1px solid #f2f2f0;
 }
-
 .post-title {
     font-size: 2em;
     color: #222;
@@ -143,12 +137,6 @@ a.title {
     text-shadow: 0 1px 1px #333;
 }
 
-.pagination-centered {
-    text-align: center;
-    padding-top: 39px;
-    padding-bottom: 14px;
-}
-
 .footer {
     text-align: center;
     padding: 1em 0;
@@ -160,6 +148,34 @@ a.title {
 .footer .pure-menu a:hover,
 .footer .pure-menu a:focus {
     background: none;
+}
+
+.highlight {
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    background-color: #f2f2f0;
+    border-left: 1px solid #999;
+    line-height: 1.3em;
+}
+
+.sidebar a, .sidebar a:hover,
+.sidebar a:focus {
+    text-decoration: none;
+    color: #fff;
+}
+
+a.title {
+    color: #000;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination a {
+    box-sizing: content-box;
 }
 
 @media (max-width: 767px) {
