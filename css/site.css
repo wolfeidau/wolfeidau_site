@@ -178,6 +178,10 @@ a.title {
     box-sizing: content-box;
 }
 
+.comments {
+    margin-top: 40px;
+}
+
 @media (max-width: 767px) {
     .sidebar {
         width: 100%;
