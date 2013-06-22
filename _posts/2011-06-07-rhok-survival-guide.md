@@ -1,10 +1,12 @@
 ---
 layout: post
 title: RHOK Survival Guide
-category: RHOK
+tags: 
+  - RHOK
 ---
 
 Last weekend I was fortunate to have participated in first ever [random hacks of kindness](http://www.rhok.org/) event. This was quite an amazing experience and one I really enjoyed, however going into this event I had no idea what to expect, and no real insight into what to bring. So for the benefit of those looking to attend these awesome events in the future, firstly read [About RHOK](http://www.rhok.org/about), secondly I compiled a list of my observations and tips.
+
 
 Prior to attending one of these events there are things you should bring:
 1. A laptop set up with a range of tools installed, depending on your skill set and development stack.

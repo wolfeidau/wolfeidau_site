@@ -1,11 +1,15 @@
 ---
 layout: post
 title: JIRA and the not so great new installer
-category: JIRA Linux Packaging
+tags: 
+  - JIRA
+  - Linux
+  - Packaging
 ---
 The following post is a review of the new installer added in 4.4 of Atlassian JIRA. It details my experience with this installer and provides some advice on how to improve it.
 
 Since it's recent release I have seen quite a few posts praising the new JIRA installer so I decided to give it a try at work. First thing that struck me when I went to download it was the linux version was a single file, no deb or RPM(s).
+
 
 I copied the file to the Linux server and logged in as the jira user I wanted to run the service under, and ran the installer. The first thing the installer did was inform me I wasn't running as an administrator, and as such it wouldn't install a startup file for the JIRA. As this was a VM I took a snapshot and decided to try running it as root. When I did it asked me a couple of questions about where I would to put parts of the installation and then went off and did it's thing. Once it completed I examined what it had done, these were the results:
 

@@ -1,10 +1,14 @@
 ---
 layout: post
 title: Monitoring the OpenJDK from the CLI
-category: Java Performance Monitoring
+tags: 
+  - Java
+  - Performance
+  - Tuning
 ---
 
 Currently I do quite a bit of work in and around the [Java virtual machine](http://openjdk.java.net/) \(JVM), most of the time on Linux. When things go awry and I am trying to establish why, I reach for the Java performance analysis tools. These tools come in two forms, the wonderful GUI known as [visualvm](http://visualvm.java.net/), which I use when I am working on my local machine, and the cli tools packaged with the Java Development Kit (JDK), which I use when working remotely.
+
 
 The CLI tools I am referring to are:
 

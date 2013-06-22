@@ -1,12 +1,16 @@
 --- 
 layout:   post
 title:    Using Jackson with Apache CXF
-category: Apache CXF, JSON, Data mapping
+tags: 
+  - Apache CXF
+  - JSON
+  - Data mapping
 ---
 
 Whilst working on my Javascript, [ExtJS 4](http://www.sencha.com/products/extjs/) and [Apache CXF](http://cxf.apache.org) skills I came across a solution to a problem I encountered getting ExtJS to talk to Apache CXF using JSON. 
 
 The basis for this issue revolves around "wrapping" in JSON and two different schools on what is correct way to encode it. As far as I can see there is the more verbose version which Jettison, the default JSON serialiser in Apache CXF produces, then there is the "unwrapped" version which the alternate serialiser [Jackson](http://jackson.codehaus.org/) produces.
+
 
 In my case I chose Jackson the more terse version, this is good for a couple of reasons:
 * It is compatible with ExtJS without any modifications

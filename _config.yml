@@ -1,6 +1,8 @@
 pygments:       true
+lsi:            false
 paginate:       5
 permalink:      /:year/:month/:day/:title/
+excerpt_separator: "\n\n"
 
 exclude: 
     - README.md
@@ -10,7 +12,7 @@ exclude:
     - Gemfile.lock
 
 title:          wolfeidau
-description:    "Observations and musings of Mark Wolfe, a Linux, Java and Networks guy."
+description:    "Observations and musings of Mark Wolfe, a builder of internet related things."
 
 author:
     name:       Mark Wolfe
@@ -28,4 +30,4 @@ nav:
       url: /about/
 
 
-copyright: "&copy; Copyright 2011, Mark Wolfe.<br> All Rights Reserved."
+copyright: "&copy; Copyright 2013, Mark Wolfe.<br> All Rights Reserved."

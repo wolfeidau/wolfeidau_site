@@ -1,9 +1,12 @@
 ---
 layout: post
 title: Hacking rails on Ubuntu with rvm
-category: ruby rails 
+tags: 
+  - Ruby
+  - Ruby on Rails
 ---
 Over the last few days I have been familiarising myself with some of the rails source code and surveying it for use in my own projects. In doing so I noticed there were quite a few gotchas getting [Ubuntu](http://www.ubuntu.com/) and ruby set up [RVM](http://rvm.beginrescueend.com/) to successfully run the tests suites in rails. This post aims to provide a step by step guide to getting a clean ubuntu installation ready to test and hack on rails, note I am using Ubuntu 11.04 and this process has been tested on server and desktop.
+
 
 Install the development suite for Ubuntu.
 {% highlight bash %}

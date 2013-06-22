@@ -1,12 +1,17 @@
 ---
 layout: post
 title: What is HMAC Authentication and why is it useful?
-category: OpenSSL, NodeJS, Ruby, Java
+tags: 
+  - OpenSSL
+  - NodeJS
+  - Ruby
+  - Java
 ---
 
 To start with a little background, then I will outline the options for authentication of HTTP based server APIs with a focus on
 HMAC and lastly I will provide some tips for developers building and using [HMAC](http://en.wikipedia.org/wiki/HMAC) based
 authentication.
+
 
 Recently I have been doing quite a bit of research and hacking in and around server APIs. Authentication for
 these type APIs really depends on the type of service, and falls into a couple of general categories:

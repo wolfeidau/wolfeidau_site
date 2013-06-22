@@ -1,10 +1,14 @@
 ---
 layout: post
 title: GHTest Getting Started
-category: osx objectivec xcode
+tags: 
+  - OSX
+  - ObjectiveC
+  - XCode
 ---
 
 Recently I have caught the OS X software development bug and started hacking on a small project in this environment. As I am normally pretty keen to try out new APIs and indeed a whole new language, I was keen to get some unit testing going as early as possible. After a bit of research i discovered the preferred testing solution for this environment was [GHUnit](https://github.com/gabriel/gh-unit), so I downloaded this "framework" and installed it.
+
 
 One of the first things that struck me was how dependant I was on xcode to get this up and running, and how damn confusing this was for the uninitiated. The myriad of windows you end up with in xcode 3.2.x was sending me crazy, this paired with the fact I a certain window was my project led me to upgrade to xcode 4.x. 
 

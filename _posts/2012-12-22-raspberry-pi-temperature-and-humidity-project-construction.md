@@ -1,7 +1,9 @@
 ---
 layout: post
 title: Raspberry Pi Temperature and Humidity Project Construction
-category: raspberrpi, hardware
+tags: 
+  - Raspberry Pi
+  - Hardware
 ---
 
 For some time I have had a [Raspberry Pi](http://www.raspberrypi.org/) languishing on my desk, like many I bought one early on and played around with
@@ -9,6 +11,7 @@ it for a while and then got busy with other stuff. Recently however I have been 
 which led me to consider how I could use the Raspberry Pi to aid in my research. If I could get a number of these devices
 connected up together gathering some measurements of some sort, I could a) make some graphs, b) produce some useful
 test data and c) get some real world experience with sensor networks.
+
 
 So I did a bit of research on what hardware I could connect up to the Raspberry Pi with the least amount of circuitry
 this led me to the AdaFruit site and in particular this article [DHT Humidity Sensing on Raspberry Pi with GDocs Logging](http://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/overview).

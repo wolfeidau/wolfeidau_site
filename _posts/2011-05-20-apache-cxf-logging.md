@@ -1,10 +1,13 @@
 --- 
 layout:   post
 title:    Apache CXF Logging Configuration
-category: Apache CXF, Logging
+tags: 
+  - Apache CXF
+  - Logging
 ---
 
 Configuring logging in [Apache CXF](http://cxf.apache.org) can be confusing at first, in my view this is further compounded by Apache Tomcat's logging architecture. 
+
 
 In my cxf based projects the first step is to use the [logging configuration available in 2.2.8 or later](http://cxf.apache.org/docs/debugging-and-logging.html#DebuggingandLogging-UsingSLF4JInsteadofjava.util.logging%28since2.2.8%29). This enables you to configure your logger of choice for the entire CXF stack. Needless to say I really like this feature as I am not a big fan of java.util.logging as it's configuration is not very intuitive.
 

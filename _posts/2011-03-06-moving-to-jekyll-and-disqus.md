@@ -1,7 +1,10 @@
 --- 
 layout:   post
 title:    Moving to Jekyll and Disqus
-category: html
+tags: 
+  - HTML
+  - Jekyll
+  - Disqus
 ---
 
 First post from my newly migrated blog reviewing migration from wordpress to Jekyll and Disqus.
@@ -12,6 +15,7 @@ First post from my newly migrated blog reviewing migration from wordpress to Jek
 * [Disqus](http://disqus.com/)
 
 Following some of the sites which use Jekyll, I generated the skeleton and began building my site using Jekyll. After trialing some of the code highlighting options I selected pygments, this was to ensure my code samples looked good. 
+
 
 Once the base was configured and working I moved on to add a plugin to utilise Sass in my website. Below is source to my _\_plugins/sass\_converter.rb_, this converts any scss (CSS like sass syntax) files to css.
 

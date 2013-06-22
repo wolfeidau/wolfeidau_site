@@ -1,7 +1,9 @@
 ---
 layout: post
 title: Bundler gems and binstubs
-category: ruby bundler
+tags: 
+  - Ruby
+  - Bundler
 ---
 
 I have been working on an update of my [Bamboo](http://www.atlassian.com/bamboo/) ruby plugin which uses
@@ -10,6 +12,7 @@ copy of the project and then run rake using these gems.
 
 The aim of this post is to illustrate how this is done and how to craft 
 an environment to run ruby once gems are "staged" within a working copy.
+
 
 The aim of this post is to illustrate how a rails project is staged
 using bundler without installing any gems in the base ruby installation.

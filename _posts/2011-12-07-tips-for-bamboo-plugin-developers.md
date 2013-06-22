@@ -1,10 +1,14 @@
 ---
 layout: post
 title: Tips for bamboo plugin developers
-category: Atlassian, Bamboo, Java, Ruby
+tags: 
+  - Atlassian Bamboo
+  - Java
+  - Ruby
 ---
 
 Having recently developed a plugin ([Ruby Rake Plugin](https://plugins.atlassian.com/plugin/details/770964)) for Atlassian's [Bamboo](http://www.atlassian.com/software/bamboo/overview) continuous integration (CI) server I thought I would put together a list of tips for those looking to do the same. As there are some great documents provided by Atlassian on how to get started with plugin development I am not going to go into a lot of detail in this area, it is assumed you already messed around a bit with the [Plugin SDK](https://developer.atlassian.com/display/DOCS/Developer+Quick+Start).
+
 
 So to start with there are some things you should learn before beginning:
 

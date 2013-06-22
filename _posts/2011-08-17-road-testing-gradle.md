@@ -1,9 +1,13 @@
 ---
 layout: post
 title: Road Testing Gradle
-category: Java Groovy Gradle
+tags: 
+  - Java
+  - Groovy
+  - Gradle
 ---
 For a while I have been tempted to stray from the relative safety of [Maven](http://maven.apache.org) and [Ant](http://ant.apache.org). Every time I fight with these tools, or in the case of maven am stunned and amazed out how simple things can require so much xml, I look over the alternatives wondering if it could be easier. 
+
 
 After quite a bitter fight with ant at work I decided it was time to give one of thes new contenders a try. As I had recently tinkered on a project which used [Gradle](http://gradle.org/) and found it quite easy to use it seemed like as good a candidate as any.
 

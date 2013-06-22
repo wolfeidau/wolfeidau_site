@@ -1,11 +1,15 @@
 --- 
 layout:   post
 title:    Installing Ruby with RVM on Ubuntu 10.10
-category: html
+tags: 
+  - Ruby
+  - Ubuntu
+  - RVM
 ---
 Been installing [RVM](http://rvm.beginrescueend.com/) on anything that runs \*nix lately, ran into some issues with using this great tool on [Ubuntu 10.10](http://www.ubuntu.com/). After a bit of reading I discovered a couple of solutions, either I could build and install some of these libraries using RVM, or I could locate and install the dev versions of these libraries in Ubuntu. As I like my libraries updated for security issues and such like I took the later option. 
 
 So after sniffing out all the dependencies I pulled together a brief run down on how to get ruby, ruby gems and some other commonly used gems built and running on this version of Ubuntu.
+
 
 Install the development suite for Ubuntu.
 {% highlight bash %}

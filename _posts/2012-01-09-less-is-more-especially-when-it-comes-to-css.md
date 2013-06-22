@@ -1,10 +1,13 @@
 ---
 layout: post
 title: Less is more especially when it comes to CSS
-category: JavaScript HTML5
+tags: 
+  - JavaScript
+  - HTML
 ---
 
 I am currently working on new design for my site using HTML5, CSS and a sprinkling of JavaScript. Once I started building my basic design I was re-acquainted with a process that really, really annoys me; the constant tweak refresh loop associated with developing a new site layout. So in true yak shaving sysadmin fashion I got side tracked looking for a solution to this problem.
+
 
 After considering the issue for a bit it dawned on me that this may be a good excuse to try out [LessCSS](http://lesscss.org "LessCSS Website") JavaScript library. When incorporated into a website this library enables the developer to use a CSS like markup which significantly reduce the amount of duplication and redundancy in the style sheet. The markup is processed on the client using JavaScript and has an API to mess around with how the styles are loaded.
 

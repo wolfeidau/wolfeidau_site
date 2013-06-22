@@ -1,7 +1,10 @@
 ---
 layout: post
 title: Building Ruby Projects with Bundler and the Bamboo Ruby Plugin
-category: Bamboo, Ruby, Bundler
+tags: 
+  - Atlassian Bamboo
+  - Ruby
+  - Bundler
 ---
 
 The latest release of the Ruby [plugin](https://marketplace.atlassian.com/plugins/au.id.wolfe.bamboo.rake-bamboo-plugin) I develop for [Atlassian Bamboo](http://atlassian.com/bamboo) now
@@ -9,6 +12,7 @@ includes some new configuration options for [Bundler](http://gembundler.com/) al
 of other additions and improvements. In this post I want to focus on the
 new options available in the Bundler task, and illustrate how they are
 used to make [Ruby](http://www.ruby-lang.org/en/) builds simpler.
+
 
 In the past with my plugin the administrator of the CI server had two
 options when managing the gems associated with a build:

@@ -1,12 +1,17 @@
 ---
 layout: post
 title: How I use chef-solo with ubuntu 12.04
-category: ubuntu chef chef-solo devops
+tags: 
+  - Ubuntu
+  - Chef
+  - chef-solo
+  - Devops
 ---
 
 Having recently started working with [chef](http://www.opscode.com/chef/) I have come up with a simple method of kickstarting use of it in the small
 end of town. This really is designed for those of use managing a large number of very similar servers, or a small number
 of simple servers.
+
 
 After watching this [great presentation](http://www.youtube.com/watch?v=he7vxhm6v64&feature=youtu.be) on chef by [@benr](https://twitter.com/benr) from [joyent](http://joyent.com/), I decided it was time to roll up my sleeves and
 get started with chef. To do this I took some of his advice and my meager Unix knowledge and crafted a simple bootstrap method

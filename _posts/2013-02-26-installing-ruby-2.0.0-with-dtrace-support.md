@@ -1,12 +1,17 @@
 ---
 layout: post
 title: Installing Ruby 2.0.0 with Dtrace Support
-category: ruby, rbenv, dtrace
+category: Systems
+tags: 
+  - Ruby
+  - rbenv
+  - DTrace
 ---
 The aim of this post is to guide the reader through the process of installing [ruby 2.0.0](http://www.ruby-lang.org/en/)
 into [rbenv](https://github.com/sstephenson/rbenv) with dtrace probes enabled. As rbenv uses [ruby-build](https://github.com/sstephenson/ruby-build),
 which currently downloads and compiles a copy of [openssl](http://www.openssl.org/) rather than using the one
 [homebrew](http://mxcl.github.com/homebrew/) i prefer to use the homebrew one.
+
 
 Note that you MUST install [xcode](https://developer.apple.com/xcode/) before installing anything, then install homebrew,
 rbenv, and lastly openssl.

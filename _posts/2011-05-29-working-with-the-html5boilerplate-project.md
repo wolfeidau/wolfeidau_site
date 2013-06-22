@@ -1,10 +1,14 @@
 ---
 layout: post
 title: Working with the html5boilerplate project
-category: html5, css, nginx 
+tags: 
+  - HTML
+  - CSS
+  - nginx
 ---
 
 Recently I started work on a new site which I plan to use [underscore.js](http://documentcloud.github.com/underscore/) and [backbone.js](http://documentcloud.github.com/backbone/). Starting a site from scratch can be quite a chore, as well as time consuming. To remedy this I decided to take the plunge and give the [html5boilerplate](http://html5boilerplate.com/) project a try, this project is designed to kickstart your [html5](http://developers.whatwg.org/) site development with a shell containing all of the stuff that you need to begin with.
+
 
 So why start with html5boilerplate at all? Well the following things come with it:
 * modenizer included and configured for legacy browser support.

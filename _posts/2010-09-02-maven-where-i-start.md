@@ -1,7 +1,8 @@
 --- 
 layout:   post
 title:    Maven, where I start
-category: Apache Maven
+tags: 
+  - Apache Maven
 ---
 More often than not today I start my Java projects using an [Apache Maven](http://maven.apache.org) archetype. Whether it be for an [Apache CXF](http://cxf.apache.org) based web service, a simple web application or some sort of service most are started from an archetype.
 
@@ -10,6 +11,7 @@ However pretty much every project I need to add my secret project ingredients, t
 * [maven-license-plugin](http://code.google.com/p/maven-license-plugin/) – Again I like stuff neat so getting everything tagged under a license is pretty important.
 
 I have extracted a sample of my default configuration to illustrate how these plug-ins are configured in the pom.xml.
+
 
 {% highlight xml %}
 <build>

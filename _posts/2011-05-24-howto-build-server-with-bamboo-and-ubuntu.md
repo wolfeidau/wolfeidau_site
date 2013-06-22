@@ -1,10 +1,15 @@
 --- 
 layout:   post
 title:    How to build server with Bamboo and Ubuntu
-category: Atlassian Bamboo, Continuous Integration, Java, Ubuntu
+tags: 
+  - Atlassian Bamboo
+  - Continuous Integration
+  - Java
+  - Ubuntu
 ---
 
 Recently I have been looking into setting up my own build server, having used Cruisecontrol, Hudson, Teamcity in the passed I wanted to give something new a try. With the recent release of [Bamboo](http://www.atlassian.com/software/bamboo/) 3.1.1 I thought I would see what all the fuss is about. I logged onto [Atlassian's site](http://www.atlassian.com/) and payed my 10 bucks, which much to my delight and respect, goes to charity.
+
 
 I then spun up a clean [Ubuntu](http://www.ubuntu.com/) server running 10.04.02, yes old trusty Long Term Support release, and ran through the following steps.
 

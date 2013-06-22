@@ -1,9 +1,11 @@
 --- 
 layout:   post
 title:    Building Apache CXF web service clients namespace mapping
-category: Apache CXF
+tags: 
+  - Apache CXF
 ---
 Recently I have been doing quite a bit of work around [Apache CXF](http://cxf.apache.org/), both on the server side and the client side. Over the next few weeks I will post some of the tricks I have learnt.
+
 
 In this post I will summarise one of the [cxf-codegen-plugin](http://cxf.apache.org/docs/maven-cxf-codegen-plugin-wsdl-to-java.html) options I used to assist me while consuming WCF web services using Apache CXF. When dealing with WCF based services, and indeed any WSDL which uses more than one namespace it is handy knowing how to control name spaces and how these translate into packages in your java stubs.
 
