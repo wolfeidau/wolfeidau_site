@@ -10,6 +10,7 @@ exclude:
     - artwork
     - Gemfile
     - Gemfile.lock
+    - wolfeidau_site.iml
 
 title:          wolfeidau
 description:    "Observations and musings of Mark Wolfe, a builder of internet related things."
