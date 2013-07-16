@@ -48,8 +48,8 @@ to note is Heroku restarts your process at least once per day.
 
 So how do you monitor stuff housed in Heroku? The answer to this is logging, the Heroku gives you the ability to provision
 log drains, these endpoints are sent a copy of all messages written STDOUT and STDERR by your application. When configured the
-logdrain transports your logs via either syslog or HTTP(S) to an external server, running in `us-east` with a context of which `dyno`
-is emitting the information. To read more about this feature take a look at [Logplex](https://devcenter.heroku.com/articles/logging#syslog-drains) documentation.
+logdrain transports your logs via either syslog or HTTP(S) to an external server, running in the same AWS as Heroku.
+Most importantly, these logs include a context of which `dyno` is emitting the information. To read more about this feature take a look at [Logplex](https://devcenter.heroku.com/articles/logging#syslog-drains) documentation.
 
 When I started my new role one of my
 coworkers mentioned that he was currently logging metrics using a feature called `log-runtime-metrics` available via the Heroku labs.
