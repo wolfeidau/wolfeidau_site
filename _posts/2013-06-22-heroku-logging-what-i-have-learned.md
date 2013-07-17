@@ -56,6 +56,10 @@ coworkers mentioned that he was currently logging metrics using a feature called
 Initially I thought this was a bit limited, however on further examination this is actually an extremely reliable measure of the
 processes resource utilisation. For more information on this feature [Heroku Labs: log-runtime-metrics](https://devcenter.heroku.com/articles/log-runtime-metrics).
 
+So just for clarity this is what these runtime metrics look like, note the reference to the dyno in the source along with the metric name, value and units.
+
+> source=heroku.2808254.web.1.d97d0ea7-cf3d-411b-b453-d2943a50b456 measure=memory_rss val=21.22 units=MB
+
 So now that I had metrics, with context in a stream coming in via logs I needed a way of getting this data to Librato having already had contact with [Nik Wekwerth](https://twitter.com/nwekwerth)
 I decided to ask whether he had any suggestions. After a few emails I was very fortunate enough to be passed onto the CTO [Joseph Ruscio](https://twitter.com/josephruscio) who after a few questions
 suggested I try out [l2met](http://r.32k.io/l2met-introduction), a project by [Ryan Smith](https://twitter.com/ryandotsmith)
