@@ -11,6 +11,8 @@ exclude:
     - Gemfile
     - Gemfile.lock
     - wolfeidau_site.iml
+    - vendor
+    - bin
 
 title:          wolfeidau
 description:    "Observations and musings of Mark Wolfe, a builder of internet related things."

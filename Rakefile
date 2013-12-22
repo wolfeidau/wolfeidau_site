@@ -19,7 +19,7 @@ end
 desc "Deploy latest code in _site to production"
 task :deploy do
   system(%{
-    rsync -avz -e "ssh -i $AWS_KEY" --delete _site/ markw@$AWS_BLOG_SERVER:/home/markw/public_html
+    rsync -avz -e "ssh" --delete _site/ markw@wolfe.id.au:/home/markw/public_html
     })
 end
 
