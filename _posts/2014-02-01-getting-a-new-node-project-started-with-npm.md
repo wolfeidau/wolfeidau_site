@@ -6,7 +6,7 @@ tags:
   - npm
   - git
 ---
-The aim of this guide is to get people getting started with node and npm, while also showing some of the handy commands I use to bootstrap my projects. 
+The aim of this guide is to get people getting started with [Node.js](http://nodejs.org) and [npm](http://npmjs.org/), while also showing some of the handy commands I use to bootstrap my projects. 
 
 Create your project directory.
 
@@ -26,13 +26,13 @@ Tell git to make a repo.
 git init
 {% endhighlight %}
 
-Pull down a git ignore file from github.
+Pull down a preconfigured `.gitignore` file for node projects from github.
 
 {% highlight bash %}
 wget https://raw2.github.com/github/gitignore/master/Node.gitignore -O .gitignore
 {% endhighlight %}
 
-Pull down a basic Makefile I use for my projects.
+Pull down a basic `Makefile` I use for my projects.
 
 {% highlight bash %}
 wget https://gist.github.com/wolfeidau/8748317/raw/172a6adb79777676a8815da5719ef659fb66a35b/Makefile
