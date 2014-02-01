@@ -38,7 +38,16 @@ Pull down a basic `Makefile` I use for my projects.
 wget https://gist.github.com/wolfeidau/8748317/raw/172a6adb79777676a8815da5719ef659fb66a35b/Makefile
 {% endhighlight %}
 
-Use the make file to generate a skeleton project.
+This make file contains a few targets which are:
+
+* `test` runs tests in the `test` folder using [mocha](visionmedia.github.io/mocha/)
+* `jshint` uses [jshint](http://www.jshint.com/) to check over the code.
+* `skel` generates a basic structure for my project creating `index.js` and, `lib`, `example` and `test` directories.
+* The default target which is invoked by just running `make` runs the `jshint` and `test` targets.
+
+*Note:* You will need to install jshint globally using `npm install -g jshint`.
+
+Now we will use the `skel` target to generate our project structure.
 
 {% highlight bash %}
 make skel
