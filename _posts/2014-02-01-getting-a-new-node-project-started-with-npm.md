@@ -2,11 +2,11 @@
 layout: post
 title: Getting a new node project started with npm
 tags:
- - NodeJS
- - npm
- - git
- --
-This guide will hopefully help those getting started with node use npm to kickstart their projects.
+  - NodeJS
+  - npm
+  - git
+---
+The aim of this guide is to get people getting started with node and npm, while also showing some of the handy commands I use to bootstrap my projects. 
 
 Create your project directory.
 
@@ -44,7 +44,7 @@ Use the make file to generate a skeleton project.
 make skel
 {% endhighlight %}
 
-Create a project on github using [hub](https://github.com/github/hub), if your on osx you can install this with [homebrew](https://github.com/Homebrew/homebrew).
+Create a project on github using [hub](https://github.com/github/hub), if your on osx you can install this with [homebrew](https://github.com/Homebrew/homebrew). We do this sooner rather than later so npm can pick this information up when building the `package.json`.
 
 {% highlight bash %}
 hub create
