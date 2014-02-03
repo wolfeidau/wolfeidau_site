@@ -40,9 +40,9 @@ wget https://gist.github.com/wolfeidau/8748317/raw/172a6adb79777676a8815da5719ef
 
 This make file contains a few handy targets, these are:
 
-* `test` runs tests in the `test` folder using the [mocha](visionmedia.github.io/mocha/) test framework.
+* `test` runs tests in the `test` folder using the [mocha](http://visionmedia.github.io/mocha/) test framework.
 * `jshint` uses [jshint](http://www.jshint.com/) to check over the code.
-* `skel` generates a basic structure for my project creating `index.js` and, `lib`, `example` and `test` directories and installs mocha and [chai](chaijs.com) the BDD / TDD assertion library.
+* `skel` generates a basic structure for my project creating `index.js` and, `lib`, `example` and `test` directories and installs mocha and [chai](http://chaijs.com) the BDD / TDD assertion library.
 * The default target which is invoked by just running `make`, this runs the `jshint` and `test` targets.
 
 *Note:* You will need to install jshint globally using `npm install -g jshint`.
