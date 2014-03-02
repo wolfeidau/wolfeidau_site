@@ -122,3 +122,8 @@ round-trip min/avg/max/std-dev = 33.553/33.870/34.186/0.316 ms
 This is a part of my ongoing hardware hacking, for more details on how this started see [Adding an ICSP header to the ATmega256RFR2 ](http://wolfe.id.au/2013/12/22/adding-an-icsp-header-to-the-atmega256rfr2/). As a note both my [Atmel](atmel.com) board and the Mesh Thing use the ATmega256RFR2 chips.
 
 The next goal is to setup some name services, probably via MDNS, and test accessing the web site (yes on the 8 bit micro controller) from a mobile phone connected to the wireless network.
+
+Update
+-------------
+
+Need to look into using site-local addresses in the `fc00::/7` block rather than unallocated public space, as recommended by [Julien Goodwin](https://twitter.com/LapTop006) see [unique local addresses](http://en.wikipedia.org/wiki/Unique_local_address).
