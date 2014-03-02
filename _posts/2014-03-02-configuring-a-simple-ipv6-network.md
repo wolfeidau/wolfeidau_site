@@ -101,10 +101,10 @@ On linux the equivalent command is `ip -6 neigh show`.
 
 So for Linux, IOS and Android this is all we need to do to provide get the routing to work, however on OSX clients we have one additional step.
 
-As OSX doesn't accept the route advertisements by default, a route solicitation daemon called `rtsold` needs to be running on all client machines aside from the router.
+As OSX doesn't accept the route advertisements by default, a route solicitation daemon called `rtsold` needs to be running on all client machines aside from the router. Below is the command I ran on macbook B, note on this machine the wireless adapter was `en0`.
 
 {% highlight bash %}
-sudo rtsold
+sudo rtsold en0
 {% endhighlight %}
 
 Once this is started you should be able to ping the Mesh thing from macbook B on the wireless lan.
