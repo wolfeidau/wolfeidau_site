@@ -8,13 +8,13 @@ tags:
   - 6lowpan
 ---
 
-Recently I have been helping [Andy Gelme](https://twitter.com/geekscape) with a project which uses [contiki-os](contiki-os.org), and [6lowpan](http://en.wikipedia.org/wiki/6LoWPAN). This required us to setup a small [IPv6](http://en.wikipedia.org/wiki/IPv6) network from scratch, independent of the internet, this turned out to be quite a bit different an objective of most of the how to's we found so I decided to document our method, as much for others as myself.
+Recently I have been helping [Andy Gelme](https://twitter.com/geekscape) with a project which uses [contiki-os](contiki-os.org), and [6lowpan](http://en.wikipedia.org/wiki/6LoWPAN) on a device called a [MeshThing](http://www.m9design.co/). This required us to setup a small [IPv6](http://en.wikipedia.org/wiki/IPv6) network from scratch, independent of the internet, this turned out to be quite a bit different an objective of most of the how to's we found so I decided to document our method, as much for others as myself.
 
 In our case the network looked as follows:
 
 ![Simple Network](/images/ipv6lan.png "Simple Network")
 
-In this diagram we have macbook A which is connected to a Mesh Thing running contiki-os connected via serial over USB. The ipv6 connection is provided by `slip6`, which gives use a point to point link over the serial connection. The command to start `tunslip6` is as follows:
+In this diagram we have macbook A which is connected to a MeshThing running contiki-os connected via serial over USB. The ipv6 connection is provided by `slip6`, which gives use a point to point link over the serial connection. The command to start `tunslip6` is as follows:
 
 {% highlight text %}
 sudo ./tunslip6 -B 38400 -s /dev/tty.usbmodem1411 aaaa::1/64
@@ -47,7 +47,7 @@ At the end of this command we are providing a prefix of `aaaa::1/64`, which enab
 
 Now as we can see in our original diagram we now need to route packets between the `aaaa::1/64` network assigned to our mesh.
 
-Given we need to enable routing between macbook B and the Mesh Thing we need the local wireless network to provide an IPv6 prefix for auto configuration of this host.
+Given we need to enable routing between macbook B and the MeshThing we need the local wireless network to provide an IPv6 prefix for auto configuration of this host.
 
 As macbook B is going to be routing we will get it to advertise our prefix of `bbbb::1/64` on the existing wireless lan.
 
@@ -107,7 +107,7 @@ As OSX doesn't accept the route advertisements by default, a route solicitation 
 sudo rtsold en0
 {% endhighlight %}
 
-Once this is started you should be able to ping the Mesh thing from macbook B on the wireless lan.
+Once this is started you should be able to ping the MeshThing from macbook B on the wireless lan.
 
 {% highlight text %}
 [~]$ ping6 aaaa::11:22ff:ffff:ffff
@@ -119,7 +119,7 @@ PING6(56=40+8+8 bytes) aaaa::1 --> aaaa::11:22ff:ffff:ffff
 round-trip min/avg/max/std-dev = 33.553/33.870/34.186/0.316 ms
 {% endhighlight %}
 
-This is a part of my ongoing hardware hacking, for more details on how this started see [Adding an ICSP header to the ATmega256RFR2 ](http://wolfe.id.au/2013/12/22/adding-an-icsp-header-to-the-atmega256rfr2/). As a note both my [Atmel](atmel.com) board and the Mesh Thing use the ATmega256RFR2 chips.
+This is a part of my ongoing hardware hacking, for more details on how this started see [Adding an ICSP header to the ATmega256RFR2 ](http://wolfe.id.au/2013/12/22/adding-an-icsp-header-to-the-atmega256rfr2/). As a note both my [Atmel](atmel.com) board and the MeshThing use the ATmega256RFR2 chips.
 
 The next goal is to setup some name services, probably via MDNS, and test accessing the web site (yes on the 8 bit micro controller) from a mobile phone connected to the wireless network.
 
