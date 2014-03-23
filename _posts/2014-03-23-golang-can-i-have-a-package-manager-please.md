@@ -61,6 +61,6 @@ Based on my review **tool** just needs to do the following:
 5. Fall back to the existing `go get` model with an obvious report at the end indicating this dependency doesn't provide versions.
 6. Provide an idiomatic way to store this version information, based on reflection on existing features for maintaining meta data. My view is this should be a `version.go` in each project.
 
-This is in response to a [gist](https://gist.github.com/davecheney/9716518) posted by [Dave Cheany](https://twitter.com/davecheney) after a [discussion](https://twitter.com/davecheney/status/447497663609450496) on twitter with [Mitchell Hashimoto](https://twitter.com/mitchellh).
+This is in response to a [gist](https://gist.github.com/davecheney/9716518) posted by [Dave Cheney](https://twitter.com/davecheney) after a [discussion](https://twitter.com/davecheney/status/447497663609450496) on twitter with [Mitchell Hashimoto](https://twitter.com/mitchellh).
 
 Thanks to [Conrad](https://twitter.com/deoxxa) and [Nicholas Faiz](https://twitter.com/nicholasf) for their feedback and critique.
