@@ -6,14 +6,15 @@ tags:
   - versioning
 ---
 
-Currently [golang](http://golang.org) has no *standard* package manager, this in my view makes it a ton harder for those new to the language. golang has for the most part been a pleasure to use, built in features are well thought out and help new users get started fast. Dependency management is by contrast a jarring and painful experience for those starting with golang. To understand why I believe this is the case I have put together a proposal of sorts for a package manager.
+Currently [golang](http://golang.org) has no *standard* package manager, this in my view makes it harder for those new to the language. golang has for the most part been a pleasure to use, built in features are well thought out and help new users get started fast. Dependency management is by contrast a jarring and painful experience for those starting with golang. To understand why I believe this is the case I have put together a proposal of sorts for a package manager.
 
 ## What does a package manager do?
 
 A package managers core **job** is to:
 
 * Provide a simple method of retrieving a snapshot of upstream libraries.
-* Enable reproducible build results, this is done by enabling a user to retrieve the same, or a compatible upstream version of a dependency.
+* Enable a user to maintain compatible versions of these upstream libraries therefore avoiding broken builds when one of these modules is changed.
+* Let people maintaining libraries communicate differing levels of interface/module changes to downstream users via semantic versioning.
 
 ## The current solution
 
@@ -34,12 +35,12 @@ Lastly without a nice solution for modularising software most developers won't b
 
 So this raises the question can a versioning be added to go without introducing a central package management system?
 
-It is my opinion that simply encouraging people to manage thier project using a standard versioning scheme, with a standard method for tagging thier versions would be a good starting point.
+It is my opinion that simply encouraging people to manage thier project using a standard versioning scheme, with a standard method for tagging their versions would be a good starting point.
 
 At some point it would be helpful to have:
 
 1. A central meta data store for download statistics, this is helpful to package maintainers to raise awareness of the impact of change on others. This really filling the gaps in existing systems such as [github](http://github.com) around exposing download counts for a given project.
-2. A distributed snapshot repository of packages, just to avoid the enevitable deletion or reorganisation of repositories (YES THIS HAPPENS).
+2. A distributed snapshot repository of packages, just to avoid the inevitable deletion or reorganisation of repositories (YES THIS HAPPENS).
 
 Note: I don't think github should have to provide this by the way.
 
