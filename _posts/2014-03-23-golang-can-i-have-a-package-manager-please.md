@@ -31,6 +31,12 @@ From what I have observed this has led most larger projects to naturally limit t
 
 Lastly without a nice solution for modularising software most developers won't bother.
 
+## Why add versions?
+
+In my view the value that semantic versioning adds to dependency cannot be disregarded. As stated it gives both consumers and producers a way of communicating changes. In addition to this it provides people with a way of addressing a particular release of an API, therefore alleviating a confusion about "which" snapshot of a library a developer is having issues with.
+
+The assumption that everyone is always up-to-date is disregarding the reality of how people maintain software in the greater software development community.
+
 ## Can it be done using a decentralised model?
 
 So this raises the question of whether or not versioning can be added to go without introducing a central package management system.
@@ -56,3 +62,5 @@ Based on my review **tool** just needs to do the following:
 6. Provide an idiomatic way to store this version information, based on reflection on existing features for maintaining meta data. My view is this should be a `version.go` in each project.
 
 This is in response to a [gist](https://gist.github.com/davecheney/9716518) posted by [Dave Cheany](https://twitter.com/davecheney) after a [discussion](https://twitter.com/davecheney/status/447497663609450496) on twitter with [Mitchell Hashimoto](https://twitter.com/mitchellh).
+
+Thanks to [Conrad](https://twitter.com/deoxxa) and [Nicholas Faiz](https://twitter.com/nicholasf) for their feedback and critique.
