@@ -4,7 +4,7 @@ paginate:       5
 permalink:      /:year/:month/:day/:title/
 excerpt_separator: "\n\n"
 
-exclude: 
+exclude:
     - README.md
     - Rakefile
     - artwork
@@ -13,6 +13,7 @@ exclude:
     - wolfeidau_site.iml
     - vendor
     - bin
+    - Dockerfile
 
 title:          wolfeidau
 description:    "Observations and musings of Mark Wolfe, a builder of internet related things."
