@@ -2,6 +2,7 @@ from	ubuntu:13.10
 
 run	apt-get update
 run	apt-get upgrade -y ruby nginx
+run	apt-get install -y ruby nginx
 
 run mkdir /srv/www
 
