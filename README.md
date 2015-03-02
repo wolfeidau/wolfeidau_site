@@ -3,12 +3,9 @@ Licence
 
 The following directories and their contents is copyright Mark Wolfe:
 
-* \_posts
+* content\posts
 * images
-* artwork
 
 Everything else is MIT Licenced. Attribution is always appreciated.
 
 Install the following to build the site.
-
-sudo apt-get install python-pygments
