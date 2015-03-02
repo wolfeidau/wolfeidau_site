@@ -1,0 +1,29 @@
+baseurl = "http://wolfe.id.au"
+languageCode = "en-us"
+title = "Mark Wolfe's Blog"
+pygmentsstyle = "emacs"
+disqusShortname = "markwolfesblog"
+
+[author]
+    name = "Mark Wolfe"
+
+[permalinks]
+    # Optional. Change the permalink format for the 'post' content type.
+    # The format shown here is the same one Jekyll/Octopress uses by default.
+    post = "/blog/:year/:month/:day/:title/"
+
+[indexes]
+    # Optional. Use if you want tags and lists.
+    category = "categories"    
+
+
+[params]
+	tagline = "Random musings and observations"
+	theme = "theme-base-08"
+
+	gravatarHash = "ebf974e0dbcfe88c508df6f395661a4b"
+
+	# Sidebar social links, avoid enabling too many of these if possible.
+    # These should be full URLs.
+    github = "https://github.com/wolfeidau"
+    twitter = "https://twitter.com/wolfeidau"
