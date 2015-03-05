@@ -83,4 +83,14 @@ Once you restart sublime you should be ready to roll!
 
 In addition to these plugins I also use [GitGutter](https://github.com/jisaacks/GitGutter) which provides some highlighting of changes for source code under `git`.
 
+Lastly just another tip to enable spell check in markdown files.
+
+Open any markdown file then go to Preferences -> Settings - More -> Syntax Specific - User which should open your `Markdown.sublime-settings` file, below is the contents of mine.
+
+{{< highlight javascript >}}
+{
+  "spell_check": true
+}
+{{< /highlight >}}
+
 Thanks to [Marius Ursache](https://twitter.com/bamse) for his feedback.
