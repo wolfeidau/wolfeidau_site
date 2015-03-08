@@ -13,7 +13,7 @@ When I am setting a new system up I typically run the following commands in OSX 
 
 ```
 echo 'export GOPATH=$HOME/Code/go' >> ~/.bash_profile
-echo 'export PATH=$PATH:$GOPATH/Code/go/bin' >> ~/.bash_profile 
+echo 'export PATH=$PATH:$GOPATH/bin' >> ~/.bash_profile 
 source ~/.bash_profile
 mkdir -p ~/Code/go/src/github.com/wolfeidau
 cd !$
