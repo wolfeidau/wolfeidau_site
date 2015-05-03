@@ -89,7 +89,7 @@ May  3 05:53:56 buildkite01 docker/7ebdb2baff9c[3207]: 2015-05-03 09:53:56 INFO 
 May  3 05:53:57 buildkite01 docker/7ebdb2baff9c[3207]: 2015-05-03 09:53:57 INFO   Successfully registred agent "7ebdb2baff9c" with meta-data [golang=1.4.2]
 ```
 
-So at the moment some things are on the horizon for this driver including custom tags, facility and remote server configuration.
+So at the moment some things are on the horizon for this driver including [changing the tag](https://github.com/docker/docker/pull/12668) and possibly remote server configuration.
 
 That is the end of this brief post, hopefully it helps others get started with this new feature, and provides some tips on how to configure the rsyslog service to work with it.
 
