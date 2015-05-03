@@ -5,9 +5,9 @@ Categories = [ "docker", "logging", "syslog" ]
 
 +++
 
-This post will illustrate how to use the new [syslog](http://en.wikipedia.org/wiki/Syslog) [logging driver](https://docs.docker.com/reference/run/#logging-drivers-log-driver) for [Docker](http://docker.com), along with some notes on using [docker-machine](https://docs.docker.com/machine/). 
+This post will illustrate how to use the new [syslog logging driver](https://docs.docker.com/reference/run/#logging-drivers-log-driver) for [Docker](http://docker.com), along with some notes on using [docker-machine](https://docs.docker.com/machine/). 
 
-The first thing to be clear on is the syslog logging driver enables you to relay the log messages written to stdout/stderr within a container to syslog service on the host machine.
+The first thing to be clear on is the syslog logging driver enables you to relay the log messages written to stdout/stderr within a container, to syslog service on the host machine.
 
 For this example I am going to do this for an agent of the [buildkite](https://buildkite.com) continuous integration (CI) service running inside a Docker container. 
 
