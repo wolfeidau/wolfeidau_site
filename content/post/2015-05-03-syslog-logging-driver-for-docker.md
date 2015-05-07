@@ -1,5 +1,5 @@
 +++
-date = "2015-05-03T20:18:23+11:00"
+date = "2015-05-03T20:18:23+10:00"
 title = "syslog logging driver for Docker"
 Categories = [ "docker", "logging", "syslog" ]
 

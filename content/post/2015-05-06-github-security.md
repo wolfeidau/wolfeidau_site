@@ -41,13 +41,13 @@ Rather than using your account as a gateway into the miriad of projects you have
 
 So what other advantages are their to using a separate user for this?
 
-* It means we can give limited access to the CI services, in most cases only giving them read access to projects
-* If you leave or go on holidays, others can take over responsibility for this account and things will continue to work!
-* It enables you to centralise all those ssh-keys used for builds or deployments
+* Lets you tightly control what services can access, for example only giving CI services read access to projects which need builds run. 
+* If you go on holidays, or change roles, other team members can take over responsibility for this account and things will continue to function.
+* Enables you to centralise all ssh-keys used for builds or deployments.
 
-So the way this works is you setup a CI user for that organisation, then setup a CI team in Github which lets you manage access to projects. If necessary the credentials can be shared by a couple of key people within the team, so you can actually have a holiday in peace.
+The way this works is you setup a CI user add it to the organisation, then setup a CI team in Github which to manage this users access to projects. If necessary the credentials can be shared by a couple of key people within the team, so you can actually have a holiday in peace.
 
-When keys are required for automation, or a service requires access to repositories, you login as that user and set them up, likewise all SSH keys used for automation go on this account!
+When keys are required for automation, or a service requires access to repositories, you login as that user and set them up, likewise all SSH keys used for automation go on this account.
 
 Once setup you have essentially sandboxed access by external services to an account which has only what it needs to operate. This in turn leaves your account with as few links to external services as possible.
 
