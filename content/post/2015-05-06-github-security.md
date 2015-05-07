@@ -60,4 +60,6 @@ So by the end we should have:
 
 ## Closing Thoughts
 
-I hope I have at least encouraged you to review your github account and give it a bit of a spring clean. I am sure there are a few other things you can do to tighten up access to the things you work on, your welcome to leave a comment if you have any other ways to improve the security of your Github account.
+I hope I have at least encouraged you to review your Github account and give it a bit of a spring clean. I am sure there are a few other things you can do to tighten up access to the things you work on, your welcome to leave a comment if you have any other ways to improve the security of your Github account.
+
+Also thanks to [@michaelneale](https://twitter.com/michaelneale) for proof reading.
