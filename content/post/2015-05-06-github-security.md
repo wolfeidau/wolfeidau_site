@@ -51,6 +51,14 @@ When keys are required for automation, or a service requires access to repositor
 
 Once setup you have essentially sandboxed access by external services to an account which has only what it needs to operate. This in turn leaves your account with as few links to external services as possible.
 
+## Summary
+
+So by the end we should have:
+
+* Done a cleanup of our SSH keys and worked out where they all are stored.
+* Cleared out unused third party applications.
+* Reconfigured continuous integration services to use a separate user in your organisation and restricted that to the bare minimum access.
+
 ## Closing Thoughts
 
 I hope I have at least encouraged you to review your github account and give it a bit of a spring clean. I am sure there are a few other things you can do to tighten up access to the things you work on, your welcome to leave a comment if you have any other ways to improve the security of your Github account.
