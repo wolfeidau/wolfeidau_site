@@ -2,7 +2,6 @@
 date = "2015-05-06T16:56:00+10:00"
 title = "Github Security"
 Categories = [ "Github", "security", "CI", "docker" ]
-draft = true
 
 +++
 
