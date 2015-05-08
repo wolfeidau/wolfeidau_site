@@ -7,6 +7,10 @@ Categories = [ "Github", "security", "CI", "docker" ]
 
 Having worked with [Github](https://github.com) for the last six years, commercially for the last three I thought I would do a post on security, or more specifically, protecting your projects, and the ones you work on for others, this may be friends, or it could be a company. Either way the aim of this post is to encourage you to review the security of your account.
 
+## Two Factor Authentication
+
+As soon as you start build things in Github for other people I recommend you enable two factor authentication, the process is pretty straight forward and services such as [Authy](https://www.authy.com/) and [Google Authenticator](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en) make this even easier.
+
 ## SSH Keys
 
 Firstly please go to your [Github SSH Keys Page](https://github.com/settings/ssh) and take a look at the number of SSH keys you have, either you can click the link or login to your Github account and select the settings icon in the top right hand corner.
@@ -54,6 +58,7 @@ Once setup you have essentially sandboxed access by external services to an acco
 
 So by the end we should have:
 
+* Enabled two factor authentication on your account.
 * Done a cleanup of our SSH keys and worked out where they all are stored.
 * Cleared out unused third party applications.
 * Reconfigured continuous integration services to use a separate user in your organisation and restricted that to the bare minimum access.
@@ -62,4 +67,4 @@ So by the end we should have:
 
 I hope I have at least encouraged you to review your Github account and give it a bit of a spring clean. I am sure there are a few other things you can do to tighten up access to the things you work on, your welcome to leave a comment if you have any other ways to improve the security of your Github account.
 
-Also thanks to [@michaelneale](https://twitter.com/michaelneale) for proof reading.
+Also thanks to [@michaelneale](https://twitter.com/michaelneale) for proof reading, and [@adam__brady](https://twitter.com/adam__brady) for reminding me that not everyone has two factor authentication enabled.
