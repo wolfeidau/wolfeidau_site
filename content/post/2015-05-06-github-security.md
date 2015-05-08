@@ -5,7 +5,7 @@ Categories = [ "Github", "security", "CI", "docker" ]
 
 +++
 
-Having worked with [Github](https://github.com) for the last six years, commercially for the last three I thought I would do a post on security, or more specifically, protecting your projects, and the ones you work on for others, this may be friends, or it could be a company. Either way the aim of this post is to encourage you to review the security of your account.
+Having worked with [Github](https://github.com) for the last six years, commercially for the last three I thought I would do a post on security, or more specifically, protecting your projects, and the ones you work on for others, this may be friends, or it could be a company. Either way the aim of this post is to encourage you to review the security of your personal Github account.
 
 ## Two Factor Authentication
 
@@ -33,6 +33,8 @@ Next, lets talk about third party applications, I am not sure about you but as t
 So how about we visit the [Github Applications Page](https://github.com/settings/applications) and clear out any you currently don't use, I am especially talking about services that have access to ALL your repositories such as [travis](https://travis-ci.org/), [drone](https://drone.io/).
 
 Now there is nothing wrong with these specific services, however the level of access they require to operate is typically "all the things".
+
+If you do run a Github organisation you should also review the [third-party application restrictions](https://help.github.com/articles/about-third-party-application-restrictions/) features.
 
 ## Continious Integration Services
 
@@ -67,4 +69,4 @@ So by the end we should have:
 
 I hope I have at least encouraged you to review your Github account and give it a bit of a spring clean. I am sure there are a few other things you can do to tighten up access to the things you work on, your welcome to leave a comment if you have any other ways to improve the security of your Github account.
 
-Also thanks to [@michaelneale](https://twitter.com/michaelneale) for proof reading, and [@adam__brady](https://twitter.com/adam__brady) for reminding me that not everyone has two factor authentication enabled.
+Also thanks to [@michaelneale](https://twitter.com/michaelneale) for proof reading, and [@adam__brady](https://twitter.com/adam__brady) for reminding me that not everyone has two factor authentication enabled, and [@johnbarton](https://twitter.com/johnbarton) for highlighting the third party restrictions feature I wasn't aware existed.
