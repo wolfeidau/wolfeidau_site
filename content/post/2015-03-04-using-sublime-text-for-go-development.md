@@ -7,7 +7,7 @@ Categories = [ "sublime", "golang", "development" ]
 
 For the last 6 months I have been using [Go](http://golang.org) as my primary development language and for a large part of that I have been using [sublime text 3](http://www.sublimetext.com/3). Along the way the go developers have released quite a few handy and time saving tools which have all been supported by [GoSublime](https://github.com/DisposaBoy/GoSublime) with some assembly required. This post will provide a rundown on how to setup go-sublime and the array of tools which make golang development as productive as possible.
 
-So firstly if your new to golang then before you start setup your workspace, firstly watch this video [Writing, building, installing, and testing Go code](https://www.youtube.com/watch?v=XCsL89YtqCs).
+So firstly if you're new to golang then before you start setup your workspace, firstly watch this video [Writing, building, installing, and testing Go code](https://www.youtube.com/watch?v=XCsL89YtqCs).
 
 When I am setting a new system up I typically run the following commands in OSX or Linux, this example is of course for bash, if you use zsh I am sure you can adapt this where needed. 
 
@@ -19,7 +19,7 @@ mkdir -p ~/Code/go/src/github.com/wolfeidau
 cd !$
 ```
 
-*Note:* If your on OSX you should use `.bash_profile`, on Linux you typically use your `.bashrc`.
+*Note:* If you're on OSX you should use `.bash_profile`, on Linux you typically use your `.bashrc`.
 
 Once i have done this I can either clone a project from my [github](https://github.com) or make a directory for a new one.
 
