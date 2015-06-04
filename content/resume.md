@@ -1,12 +1,12 @@
 # Mark Wolfe
 
-I have spent the last two years working at Ninja Blocks, which is an IoT startup based in Sydney. When I started I was working on keeping the existing systems running, developing new deployment tools and tuning the existing platform, then early in 2014 I was asked to take over as CTO.
+I have spent the last two years working at [Ninja Blocks](https://ninjablocks.com/), which is an IoT startup based in Sydney. When I started I was working on keeping the existing systems running, developing new deployment tools and tuning the existing platform, then early in 2014 I was asked to take over as CTO.
 
-As CTO I worked with the team to build the Ninja Sphere, a consumer focused hardware device and cloud services which we launched on kickstarter in November 2013. This project took us ~14 months to build, going from design, firmware / hardware build through to manufacturing and finally shipping. This was one of the most challenging and rewarding projects I have ever worked on.
+As CTO I worked with the team to build the [Ninja Sphere](https://www.kickstarter.com/projects/ninja/ninja-sphere-next-generation-control-of-your-envir), a consumer focused hardware device and cloud services which we launched on kickstarter in November 2013. This project took us ~14 months to build, going from design, firmware / hardware build through to manufacturing and finally shipping. This was one of the most challenging and rewarding projects I have ever worked on.
 
 While at Ninja Blocks I to worked across a wide array of disciplines including hardware, software development and business operations. On the engineering side I primarily worked on:
 
-* Realtime messaging from the devices to cloud services
+* Real time messaging from the devices to cloud services
 * API Development
 * Linux OS development working with drivers, software packaging, and building the firmware for an ARM based platform
 * Deployment of cloud services on AWS, Google Cloud with Chef, Ansible and Docker
@@ -17,14 +17,14 @@ Before Ninja Blocks I worked for 13 years as an architect and consultant at Hamm
 
 # Speaking
 
-As a part of the Melbourne Developer community I am one of the co-organisers of the Go meetup.
+As a part of the Melbourne Developer community I am one of the co-organisers of the [Go meetup](http://www.meetup.com/golang-mel/).
 
 I have spoken at a couple of conferences:
 
 * February 2015, I presented at API Days Sydney on UDP based APIs
 * September 2014, I Presented at YOW Connected on Using Bluetooth Low Energy for Location
 
-And presented at Melbjs, and the Go, NodeJS, .NET, Microservices and docker meetups in Melbourne.
+And presented at [Melbjs](http://melbjs.com/), and the Go, NodeJS, .NET, Microservices and docker meetups in Melbourne.
 
 Most of my recent talks are listed at https://speakerdeck.com/wolfeidau
 
@@ -34,7 +34,8 @@ Working at a startup, and previously as a consultant I have I have used a wide a
 
 * Building software using:
   * Go
-  * Javascript
+  * JavaScript
+  * Bash
   * C
 * Working on Linux, more specifically:
   * Ubuntu and Snappy Core
@@ -64,7 +65,7 @@ Working at a startup, and previously as a consultant I have I have used a wide a
   * Bluetooth and Bluetooth Low Energy
   * Wifi
 
-I am also an avid contributor to open source, with a keen interested in networking, authentication, distributed systems and databases. I also work on some embedded systems development at the Hawthorn Hacker Space.
+I am also an avid contributor to open source, with a keen interested in networking, authentication, distributed systems and databases. I also work on some embedded systems development at the [Connected Community HackerSpace](http://www.hackmelbourne.org/).
 
 Outside of work I do a bit of cycling, fishing and I am currently learning Chinese in my spare time.
 
