@@ -8,6 +8,13 @@ pygmentsstyle = "emacs"
 theme = "hyde-x"
 paginate = 10
 
+[[menu.main]]
+    name = "resume"
+    pre = "<i class='fa fa-heart'></i>"
+    weight = -110
+    identifier = "resume"
+    url = "/resume/"
+
 [author]
     name = "Mark Wolfe"
 
