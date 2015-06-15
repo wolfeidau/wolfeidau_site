@@ -22,7 +22,7 @@ As a part of the Melbourne Developer community I am one of the co-organisers of 
 I have spoken at a couple of conferences:
 
 * February 2015, I presented at API Days Sydney on [UDP based APIs](https://speakerdeck.com/wolfeidau/beyond-http-breaking-free-of-the-web)
-* September 2014, I Presented at YOW Connected on [Using Bluetooth Low Energy for Location](https://speakerdeck.com/wolfeidau/using-bluetooth-low-energy-for-location)
+* September 2014, I presented at YOW Connected on [Using Bluetooth Low Energy for Location](https://speakerdeck.com/wolfeidau/using-bluetooth-low-energy-for-location)
 
 And presented at [Melbjs](http://melbjs.com/), and the Go, NodeJS, .NET, Microservices and docker meetups in Melbourne.
 
