@@ -1,3 +1,12 @@
++++
+Categories = []
+Description = "Mark Wolfe's Resume"
+Keywords = []
+Tags = []
+date = "2015-06-16T09:00:03+11:00"
+keywords = ["resume"]
++++
+
 # Mark Wolfe
 
 I have spent the last two years working at [Ninja Blocks](https://ninjablocks.com/), which is an IoT startup based in Sydney. When I started I was working on keeping the existing systems running, developing new deployment tools and tuning the existing platform, then early in 2014 I was asked to take over as CTO.
