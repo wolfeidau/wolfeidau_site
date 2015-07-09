@@ -63,6 +63,6 @@ This project is something I am working on at the moment [esp8266-led-lamp](https
 
 So in summary we have installed boot2docker and built an esp8266 project with little or on messing around with complex SDK setup. In my view this is a big step forward in shortening the time to build for hardware projects, and simplifying delivery of complex SDK environments.
 
-Hopefully the likes of [Atmel](http://www.atmel.com/) and [Texus Instruments](http://www.ti.com/) look at using Docker in the future.
+Hopefully the likes of [Atmel](http://www.atmel.com/) and [Texas Instruments](http://www.ti.com/) look at using Docker in the future.
 
 
