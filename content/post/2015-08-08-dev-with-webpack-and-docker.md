@@ -1,7 +1,7 @@
 +++
 date = "2015-08-08T17:56:00+10:00"
 title = "Development with Webpack and Docker"
-Categories = [ "Development", "CI", "docker" ]
+tags = [ "Development", "CI", "docker" ]
 
 +++
 

@@ -5,6 +5,8 @@ Keywords = []
 Tags = []
 date = "2015-06-16T09:00:03+11:00"
 keywords = ["resume"]
+title = "Resume"
+menu = "nav"
 +++
 
 # Mark Wolfe
