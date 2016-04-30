@@ -3,40 +3,18 @@ languageCode = "en-us"
 title = "Mark Wolfe's Blog"
 
 disqusShortname = "markwolfesblog"
+googleAnalytics = "UA-10420512-2"
 
-pygmentsstyle = "emacs"
-theme = "hyde-x"
 paginate = 10
 
-[[menu.main]]
-    name = "resume"
-    pre = "<i class='fa fa-heart'></i>"
-    weight = -110
-    identifier = "resume"
-    url = "/resume/"
-
-[author]
-    name = "Mark Wolfe"
-
-[permalinks]
-    # Optional. Change the permalink format for the 'post' content type.
-    # The format shown here is the same one Jekyll/Octopress uses by default.
-    post = "/:year/:month/:day/:title/"
-
-[indexes]
-    # Optional. Use if you want tags and lists.
-    category = "categories"    
-
-
 [params]
-	tagline = "Random musings and observations"
-	theme = "theme-base-08"
+    author = "Mark Wolfe"
+    description = "A place to post ideas"
+    avatar = "images/wolfeidau.jpeg"
+    copyright = "Released under the MIT license<br>Powered by [Hugo](//gohugo.io/)"
 
-	gravatarHash = "ebf974e0dbcfe88c508df6f395661a4b"
-
-    googleAnalytics = "UA-10420512-2"
-
-	# Sidebar social links, avoid enabling too many of these if possible.
-    # These should be full URLs.
-    github = "https://github.com/wolfeidau"
-    twitter = "https://twitter.com/wolfeidau"
+    [params.social]
+        rss = true
+        email = "mark@wolfe.id.au"
+        github = "wolfeidau"
+        twitter = "wolfeidau"
