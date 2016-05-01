@@ -1,9 +1,12 @@
-baseurl = "http://www.wolfe.id.au"
+baseurl = "https://dh3njxxxcp7z0.cloudfront.net/"
 languageCode = "en-us"
 title = "Mark Wolfe's Blog"
 
 disqusShortname = "markwolfesblog"
 googleAnalytics = "UA-10420512-2"
+theme = "type"
+
+uglyurls = true
 
 paginate = 10
 
