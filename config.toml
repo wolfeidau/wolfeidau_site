@@ -1,4 +1,4 @@
-baseurl = "https://dh3njxxxcp7z0.cloudfront.net/"
+baseurl = "https://www.wolfe.id.au/"
 languageCode = "en-us"
 title = "Mark Wolfe's Blog"
 
@@ -6,9 +6,10 @@ disqusShortname = "markwolfesblog"
 googleAnalytics = "UA-10420512-2"
 theme = "type"
 
-uglyurls = true
-
 paginate = 10
+
+[permalinks]
+    post = "/:year/:month/:day/:title/"
 
 [params]
     author = "Mark Wolfe"
