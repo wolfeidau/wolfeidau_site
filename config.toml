@@ -11,6 +11,15 @@ paginate = 10
 [permalinks]
     post = "/:year/:month/:day/:title/"
 
+[social]
+    twitter = "wolfeidau"
+
+[Authors.wolfeidau]
+    given_name   = "Mark"
+    family_name  = "Wolfe"
+    display_name = "Mark Wolfe"
+    twitter = "wolfeidau"
+
 [params]
     author = "Mark Wolfe"
     description = "A place to post ideas"
