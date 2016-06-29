@@ -15,15 +15,15 @@ So to start with there are some things you should learn before beginning:
 
 The entire plugin development kit revolves around it so you need to understand it, have a read over the [Maven Reference](http://www.sonatype.com/books/mvnref-book/reference/) and add it to your bookmarks.
 
-The first thing I do when coming back to maven is practice the release process, for most developers this is one of the most frustrating and complicated areas of maven so practice it. 
+The first thing I do when coming back to maven is practice the release process, for most developers this is one of the most frustrating and complicated areas of maven so practice it.
 
-Generate a test Java project using the basic archetype, and push it up to your version control site of choice, either [bitbucket](http://bitbucket.org/) or [github](http://github.com) is fine, and work through the development cycle. Make a few changes check them in and then perform a release, this process normally takes me a few goes to get all the settings right in your maven project. 
+Generate a test Java project using the basic archetype, and push it up to your version control site of choice, either [bitbucket](http://bitbucket.org/) or [github](http://github.com) is fine, and work through the development cycle. Make a few changes check them in and then perform a release, this process normally takes me a few goes to get all the settings right in your maven project.
 
 I recommend you use this approach to re-familiarise yourself with the release process after any long breaks as well, this will ensure maven hasn't change since you last did it, and you don't make a mess of your plugin project.
 
 Once you have created your plugin project ensure you fill out all the relevant meta information in your maven pom file, as seen in the sample below. In addition to it being a good practice to do so this information can be used by maven plugins you may include in your project in the future.
 
-{{< highlight xml >}}
+```xml
 
     <description>This is the ruby rake plugin for Atlassian Bamboo.</description>
 
@@ -48,7 +48,7 @@ Once you have created your plugin project ensure you fill out all the relevant m
         </license>
     </licenses>
 
-{{< /highlight >}}
+```
 
 # The Java Ecosystem
 

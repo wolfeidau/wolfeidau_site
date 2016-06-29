@@ -15,7 +15,7 @@ However pretty much every project I need to add my secret project ingredients, t
 I have extracted a sample of my default configuration to illustrate how these plug-ins are configured in the pom.xml.
 
 
-{{< highlight xml >}}
+```xml
 <build>
     <plugins>
       <plugin>
@@ -45,11 +45,11 @@ I have extracted a sample of my default configuration to illustrate how these pl
       </plugin>
     </plugins>
   </reporting>
-{{< /highlight >}}
+```
 
 At a minimum that gets me up and running with plug-ins, next thing I like to tidy up is the header of the pom file. This typically starts by updating all the developer information setting my website URL and adding my details.
 
-{{< highlight xml >}}
+```xml
 <inceptionYear>2010</inceptionYear>
 <organization>
   <name>Mark Wolfe</name>
@@ -74,6 +74,6 @@ At a minimum that gets me up and running with plug-ins, next thing I like to tid
     <comments>A business-friendly OSS license</comments>
   </license>
 </licenses>
-{{< /highlight >}}
-  
+```
+
 So that pretty much completes my maven kick start configuration post, for more detailed example see my [fxAssetman](https://github.com/wolfeidau/fxAssetman) muck around project on github.

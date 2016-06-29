@@ -6,19 +6,19 @@ categories = [ "Apache CXF", "Logging" ]
 
 +++
 
-Configuring logging in [Apache CXF](http://cxf.apache.org) can be confusing at first, in my view this is further compounded by Apache Tomcat's logging architecture. 
+Configuring logging in [Apache CXF](http://cxf.apache.org) can be confusing at first, in my view this is further compounded by Apache Tomcat's logging architecture.
 
 
 In my cxf based projects the first step is to use the [logging configuration available in 2.2.8 or later](http://cxf.apache.org/docs/debugging-and-logging.html#DebuggingandLogging-UsingSLF4JInsteadofjava.util.logging%28since2.2.8%29). This enables you to configure your logger of choice for the entire CXF stack. Needless to say I really like this feature as I am not a big fan of java.util.logging as it's configuration is not very intuitive.
 
 First step is to change all logging in CXF to my logging stack of choice which is [sl4j](http://www.slf4j.org/) and [logback](http://logback.qos.ch/). As per the CXF documentation I added a file named _org.apache.cxf.Logger_ in my maven web application project located at _src/main/resources/META-INF/cxf_. This file contained just the following string.
 {% highlight text %}
-org.apache.cxf.common.logging.Slf4jLogger 
+org.apache.cxf.common.logging.Slf4jLogger
 {% endhighlight %}
 
 I also add the following dependencies to my maven projects _pom.xml_.
 
-{{< highlight xml >}}
+```xml
 <!-- This is to override spring's dependence on apache commons logging -->
 <dependency>
     <groupId>org.slf4j</groupId>
@@ -43,7 +43,7 @@ I also add the following dependencies to my maven projects _pom.xml_.
     <artifactId>logback-classic</artifactId>
     <version>0.9.19</version>
 </dependency>
-{{< /highlight >}}
+```
 
 And I configure a basic logback configuration within in _logback.xml_ located in my web projects _src/main/resources_ directory.
 
@@ -53,7 +53,7 @@ The main aims of this are:
 
 The main reason for separating WS messages into a trace file is to keep the application log file down to an easy to handle size. This is especially helpful for systems which handle large web service messages. Also you may want to roll the trace file at a different interval than the application log.
 
-{{< highlight xml >}}
+```xml
 <configuration>
 
     <!-- Just used while running in process while developing -->
@@ -109,7 +109,7 @@ The main reason for separating WS messages into a trace file is to keep the appl
     </root>
 
 </configuration>
-{{< /highlight >}}
+```
 
 For a more complete sample you can look over the sources to [maven-project-wizard](https://github.com/wolfeidau/mvn-project-wizard/) on [github](http://github.com).
 

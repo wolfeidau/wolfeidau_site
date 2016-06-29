@@ -22,7 +22,7 @@ The first point is quite amusing as I already had a user called jira on the syst
 
 The second point was fine until I opened the script, when I did I was astounded to find a very brief script as follows:
 
-{{< highlight bash >}}
+```
 #!/bin/bash
 
 # JIRA Linux service controller script
@@ -40,7 +40,7 @@ case "$1" in
         exit 1
         ;;
 esac
-{{< /highlight >}}
+```
 
 Now there are a numerous issues with this init script, firstly changing directory within a startup script and then running a script in the current working directory is a big no no, not only is it a potential security hole waiting to happen, it is also just plain bad form. In the case of tomcat itself there are a couple of system variables which instruct it where it's base files are and where it's working data is located. Using these variables removes the need for change directory (CD) in scripts and is much safer.
 
