@@ -29,7 +29,7 @@ git init
 Pull down a preconfigured `.gitignore` file for node projects from github.
 
 ```
-wget https://raw2.github.com/github/gitignore/master/Node.gitignore -O .gitignore
+wget https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore -O .gitignore
 ```
 
 Pull down a basic `Makefile` I use for my projects.
