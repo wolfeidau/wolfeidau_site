@@ -1,12 +1,11 @@
 +++
-Categories = [ "Development", "golang", "serverless", "apex" ]
+tags = [ "Development", "golang", "serverless", "apex" ]
 date = "2016-08-13T18:30:47+10:00"
-draft = true
 title = "bootstrap an apex golang project"
 
 +++
 
-Lately I have been using [apex](http://apex.run) to build a side project, this tool stream lines building and deploying serverless applications using [lambda](https://aws.amazon.com/lambda/). While working on this project I have helped others get started with [golang](http://golang.org) at the same time as apex.
+Lately I have been using [apex](http://apex.run) to build a side project, this tool stream lines building and deploying serverless applications using [AWS Lambda](https://aws.amazon.com/lambda/). While working on this project I have helped others get started with [golang](http://golang.org) at the same time as apex.
 
 My general strategy for building apex applications is to build a standalone version of the functionality on my machine, typically in a way which makes the code reusable, then I import and use that in apex. This post will run through how I do this.
 
@@ -214,3 +213,7 @@ apex invoke shorten --region ap-southeast-2 < event.json
 
 You now have a modular lambda function deployed using apex and golang 🎉🚀.
 
+The sample projects are located at:
+
+* https://github.com/wolfeidau/shorten-apex
+* https://github.com/wolfeidau/shorten

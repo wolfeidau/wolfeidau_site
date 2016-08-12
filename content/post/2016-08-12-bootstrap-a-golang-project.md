@@ -1,7 +1,7 @@
 +++
 date = "2016-08-12T03:38:17+10:00"
 title = "bootstrap a golang project"
-Categories = [ "Development", "golang" ]
+tags = [ "Development", "golang" ]
 
 +++
 
