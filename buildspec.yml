@@ -9,9 +9,12 @@ environment_variables:
 phases:
   install:
     commands:
+      - apt-get install -y git python-pip
+      - pip install Pygments
       - curl -Ls https://github.com/spf13/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.deb -o /tmp/hugo.deb
       - echo "${HUGO_SHA256}  /tmp/hugo.deb" | sha256sum -c -
       - dpkg -i /tmp/hugo.deb
+      - (cd themes; git clone https://github.com/wolfeidau/hugo-type-theme type)
   build:
     commands:
       - hugo
