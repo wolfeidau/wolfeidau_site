@@ -62,18 +62,18 @@ is combined and added to the authorisation header.
 
 The following example is from [Amazon S3 documentation](http://s3.amazonaws.com/doc/s3-developer-guide/RESTAuthentication.html).
 
-{{< highlight ruby >}}
+```ruby
 "Authorization: AWS " + AWSAccessKeyId + ":"  + base64(hmac-sha1(VERB + "\n"
                    + CONTENT-MD5 + "\n"
                    + CONTENT-TYPE + "\n"
                    + DATE + "\n"
                    + CanonicalizedAmzHeaders + "\n"
                    + CanonicalizedResource))
-{{< /highlight >}}
+```
 
 Which results in a HTTP request, with headers which looks like this.
 
-{{< highlight text >}}
+```
 PUT /quotes/nelson HTTP/1.0
 Authorization: AWS 44CF9590006BF252F707:jZNOcbfWmD/A/f3hSvVzXZjM2HU=
 Content-Md5: c8fdb181845a4ca6b8fec737b3581d76
@@ -81,7 +81,7 @@ Content-Type: text/html
 Date: Thu, 17 Nov 2005 18:49:58 GMT
 X-Amz-Meta-Author: foo@bar.com
 X-Amz-Magic: abracadabra
-{{< /highlight >}}
+```
 
 Note the AWS after the colon is sometimes known as the service label, most services I have seen follow the convention of changing this to
 an abbreviation of their name or just HMAC.
