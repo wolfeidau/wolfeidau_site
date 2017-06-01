@@ -35,7 +35,7 @@ Global secondary indexes (GSIs) further complicate this, as these are also updat
 
 The first big thing you need to understand is that DynamoDB doesn't have relationships, in most cases it will be better to start by storing related data denormalised in a given record using the document feature of the client APIs. The reason we do this is it can be difficult keeping related data across tables in sync. 
 
-I recommend keeping everything denormalised in a single record for as long as you can.
+I recommend keeping everything in a single record for as long as you can.
 
 ## Pagination
 
