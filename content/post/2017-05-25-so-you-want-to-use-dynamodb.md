@@ -5,11 +5,11 @@ title = "So you want to use DynamoDB?"
 
 +++
 
-Over the last few months I have been working on a project which uses DynamoDB almost exclusively for persistence, this has been a big challenge for everyone on the team. As a modern developer, most of us are used to using an RDBMS systems, so the move to a primitive key value store has been fun, but we have learnt a lot. To try and capture some of these learnings I have written this article, hopefully it will help those who embark on a similar journey.
+Over the last few months I have been working on a project which uses [DynamoDB](https://aws.amazon.com/dynamodb/) almost exclusively for persistence, this has been a big challenge for everyone on the team. As a developer, most of us are comfortable using a Relational database management system (RDBMS) systems, so the move to a primitive key value store has been fun, but we have learnt a lot. To try and capture some of these learnings I have written this article, hopefully it will help those who embark on a similar journey.
 
 ## Why DynamoDB?
 
-DynamoDB has:
+Some of the advantages DynamoDB offers:
 
 * A Key/Value model where the values are any number of fields
 * Simplified data access
@@ -80,7 +80,7 @@ Given all we have are some keys, which may or may not be deleted it is very diff
 
 So it has become clear to me we need to embrace a new strategy for displaying pages of results, luckily lots of others have run into this issue and the common pattern is to:
 
-1. Use contiuous scrolling, similar to twitter and other social media sites.
+1. Use infinite scrolling, similar to twitter and other social media sites.
 2. Maintain the state in the client with a cache of pages which have previously been loaded.
 
 For more information on this see [The End of Pagination](https://blog.codinghorror.com/the-end-of-pagination/).
