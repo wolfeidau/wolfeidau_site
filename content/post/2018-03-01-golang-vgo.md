@@ -4,7 +4,7 @@ date = "2018-03-01T21:02:47+10:00"
 tags = [ "Go", "versioning", "vendoring" ]
 +++
 
-I have been looking into the new [vgo project](https://github.com/golang/vgo) which was released recently by [Russ Cox](https://twitter.com/_rsc). In summary this project is a pretty rethink of how golang retrieves and stores packages used to build applications, and more specifically how versioned modules are introduced while retaining reproducible builds.
+I have been looking into the [Versioned Go Command](https://github.com/golang/vgo) which was released recently by [Russ Cox](https://twitter.com/_rsc). In summary this project is a pretty rethink of how golang retrieves and stores packages used to build applications, and more specifically how versioned modules are introduced while retaining reproducible builds.
 
 The highlights, and standout features for me are as follows:
 
