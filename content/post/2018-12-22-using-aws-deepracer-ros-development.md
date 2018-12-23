@@ -15,6 +15,12 @@ So why would I use DeepRacer for ROS development?
 3. It will retail for 249 USD in march, given it's high quality components it will be very useful.
 4. It is based on [Ubuntu](https://www.ubuntu.com/) 16.04.3, and [ROS Kinetic](http://wiki.ros.org/kinetic) which is a good solid starting point for ROS Development.
 
+Below is a picture the RC car chassis which is a really nice size.
+
+![Base RC Car](/images/deepracer_rc_car.png)
+
+## Logging into your DeepRacer
+
 Logging into the DeepRacer for the first time is very similar to the DeepLens product, plug the compute module into a monitor using a HDMI cable and a USB Keyboard and mouse, then reset the users password to some value which satisfies the complexity requirements. I believe it is at least 8 characters, one upper, lower, number and a symbol.
 
 **Note:** The username is `deepracer`.
