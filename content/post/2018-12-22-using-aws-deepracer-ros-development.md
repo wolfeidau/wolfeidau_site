@@ -87,7 +87,8 @@ $ sudo systemctl restart deepracer-core.service
 
 To test whether or not we can still drive the DeepRacer around, we will explore then interface with the control node provided.
 
-Now we load the ROS environment, using the AWS `setup.bash`, this will populate variables holding names and paths for services.
+Now we load the ROS environment, using the AWS `setup.bash`, this will populate variables holding names and paths for services, if you have never used ROS before you may want to run through some of the [Tutorials](http://wiki.ros.org/ROS/Tutorials).
+
 
 ```
 $ source /opt/aws/deepracer/setup.bash
@@ -167,5 +168,7 @@ Then back to the center.
 ```
 rostopic pub -1 /manual_drive ctrl_pkg/ServoCtrlMsg -- 0 0
 ```
+
+I am really impressed with the DeepRacer so far, it is a great platform to start working with ROS at a great price, hopefully it spurs a whole raft of great robotics projects in the future. I would also love to see more detail, and hopefully source code for the services in this product as they seem to be really well thought out and could most certainly provide a spring board for future innovation.
 
 In my next post we will write a ROS node which will use these services to drive the DeepRacer.
