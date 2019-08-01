@@ -1,6 +1,6 @@
 +++
 title = "Serverless Background jobs part 2"
-date = "2019-05-11T12:00:47+10:00"
+date = "2019-05-12T12:00:47+10:00"
 tags = [ "serverless", "development", "aws", "step functions" ]
 draft = false
 +++
