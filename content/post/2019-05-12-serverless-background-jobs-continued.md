@@ -2,7 +2,7 @@
 title = "Serverless Background jobs part 2"
 date = "2019-05-11T12:00:47+10:00"
 tags = [ "serverless", "development", "aws", "step functions" ]
-draft = true
+draft = false
 +++
 
 Step Functions allow you to build pipelines involving one or more amazon, or external service. Some examples of this are:

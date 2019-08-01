@@ -2,7 +2,7 @@
 title = "Serverless Background jobs part 1"
 date = "2019-05-11T12:00:47+10:00"
 tags = [ "serverless", "development", "aws", "step functions" ]
-draft = true
+draft = false
 +++
 
 Background jobs form the backbone of a lot of modern applications, they are used to perform a range of asynchronous tasks, from image processing through to order processing, fulfillment and shipping. Wherever there is a need to dispatch some sort of task, then monitor or wait for it's result.
@@ -27,8 +27,9 @@ So this is great but why should we decompose our workflows into functions and gl
 
 There are a number of things to be gained by moving to Step Functions:
 
-1. Testing, you will be able to test each element in the chain and make sure it performs it's discreet task
+1. Testing, you will be able to test each element in the chain and make sure it performs it's discreet task.
 2. Decoupling, you will have broken things down into pieces of code which can be refactored, or replaced independent of each other.
 3. Monitoring, given the visual nature of these pipelines you will be able to zero in on failures faster.
 
+Step Functions aren't the answer to every problem, but for multi step, long running jobs they are a great solution, if your fluent in the AWS ecosystem.
 
