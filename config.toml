@@ -4,7 +4,10 @@ title = "Mark Wolfe's Blog"
 
 disqusShortname = "markwolfesblog"
 googleAnalytics = "UA-10420512-2"
-theme = "type"
+theme = "hugo-type-theme"
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsStyle = "monokailight"
 
 paginate = 10
 
