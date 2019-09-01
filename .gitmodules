@@ -1,6 +1,3 @@
-[submodule "themes/type"]
-	path = themes/type
-	url = https://github.com/wolfeidau/hugo-type-theme.git
 [submodule "themes/hugo-type-theme"]
 	path = themes/hugo-type-theme
-	url = https://github.com/digitalcraftsman/hugo-type-theme
+	url = https://github.com/wolfeidau/hugo-type-theme

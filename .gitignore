@@ -2,3 +2,4 @@
 .idea
 /public/*
 *.swp
+/.bin

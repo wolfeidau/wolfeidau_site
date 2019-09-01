@@ -28,6 +28,7 @@ paginate = 10
     description = "A place to post ideas"
     avatar = "images/wolfeidau.jpeg"
     copyright = "Released under the MIT license<br>Powered by [Hugo](//gohugo.io/)"
+    custom_css = ["css/nestedlists.css"]
 
     [params.social]
         rss = true

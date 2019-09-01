@@ -1,0 +1,24 @@
+ul li {
+    /* background-color:yellow; */
+    line-height: 1.5;
+    /* margin-bottom: 1em; */
+}
+
+ul li li {
+    /* background-color:red; */
+    line-height: 1.5;
+    padding-left: 1em;
+    /* margin-bottom: 0.5em; */
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+section > ul > li {
+    margin-bottom: 0.5em;
+}
+
+section > ul {
+    margin-bottom: 1em;
+}
