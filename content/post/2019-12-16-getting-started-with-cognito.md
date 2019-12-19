@@ -70,4 +70,4 @@ Personally I think it is really important that as a developer I pick solutions w
 
 You could totally roll your own authentication solution, and manage all the patching and challenges which go with that but that makes very little sense when you should probably be solving the original problem you had.
 
-Authentication is a massive hairy yak I am willing to let someone else ~~shave~~ manage, and so should you, if not for your own sanity, then that of your users.
+Authentication is a [yak I am willing to let someone else ~~shave~~](https://americanexpress.io/yak-shaving/)  manage, and so should you, if not for your own sanity, then that of your users.
