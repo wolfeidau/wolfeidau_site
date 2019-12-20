@@ -4,12 +4,17 @@ date = "2019-08-01T10:46:00+10:00"
 tags = [ "cloudformation", "development", "aws", "cognito", "authentication" ]
 +++
 
-The AWS [Cognito](https://aws.amazon.com/cognito/) product enables developers to build web or API based applications without worrying about authentication, and all the code which goes with:
+The AWS [Cognito](https://aws.amazon.com/cognito/) product enables developers to build web or API based applications without worrying about authentication and authorisation.
 
-* signing up for an account with email / sms verification
-* signing in, optionally with Multi Factor Authentication (MFA)
-* password change and recovery
-* storing and protecting this data
+## What does cognito provide out of the box?
+
+* Storing and protecting your users data
+* Signing up for an account with email / sms verification
+* Signing in, optionally with Multi Factor Authentication (MFA)
+* Password change and recovery
+* A number of triggers which can be used to extend the product
+
+## What is great about Cognito?
 
 Where AWS Cognito really shines is:
 
@@ -19,12 +24,14 @@ Where AWS Cognito really shines is:
 * Really easy to integrate into your application using libraries such as [AmplifyJS](https://github.com/aws-amplify/amplify-js).
 * AWS is managing it for a minimal cost
 
+## What is not so great about Cognito?
+
 Where AWS Cognito can be a challenge for developers:
 
 * Can be difficult to setup, and understand some of the settings which can only be updated during creation, changing these requires you to delete and recreate your pool.
 * Per account quotas on API calls
 * A lack of search
-* No inbuilt backup up the data in your pool
+* No inbuilt to backup and restore the user data in your pool
 
 So how do we address some of these challenges, while still getting the value provided and being able to capitalise on it's security and compliance features.
 
@@ -36,7 +43,10 @@ As a follow on from this I built a serverless application [serverless-cognito-au
 
 You can also use [AWS Mobile Hub](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/mobile-hub-features.html) or [AWS Amplify](https://aws.amazon.com/amplify/) to bootstrap a Cognito pool for you. 
 
-Overall recommendation is use one of the many prebuilt templates, or services to bootstrap cognito.
+Overall recommendations are:
+
+1. If your new to Cognito and want things to just work then use [AWS Amplify](https://aws.amazon.com/amplify/).
+2. If you are an old hand and just want Cognito the way you like it, then use one of the many prebuilt templates.
 
 ## How do I avoid quota related issues?
 
@@ -54,11 +64,11 @@ So in summary this makes it difficult to replace an internal database driven aut
 
 ## How do I back up my user pool?
 
-So firstly backing up user accounts is something you need to consider carefully, as this information typically includes credentials and as well as data used as the second factor, for example mobile number.
+So firstly backing up user accounts in any system is something you need to consider carefully, as this information typically includes credentials, as well as data used as a second factor such as mobile number.
 
 Currently Cognito doesn't provide a way of exporting user data, the service does however have an import function which will import users in from a CSV file. 
 
-**Note:** AWS cognito doesn't support export user passwords, these will need to be reset.
+**Note:** AWS cognito doesn't support export user passwords, these will need to be reset after restore.
 
 For some examples of tooling see [cognito-backup-restore](https://www.npmjs.com/package/cognito-backup-restore).
 
