@@ -2,7 +2,6 @@
 title = "Building a WLToys A979 donkey car"
 date = "2019-12-22T15:37:00+10:00"
 tags = [ "robots", "development", "machine learning" ]
-draft = false
 +++
 
 In my spare time I spend a bit of time building and working on a scaled down self driving RC project which uses an opensource project called [donkeycar](https://github.com/autorope/donkeycar). I have been through a few generations of car, learning how both the hardware and software worked, hopefully I can provide some tips on how to avoid at least some of my mistakes in this post.
@@ -38,7 +37,6 @@ This will also be useful with any power upgrades such as the one listed down the
 ### The Compute Build
 
 To mount the compute on top of the car I used [Dingo-Mount](https://github.com/PancakeLegend/Dingo-Mount) which was cut on a laser cutter at [CCHS](https://www.hackmelbourne.org/) using some 3mm ply wood, which is light and strong.
-
 
 The hardware I use on top of the car is as follows:
 
