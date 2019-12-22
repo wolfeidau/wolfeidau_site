@@ -93,3 +93,5 @@ Personally I think it is really important that as a developer I pick solutions w
 You could totally roll your own authentication solution, and manage all the patching and challenges which go with that but that makes very little sense when you should probably be solving the original problem you had.
 
 Authentication is a [yak I am willing to let someone else ~~shave~~](https://americanexpress.io/yak-shaving/)  manage, and so should you, if not for your own sanity, then that of your users.
+
+Lastly if your building out a web application use [amplify-js](https://aws-amplify.github.io/amplify-js/api/), this library makes it so easy to add Cognito authentication to your web application. I used it on [cognito-vue-bootstrap](https://github.com/wolfeidau/cognito-vue-bootstrap) which you can also check out.
