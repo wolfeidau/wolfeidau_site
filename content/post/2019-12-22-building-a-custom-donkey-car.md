@@ -8,6 +8,16 @@ In my spare time I spend a bit of time building and working on a scaled down sel
 
 ![Current Car](/images/2019-12-22-building-a-custom-donkey-car_19.07.18.png)
 
+### Starting Out
+
+Probably the lion share of lessons, at least initially were learnt about how to setup a custom RC car, especially the power and drive train. I have put together a bunch of recommendations:
+
+1. Always buy at least two servos, and check the number of teeth, force, and dimensions carefully.
+2. Learn to solder bullet connectors, there are some good tutorials on youtube including on how to get the nice shrink wrapped look.
+3. Always use a seperate power supply for the computer on your car, there are a number of reasons you can cause voltage drops during operation of the car, keeping things isolated will avoid the computer crashing and a car running into a wall.
+4. Cable ties are a life saver when hiding or stashing cables, buy a good collection of sizes.
+5. Start out with brushed motors, they are cheap and work better at low speeds.  
+
 ### The Car Build
 
 For the base of my current build I chose the WLToys A979 4WD Truck, this was for a few reasons:
