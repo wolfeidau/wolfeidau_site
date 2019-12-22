@@ -1,20 +1,32 @@
 +++
 title = "Getting started with Cognito?"
-date = "2019-08-01T10:46:00+10:00"
+date = "2019-12-16T10:46:00+10:00"
 tags = [ "cloudformation", "development", "aws", "cognito", "authentication" ]
 +++
 
 The AWS [Cognito](https://aws.amazon.com/cognito/) product enables developers to build web or API based applications without worrying about authentication and authorisation.
 
-## What does cognito provide out of the box?
+When setting up an applications authentication I try to keep in mind a few goals:
 
-* Storing and protecting your users data
+1. Keep my users data as safe as possible.
+2. Try and find something which is standards based, or supports integrating with standard protocols such as [openid](https://openid.net/), [oauth2](https://oauth.net/2/) and [SAML](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language).
+2. Evaluate the authentication flows I need and avoid increasing scope and risk.
+3. Try to use a service to start with, or secondarily, an opensource project with a good security process and a healthy community.
+4. Limit any custom development to extensions, rather than throwing out the baby with the bath water.
+
+As you can probably tell, my primary goal is to keep authentication out of my applications, I really don't have the time or inclination to manage a handcrafted authentication solution.
+
+### What does AWS Cognito provide out of the box?
+
+Lets look at what we get out of the box:
+
+* Storing and protecting your users data with features such as [Secure Remote Password Protocol (SRP)](https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol).
 * Signing up for an account with email / sms verification
 * Signing in, optionally with Multi Factor Authentication (MFA)
 * Password change and recovery
 * A number of triggers which can be used to extend the product
 
-## What is great about Cognito?
+### What is great about Cognito?
 
 Where AWS Cognito really shines is:
 
@@ -24,7 +36,7 @@ Where AWS Cognito really shines is:
 * Really easy to integrate into your application using libraries such as [AmplifyJS](https://github.com/aws-amplify/amplify-js).
 * AWS is managing it for a minimal cost
 
-## What is not so great about Cognito?
+### What is not so great about Cognito?
 
 Where AWS Cognito can be a challenge for developers:
 
@@ -35,7 +47,7 @@ Where AWS Cognito can be a challenge for developers:
 
 So how do we address some of these challenges, while still getting the value provided and being able to capitalise on it's security and compliance features.
 
-## What is the best way to setup Cognito?
+### What is the best way to setup Cognito?
 
 Personally I normally use one of the many open source [cloudformation](https://aws.amazon.com/cloudformation/) templates hosted on [GitHub](https://github.com/). I crafted this template some time ago [cognito.yml](https://gist.github.com/wolfeidau/70531fc1a593c0bad7fb9ebc9ae82580), it supports login using `email` address and domain white listing for sign up.
 
@@ -48,7 +60,7 @@ Overall recommendations are:
 1. If your new to Cognito and want things to just work then use [AWS Amplify](https://aws.amazon.com/amplify/).
 2. If you are an old hand and just want Cognito the way you like it, then use one of the many prebuilt templates.
 
-## How do I avoid quota related issues?
+### How do I avoid quota related issues?
 
 Firstly I recommend familiarising yourself with the [AWS Cognito Limits Page](https://docs.aws.amazon.com/cognito/latest/developerguide/limits.html).
 
@@ -56,13 +68,13 @@ I haven't seen an application hit request rate this more than a couple of times,
 
 The one limit I have seen hit is the sign up emails per day limit, this can be a pain on launch days for apps, or when there is a spike in signups. If your planning to use Cognito in a startup you will need to integrate with [SES](https://aws.amazon.com/ses/).
 
-## How do I work around searching my user database?
+### How do I work around searching my user database?
 
 Out of the box cognito will only allow you to list and filter users by a list of common attributes, this doesn't include custom attributes, so if you add something like customerId as an attribute you won't be able to find all users with a given value.
 
 So in summary this makes it difficult to replace an internal database driven authentication with just the cognito service, so for this reason I recommend adding a DynamoDB table to your application and integrating this with cognito using hooks to provide your own global user store.
 
-## How do I back up my user pool?
+### How do I back up my user pool?
 
 So firstly backing up user accounts in any system is something you need to consider carefully, as this information typically includes credentials, as well as data used as a second factor such as mobile number.
 
