@@ -30,9 +30,9 @@ Lets look at what we get out of the box:
 
 Where AWS Cognito really shines is:
 
-* Out of the box security and compliance features
-* Integration with a range of platform identity providers, such as Google, Apple and Amazon
-* Support for standards such as OpenID and SAML.
+* Out of the box [compliance to standards such as SOC and PCI](https://aws.amazon.com/compliance/services-in-scope/)
+* Integration with a range of [platform identity providers](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-social-idp.html), such as Google, Apple and Amazon
+* Support for integration with identity providers (IdPs) using OpenID and SAML.
 * Really easy to integrate into your application using libraries such as [AmplifyJS](https://github.com/aws-amplify/amplify-js).
 * AWS is managing it for a minimal cost
 
