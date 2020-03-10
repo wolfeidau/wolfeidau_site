@@ -4,9 +4,9 @@ date = "2020-03-10T04:00:00+11:00"
 tags = [ "Go", "Golang", "development" ]
 +++
 
-Given the changes with [Go Modules](https://blog.golang.org/using-go-modules) I wanted to document a brief getting started, this will focus on building a minimal web service.
+Given the changes with [Go Modules](https://blog.golang.org/using-go-modules) I wanted to document a brief getting started for Go projects, this will focus on building a minimal web service.
 
-Before you start you need Go, to install it I recommend using [homebrew](https://brew.sh/) or for ubuntu users [Golang Backports](https://launchpad.net/~longsleep/+archive/ubuntu/golang-backports), or as last resort grab it from the [Go Downloads](https://golang.org/dl/) page.
+Before you start you will need to install Go, I recommend using [homebrew](https://brew.sh/) or for ubuntu users [Golang Backports](https://launchpad.net/~longsleep/+archive/ubuntu/golang-backports), or as last resort grab it from the [Go Downloads](https://golang.org/dl/) page.
 
 So this looks like this for OSX.
 
