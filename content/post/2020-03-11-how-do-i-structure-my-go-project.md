@@ -113,14 +113,9 @@ $ tree exitus/
 
 The aim here is to illustrate how you grow your project from a couple of files, to a larger web service. I encourage you to trawl through github projects and dig into how other developers have structured theirs, and most of all try it out yourself!
 
-# Recommended Viewing
-
-For more inspiration I recommend watching [GopherCon 2018: Kat Zien - How Do You Structure Your Go Apps](https://www.youtube.com/watch?v=oL6JBUk6tj0). 
-
-{{< youtube oL6JBUk6tj0 >}}
-
 # References 
 
 * [GopherCon EU 2018: Peter Bourgon - Best Practices for Industrial Programming](https://www.youtube.com/watch?v=PTE4VJIdHPg)
 * [Standard Go Project Layout](https://github.com/golang-standards/project-layout)
+* [GopherCon 2018: Kat Zien - How Do You Structure Your Go Apps](https://www.youtube.com/watch?v=oL6JBUk6tj0)
 
