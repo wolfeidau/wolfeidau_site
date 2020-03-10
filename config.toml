@@ -9,6 +9,8 @@ pygmentsCodeFences = true
 pygmentsCodefencesGuessSyntax = true
 pygmentsStyle = "monokailight"
 
+enableEmoji = true
+
 paginate = 10
 
 [permalinks]

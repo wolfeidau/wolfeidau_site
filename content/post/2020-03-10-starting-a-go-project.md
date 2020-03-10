@@ -1,7 +1,7 @@
 +++
 title = "Starting a Go Project"
 date = "2020-03-10T04:00:00+11:00"
-tags = [ "Go", "Golang", "development", "command line" ]
+tags = [ "Go", "Golang", "development" ]
 +++
 
 Given the changes with [Go Modules](https://blog.golang.org/using-go-modules) I wanted to document a brief getting started, this will focus on building a minimal web service.
@@ -181,4 +181,6 @@ Now run this with the following command.
 go run cmd/simple-service/main.go
 ```
 
-So that is it, hopefully you have managed to get this service running and started testing it with something like [postman](https://www.postman.com/).
+Hopefully you have managed to get this service running and started testing it with something like [postman](https://www.postman.com/) :tada:.
+
+For next steps I recommend reading [How do I Structure my Go Project?]({{< ref "2020-03-11-how-do-i-structure-my-go-project.md" >}}).
