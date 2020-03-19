@@ -4,7 +4,15 @@ date = "2020-03-10T04:00:00+11:00"
 tags = [ "Go", "Golang", "development" ]
 +++
 
-Assuming you read my [Starting a Go Project]({{< ref "2020-03-10-starting-a-go-project.md" >}}) post you should have the starting point for a minimal go web service. This post will provide an overview of the structure I follow in my Go projects.
+Assuming you read my [Starting a Go Project]({{< ref "2020-03-10-starting-a-go-project.md" >}}) post you should have the starting point for a minimal go web service. For your first project it is easier to keep all your code in one folder, in the base of your project, but at some point you will want to restructure things, this is done for a few of reasons:
+
+* Having everything in one folder results in a lot of inter dependencies in the code.
+* Reuse outside the project can be difficult as the code is only designed to be used in one package.
+* It is impossible to have more than one binary, as you can have only one `main` method.
+
+This post will provide an overview of the structure I follow in my Go projects when building web services.
+
+**Note:** If your just building a library to use in your services, or share with others, it is OK to put everything in the base folder of your project, an example of this is my [dynastore](https://github.com/wolfeidau/dynastore) library.
 
 ## /cmd
 
