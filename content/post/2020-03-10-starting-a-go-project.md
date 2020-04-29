@@ -30,12 +30,12 @@ Now we should be able to run.
 go version
 ```
 
-Now navigate to where you build your projects, for me this is `~/Code/goprojects` and make a folder.
+Now navigate to where you build your projects, for me this is `~/Code/goprojects` and make a folder. One thing to note here is that this `goprojects` folder is not in my `$GOPATH` as we are using modules.
 
 ```
 cd ~/Code/goprojects
 mkdir simple-go-service
-cd  simple-go-service
+cd simple-go-service
 ```
 
 Before we start adding code lets initiliase our project, you should replace *USERNAME* with your github username, for me it is [wolfeidau](https://github.com/wolfeidau).
