@@ -41,7 +41,7 @@ cd  simple-go-service
 Before we start adding code lets initiliase our project, you should replace *USERNAME* with your github username, for me it is [wolfeidau](https://github.com/wolfeidau).
 
 ```
-github.com/USERNAME/simple-go-service
+go mod init github.com/USERNAME/simple-go-service
 ```
 
 Now for me I follow a pattern of storing the entry point in a `cmd` folder, this is done so I can easily customise the name of the binary as `go` uses the parent folder name executables.
