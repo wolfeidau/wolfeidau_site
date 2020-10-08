@@ -4,9 +4,9 @@ date = "2020-10-08T19:30:00+11:00"
 tags = [ "AWS", "s3", "security", "serverless" ]
 +++
 
-We have all read horror stories of Amazon Simple Storage Service (S3) buckets being “hacked” in the popular media, and we have seen lots of work by Amazon Web Services (AWS) to tighten up controls and messaging around best practices. So how do the amazon tools help you avoid some of the pitfalls with S3?
+We have all read horror stories of [Amazon Simple Storage Service](https://aws.amazon.com/s3/) (S3) buckets being “hacked” in the popular media, and we have seen lots of work by [Amazon Web Services](https://aws.amazon.com) (AWS) to tighten up controls and messaging around best practices. So how do the amazon tools help you avoid some of the pitfalls with S3?
 
-Case in point, the AWS CLI which a large number of engineers and developers rely on every day, the following command will create a bucket.
+Case in point, the [AWS CLI](https://aws.amazon.com/cli/) which a large number of engineers and developers rely on every day, the following command will create a bucket.
 
 ```
 $ aws s3 mb s3://my-important-data
@@ -38,7 +38,7 @@ Lastly there are a lot of developers out there who just don't have time to "hard
 
 ## What about Cloudformation?
 
-To further demonstrate this issue this is s3 bucket creation in cloudformation, which is the baseline orchestration tool for building resources, provided free of charge by AWS.  This is a very basic example,  seen in a lot of projects on GitHub, and the AWS documentation. 
+To further demonstrate this issue this is s3 bucket creation in [cloudformation](https://aws.amazon.com/cloudformation/), which is the baseline orchestration tool for building resources, provided free of charge by AWS. This is a very basic example, as seen in a lot of projects on GitHub, and the [AWS cloudformation documentation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-s3-bucket.html#aws-properties-s3-bucket--examples). 
 
 ```yaml
       MyDataBucket:
@@ -121,7 +121,7 @@ Just to summarise some of the points I have made above:
 2. The cost of building and maintaining infrastructure would be reduced over time as safer defaults would remove the need for pages of code to deploy “secure” s3 buckets.
 3. For new and busy developers things would be mostly right from the beginning, and likewise update that baseline even just for new applications, leaving them more time to do the actual work they should be doing.
 
-So anyone who is old enough to remember Sun Solaris will recall the “secure by default” effort launched with Solaris 10 around 2005, this also came with “self healing” (stretch goal for AWS?), so security issues around defaults is not a new problem, but has been addressed before!
+So anyone who is old enough to remember [Sun Solaris](https://en.wikipedia.org/wiki/Solaris_(operating_system)) will recall the “secure by default” effort launched with Solaris 10 around 2005, this also came with “self healing” (stretch goal for AWS?), so security issues around defaults is not a new problem, but has been addressed before!
 
 ## Follow Up Q&A
 
