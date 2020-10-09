@@ -14,17 +14,17 @@ $ aws s3 mb s3://my-important-data
 
 One would assume this commonly referenced example which is used in a lot of the resources provided by AWS would create a bucket following the best practices. But alas no…
 
-The configuration which is considered best practice for an S3 bucket missing is:
+The configuration which is considered [best practice for security of an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/security-best-practices.html) missing is:
 
 - Enable Default Encryption
 - Block Public access configuration
-- Enforce HTTPS access to objects
+- Enforce encryption of data in transit (HTTPS)
 
 ## Why is this a Problem?
 
 I personally have a lot of experience teaching developers how to get started in AWS, and time and time again it is lax defaults which let this cohort down. Of course this happens a lot while they are just getting started.
 
-Sure there are “guard rails” pointing out issues left right and center, but these typically identity problems which wouldn't be there in the first place if the tools where providing better defaults.
+Sure there are [guard rails](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cis-controls.html) implemented using services such as AWS Security Hub, pointing out issues left right and center, but these typically identity problems which wouldn't be there in the first place if the tools where providing better defaults.
 
 Sure there is more advanced configuration but **encryption** and blocking **public access** by default seem like a good start, and would reduce the noise of these tools.
 
