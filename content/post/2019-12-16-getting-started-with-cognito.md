@@ -49,7 +49,7 @@ So how do we address some of these challenges, while still getting the value pro
 
 ### What is the best way to setup Cognito?
 
-Personally I normally use one of the many open source [cloudformation](https://aws.amazon.com/cloudformation/) templates hosted on [GitHub](https://github.com/). I crafted this template some time ago [cognito.yml](https://gist.github.com/wolfeidau/70531fc1a593c0bad7fb9ebc9ae82580), it supports login using `email` address and domain white listing for sign up.
+To setup Cognito I typically use one of the many open source [cloudformation](https://aws.amazon.com/cloudformation/) templates on [GitHub](https://github.com/). I crafted this template some time ago [cognito.yml](https://gist.github.com/wolfeidau/70531fc1a593c0bad7fb9ebc9ae82580), it supports login using `email` address, and domain white listing for sign ups.
 
 As a follow on from this I built a serverless application [serverless-cognito-auth](https://github.com/wolfeidau/serverless-cognito-auth) which encapsulates a lot of the standard functionality I use in applications.
 
@@ -57,7 +57,7 @@ You can also use [AWS Mobile Hub](https://docs.aws.amazon.com/aws-mobile/latest/
 
 Overall recommendations are:
 
-1. If your new to Cognito and want things to just work then use [AWS Amplify](https://aws.amazon.com/amplify/).
+1. If your new to Cognito and want things to just work then I recommend trying [AWS Amplify](https://aws.amazon.com/amplify/).
 2. If you are an old hand and just want Cognito the way you like it, then use one of the many prebuilt templates.
 
 ### How do I avoid quota related issues?
@@ -66,19 +66,21 @@ Firstly I recommend familiarising yourself with the [AWS Cognito Limits Page](ht
 
 I haven't seen an application hit request rate this more than a couple of times, and both those were related to UI bugs which continuously polled the Cognito API.
 
-The one limit I have seen hit is the sign up emails per day limit, this can be a pain on launch days for apps, or when there is a spike in signups. If your planning to use Cognito in a startup you will need to integrate with [SES](https://aws.amazon.com/ses/).
+The one limit I have seen hit is the sign up emails per day limit, this can be a pain on launch days for apps, or when there is a spike in sign ups. If your planning to use Cognito in a startup you will need to integrate with [SES](https://aws.amazon.com/ses/).
 
 ### How do I work around searching my user database?
 
-Out of the box cognito will only allow you to list and filter users by a list of common attributes, this doesn't include custom attributes, so if you add something like customerId as an attribute you won't be able to find all users with a given value.
+Out of the box cognito will only allow you to list and filter users by a list of common attributes, this doesn't include custom attributes, so if you add an attribute like customerId you won't be able to find all users with a given value.
 
-So in summary this makes it difficult to replace an internal database driven authentication with just the cognito service, so for this reason I recommend adding a DynamoDB table to your application and integrating this with cognito using hooks to provide your own global user store.
+This limitation makes it difficult to replace an internal database driven authentication library just using the cognito service, so for this reason I recommend adding a DynamoDB table to your application and integrating this with cognito using [lambda triggers](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html) to build your own global user store.
+
+To simplify interacting with Cognito I wrote a CLI which provides some helpful commands to scan, filter, export and perform some common admin functions, you can find it at https://github.com/wolfeidau/cognito-cli.
 
 ### How do I back up my user pool?
 
-So firstly backing up user accounts in any system is something you need to consider carefully, as this information typically includes credentials, as well as data used as a second factor such as mobile number.
+Backing up user accounts in any system is something you need to consider carefully as this information typically includes credentials as well as other sensitive data such as mobile number which is often used as a second factor for other services.
 
-Currently Cognito doesn't provide a way of exporting user data, the service does however have an import function which will import users in from a CSV file. 
+Currently Cognito doesn't provide a simple way of exporting user data, the service does however have an import function which will import users in from a CSV file.
 
 **Note:** AWS cognito doesn't support export user passwords, these will need to be reset after restore.
 
