@@ -2,7 +2,7 @@ baseurl = "https://www.wolfe.id.au/"
 languageCode = "en-us"
 title = "Mark Wolfe's Blog"
 
-disqusShortname = "markwolfesblog"
+# disqusShortname = "markwolfesblog"
 googleAnalytics = "UA-10420512-2"
 theme = "hugo-type-theme"
 pygmentsCodeFences = true

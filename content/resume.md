@@ -11,7 +11,13 @@ menu = "nav"
 
 # Mark Wolfe
 
-I have spent the last two years working at [Ninja Blocks](https://ninjablocks.com/), which is an IoT startup based in Sydney. When I started I was working on keeping the existing systems running, developing new deployment tools and tuning the existing platform, then early in 2014 I was asked to take over as CTO.
+I have spent the last 5 years working with [Versent](https://versent.com.au/), an AWS premier consulting parter based in Australia. I am an AWS Partner Ambassador, and currently I an engineering lead at [Stax](https://www.stax.io), working on a platform which accelerates customers migration into AWS. This technical role sees me doing my best to support a rapidly growing team, while everyone pushes through compliance and growth challenges. 
+
+From the very beginning with Versent I have been working in and around AWS, initially working with enterprise customers moving into cloud, then providing direction and support to teams across the business working with customers in AWS.
+
+I have a passion for starting, coaching and supporting the teams of software developers, my primary goal is keep everything on track while ensuring no one is left behind. Working with Versent I have delivered projects, and products in some of the largest enterprises in Australia, while working with a leading cloud provider in AWS. 
+
+Prior to Versent I spent two years working at [Ninja Blocks](https://ninjablocks.com/), which is an IoT startup based in Sydney. When I started I was working on keeping the existing systems running, developing new deployment tools and tuning the existing platform, then early in 2014 I was asked to take over as CTO.
 
 As CTO I worked with the team to build the [Ninja Sphere](https://www.kickstarter.com/projects/ninja/ninja-sphere-next-generation-control-of-your-envir), a consumer focused hardware device and cloud services which we launched on kickstarter in November 2013. This project took us ~14 months to build, going from design, firmware / hardware build through to manufacturing and finally shipping. This was one of the most challenging and rewarding projects I have ever worked on.
 
