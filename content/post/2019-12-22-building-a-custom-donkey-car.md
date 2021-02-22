@@ -34,7 +34,7 @@ Then I replaced the [Electronic Speed controller(ESC)](https://en.wikipedia.org/
 
 ![Motor Wiring](/images/2019-12-22-building-a-custom-donkey-car_16.59.49.png)
 
-Lastly I replaced the servo with a [Turnigy TGY-225MG Analog High Torque Ballraced Servo 21T 3.5kg / 0.12sec / 26g](https://hobbyking.com/en_us/turnigy-tgy-225mg-analog-high-torque-ballraced-servo-21t-3-5kg-0-12sec-26g.html).
+Lastly I replaced the servo with a [Turnigy™ S3101S Servo 2.4kg / 0.14sec / 17g 24T](https://hobbyking.com/en_us/turnigytm-s3101s-servo-2-5kg-0-14sec-17g.html).
 
 To connect all this stuff you will need some extra parts.
 
