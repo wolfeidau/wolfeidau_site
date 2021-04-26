@@ -17,16 +17,17 @@ The action ran this modified script in each build and uploaded environment varia
 
 Given we all still want the benefits of services such as GitHub actions while also managing the risks we need to maintain a balance between getting the most out of the service and limiting possible exploits.
 
-There are a few things we can do though:
+Start by review the GitHub actions your using in your workflows, like you would for open source libraries:
 
+* How active are these projects? Are PRs merged / reviewed in a timely manner?
+* Is the author known for building good quality software and build automation?
+* Are these actions supported by a company or service?
+* Does the project have a security policy? 
+
+To keep your GitHub actions secure I recommend:
 
 1. Read the [GitHub actions hardening](https://docs.github.com/en/actions/learn-github-actions/security-hardening-for-github-actions) documentation.
 2. Limit exposure of secrets to only the projects and repositories which need these values by implementing [least privilege for secrets in GitHub Actions](https://github.blog/2021-04-13-implementing-least-privilege-for-secrets-in-github-actions/).
-3. Review the GitHub actions your using in your workflows, like you would for opensource libraries:
-    1. How active are these projects? Are PRs merged / reviewed in a timely manner?
-    2. Is the author known for building good quality software and build automation?
-    3. Are these actions supported by a company or service?
-    4. Does the project have a security policy? 
 4. Regularly rotate the credentials used in your GitHub actions. this helps mitigate historical backups or logs being leaked by a service.
 5. If an action is supplied and supported by a vendor, ensure emails or advisories are sent to a shared email box, and not attached to a personal email. This will enable monitoring by more than one person, and enable you to go on holidays.
 
