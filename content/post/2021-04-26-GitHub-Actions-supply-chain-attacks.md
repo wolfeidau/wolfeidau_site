@@ -3,11 +3,14 @@ title = "GitHub Actions supply chain attacks"
 date = "2021-04-26T19:30:00+11:00"
 tags = [ "GitHub", "CI", "security" ]
 +++
-There has been a lot of press about supply chain attacks recently, these type of attacks are nothing new and understanding them is really important for developers using services such as [GitHub Actions](https://github.com/features/actions), given Continuos integration (CI) tools are the supply chain for most software projects.
+There has been a lot of press about supply chain attacks recently, these type of attacks are nothing new and understanding them is really important for developers using services such as [GitHub Actions](https://github.com/features/actions), given Continuos integration (CI) tools are a critical part of supply chain used in software projects.
 
-A supply chain attack looks to target less secure parts of the development process, this could be the tools and services you depend on, or the docker containers you host your software in. This could be to extract credentials from your CI services like the [Codecov security incident](https://about.codecov.io/security-update/), or to seed malware for an attack down stream on your customers like the [solarwinds breach](https://krebsonsecurity.com/tag/solarwinds-breach/).
+A supply chain attack targets less secure parts of the development process, this could be the tools and services you depend on, or the docker containers you host your software in. These attacks come in different forms but some examples are:
 
-In this post I am going to dive into an example of an attack that affected a lot of projects using GitHub Actions, but this could be applied more broadly to any CI tool or service relying on third party services or code.
+* Extract credentials from your CI services like the [Codecov security incident](https://about.codecov.io/security-update/).
+* Seed malware for an attack down stream on your customers like the [solarwinds breach](https://krebsonsecurity.com/tag/solarwinds-breach/).
+
+In this post I am going to dive into an example of an attack that affected a lot of projects using GitHub Actions recently, but this could be applied more broadly to any CI tool or service relying on third party services or code.
 
 # Why is the Codecov security incident interesting?
 
