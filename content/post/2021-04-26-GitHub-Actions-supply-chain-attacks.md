@@ -14,12 +14,22 @@ In this post I am going to dive into an example of an attack that affected a lot
 
 # Why is the Codecov security incident interesting?
 
-The [Codecov security incident](https://about.codecov.io/security-update/) involved an attacker modifying a bash coverage uploader script hosted on the Codecov website. This script was used in a few of the CI integrations including the [GitHub](https://github.com) action provided by Codecov. Critically the release checksum for the downloaded script was not being verified after download, so projects using this action were exposed to the exploit embedded in it for at least 4 months. 
+The [Codecov security incident](https://about.codecov.io/security-update/) illustrates a novel attack on a popular developer tool, which in turn exposed a number of CI integrations including the widely used GitHub Actions.
 
-When the GitHub Action ran this modified coverage uploader script it submitted all environment variables used in that pipeline to a website operated by the attacker. Given these variables are often used to pass in the credentials for other services such as [Docker Hub](https://hub.docker.com
-), [NPM](https://www.npmjs.com/), cloud storage buckets and other software distribution services this could have been used to exploit users of these packages. Even more concerning is this could lead to a chain of further exploits, extending the footprint of this attack.
+The initial attack happened in January when the Codecov Bash uploader script was modified in a cloud storage service.
 
-In summary due to an honest mistake in a vendor supported action all your secrets in that pipeline were exposed.
+This script provides a language-agnostic alternative for sending your coverage reports to Codecov and is used at least 5 of the Codecov continuos integration (CI) integrations.
+
+The GitHub Action Codecov was one of them, it downloads and executes the script each time it is run and critically didn't verify the checksum of this file against the release so it continued working.
+
+The modified script extracted all environment variables in that workflow and uploaded them to a website operated by the attacker.
+
+These variables are often used to pass credentials into the workflow for services such as [Docker Hub](https://hub.docker.com
+), [NPM](https://www.npmjs.com/), cloud storage buckets and other software distribution services.
+
+The extraction of these credentials while this exploit was active could lead to the modifications of builds and other artifacts resulting in further exploits and extending the footprint of this attack.
+
+Most concerning is this exploit was effectively sitting in the supply chain of [1000s of open source](https://github.com/search?l=&q=codecov-action+language%3AYAML&type=code) and proprietary workflows extracting data undetected for approximately 4 months.
 
 **Note:** It is worth reading the [security update](https://about.codecov.io/security-update/) posted by Codecov as it highlights some of the steps you need to take if you are effected by this sort of attack.
 
@@ -27,11 +37,11 @@ In summary due to an honest mistake in a vendor supported action all your secret
 
 To ensure your GitHub actions secure I recommend:
 
-1. Read the [GitHub actions hardening](https://docs.github.com/en/actions/learn-github-actions/security-hardening-for-github-actions) documentation.
-2. Limit exposure of secrets to only the projects and repositories which need these values by implementing [least privilege for secrets in GitHub Actions](https://github.blog/2021-04-13-implementing-least-privilege-for-secrets-in-github-actions/).
-3. Read about [Keeping your GitHub Actions and workflows secure: Untrusted input](https://securitylab.github.com/research/github-actions-untrusted-input/).
-4. Regularly rotate the credentials used in your GitHub actions. this helps mitigate historical backups or logs being leaked by a service.
-5. If an action is supplied and supported by a vendor, ensure emails or advisories are sent to a shared email box, and not attached to a personal email. This will enable monitoring by more than one person, and enable you to go on holidays.
+* Read the [GitHub actions hardening](https://docs.github.com/en/actions/learn-github-actions/security-hardening-for-github-actions) documentation.
+* Limit exposure of secrets to only the projects and repositories which need these values by implementing [least privilege for secrets in GitHub Actions](https://github.blog/2021-04-13-implementing-least-privilege-for-secrets-in-github-actions/).
+* Read about [Keeping your GitHub Actions and workflows secure: Untrusted input](https://securitylab.github.com/research/github-actions-untrusted-input/).
+* Regularly rotate the credentials used in your GitHub actions. this helps mitigate historical backups or logs being leaked by a service.
+* If an action is supplied and supported by a vendor, ensure emails or advisories are sent to a shared email box, and not attached to a personal email. This will enable monitoring by more than one person, and enable you to go on holidays.
 
 For actions which have access to important secrets, like those used to upload your software libraries and releases, or deploying your services, you may want to fork them and add security scanning. This is more important if there are no vendor supported alternatives, or it is a less widely supported technology. 
 
