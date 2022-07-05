@@ -56,9 +56,15 @@ Resources:
         Statement:
           - Effect: "Allow"
             Action:
+              - "s3:ListBucket"
+            Resource:
+              - !Sub "arn:${AWS::Partition}:s3:::${StaticWebsiteBucketName}"        
+          - Effect: "Allow"
+            Action:
               - "s3:PutObject"
               - "s3:PutObjectAcl"
               - "s3:PutLifecycleConfiguration"
+              - "s3:DeleteObject"
             Resource:
               - !Sub "arn:${AWS::Partition}:s3:::${StaticWebsiteBucketName}/*"
           - Effect: "Allow"
