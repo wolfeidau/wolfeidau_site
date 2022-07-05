@@ -30,4 +30,6 @@ jobs:
         run: make docker-build
       
       - name: upload
+        env:
+          STAGE: prod
         run: make upload
