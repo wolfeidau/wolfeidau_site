@@ -6,7 +6,7 @@ tags = [ "robots", "development", "machine learning" ]
 
 In my spare time I spend a bit of time building and working on a scaled down self driving RC project which uses an opensource project called [donkeycar](https://github.com/autorope/donkeycar). I have been through a few generations of car, learning how both the hardware and software worked, hopefully I can provide some tips on how to avoid at least some of my mistakes in this post.
 
-![Current Car](/images/2019-12-22-building-a-custom-donkey-car_19.07.18.png)
+{{< figure src="/images/2019-12-22-building-a-custom-donkey-car_19.07.18.png" title="Current Car" >}}
 
 ### Starting Out
 
@@ -32,7 +32,7 @@ You can buy it from [banggood](https://www.banggood.com/Wltoys-A979-118-2_4Gh-4W
 
 Then I replaced the [Electronic Speed controller(ESC)](https://en.wikipedia.org/wiki/Electronic_speed_control) with a [Turnigy 20A BRUSHED ESC](https://hobbyking.com/en_us/turnigy-20a-brushed-esc.html) as the one provided was integrated with the radio and servo using some sort of proprietary setup.
 
-![Motor Wiring](/images/2019-12-22-building-a-custom-donkey-car_16.59.49.png)
+{{< figure src="/images/2019-12-22-building-a-custom-donkey-car_16.59.49.png" title="Motor Wiring" >}}
 
 Lastly I replaced the servo with a [Turnigy™ S3101S Servo 2.4kg / 0.14sec / 17g 24T](https://hobbyking.com/en_us/turnigytm-s3101s-servo-2-5kg-0-14sec-17g.html).
 
@@ -59,17 +59,18 @@ The hardware I use on top of the car is as follows:
 
 I used some brass standoffs, like these [M2.5 Male Female Hex Brass Spacer Standoff](https://www.amazon.com.au/Sutemribor-Female-Spacer-Standoff-Assortment/dp/B075K3QBMX/ref=sr_1_1?keywords=brass+standoffs&qid=1576992928&sr=8-1) which are similar to the ones you get when you buy a computer case, this enabled me to mount the SSD under my jetson nano, with some rubber acting avoiding the bottom of the board shorting out on the SSD.
 
-![SSD Mounting](/images/2019-12-22-building-a-custom-donkey-car_17.00.46.png)
+{{< figure src="/images/2019-12-22-building-a-custom-donkey-car_17.00.46.png" title="SSD Mounting" >}}
+
 
 To drive the servo and ESC I used [Adafruit PCA9685 16-Channel Servo Driver](https://learn.adafruit.com/16-channel-pwm-servo-driver?view=all) which you can get from [Core Electronics](https://core-electronics.com.au/adafruit-16-channel-12-bit-pwm-servo-driver-i2c-interface-pca9685.html) or purchase something similar from [aliexpress](https://www.aliexpress.com/item/33047932849.html?spm=a2g0s.9042311.0.0.2c4f4c4d7mf9h7).
 
-![Camera and Servo Board](/images/2019-12-22-building-a-custom-donkey-car_17.02.14.png)
+{{< figure src="/images/2019-12-22-building-a-custom-donkey-car_17.02.14.png" title="Camera and Servo Board" >}}
 
 ### Power Options
 
 If you want to use the full power of the Jetson Nano compute then you may need to get your self a SBEC such as [Turnigy 5A (8-40v) SBEC for Lipo](https://hobbyking.com/en_us/turnigy-5a-8-40v-sbec-for-lipo.html) and rig up an extra 2S1P LIPO such as [Turnigy nano-tech 2200mah 2S 25~50C Lipo Pack](https://hobbyking.com/en_us/turnigy-nano-tech-2200mah-2s-25-50c-lipo-pack.html). I use this setup currently to avoid drop outs when doing inference with higher resolution images (224px * 224px). Attached to this is a 2.1mm Barrel Cable I had laying around.
 
-![Power Loop with SBEC](/images/2019-12-22-building-a-custom-donkey-car_17.14.22.png)
+{{< figure src="/images/2019-12-22-building-a-custom-donkey-car_17.14.22.png" title="Power Loop with SBEC" >}}
 
 ## Driving Demonstration
 

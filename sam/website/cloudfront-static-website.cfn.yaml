@@ -1,0 +1,204 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  AppName:
+    Type: String
+    Description: The name of the application.
+    Default: "cloudfront-website"
+
+  Stage:
+    Type: String
+    Description: The stage where the application is running in, e.g., dev, prod.
+    Default: "dev"
+
+  Branch:
+    Type: String
+    Description: The name of the branch being deployed, this enables parallel deployments per environment if required.
+    Default: "main"
+
+  PrimarySubDomainName:
+    Description: "Name that is used to create the assets DNS entry."
+    Type: String
+    Default: www
+
+  HostedZoneName:
+    Description: "Name that is used to create the DNS entry."
+    Type: String
+    Default: wolfe.id.au
+
+  HostedZoneId:
+    Description: "Hosted zone id that is used to create the DNS entry."
+    Type: String
+
+  AcmCertificateArn:
+    Description: "ARN of the ACM certificate for cloudfront, this must be created in us-east-1."
+    Type: String
+
+  LoggingBucketDomain:
+    Description: "Bucket domain name used for cloudfront logs."
+    Type: String
+
+Resources:
+  WebsiteCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        HttpVersion: http2
+        IPV6Enabled: true
+        Aliases:
+          - !Sub "${PrimarySubDomainName}.${HostedZoneName}"
+        DefaultCacheBehavior:
+          TargetOriginId: assets-s3-bucket
+          ViewerProtocolPolicy: "redirect-to-https"
+          # "Managed-CachingDisabled" from https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
+          Compress: True
+          ForwardedValues:
+            QueryString: false
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # Managed-CachingOptimized
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: !GetAtt RewriteFunction.FunctionMetadata.FunctionARN
+        DefaultRootObject: index.html
+        CustomErrorResponses:
+          - ErrorCachingMinTTL: 900
+            ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /403.html
+          - ErrorCachingMinTTL: 900
+            ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /404.html
+        Origins:
+          - DomainName: !GetAtt AssetsBucket.RegionalDomainName
+            Id: assets-s3-bucket
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${OriginAccessIdentity}"
+        ViewerCertificate:
+          AcmCertificateArn: !Ref AcmCertificateArn
+          MinimumProtocolVersion: "TLSv1.2_2021"
+          SslSupportMethod: sni-only
+        Logging:
+          Bucket: !Ref LoggingBucketDomain
+          Prefix: "Website"
+
+  RewriteFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      AutoPublish: true
+      FunctionCode: |
+        function handler(event) {
+            var request = event.request;
+            var uri = request.uri;
+            // Check whether the URI is missing a file name.
+            if (uri.endsWith('/')) {
+                request.uri += 'index.html';
+            } 
+            // Check whether the URI is missing a file extension.
+            else if (!uri.includes('.')) {
+                request.uri += '/index.html';
+            }
+            return request;
+        }
+      FunctionConfig:
+        Comment: "Rewrite requests and append index.html"
+        Runtime: cloudfront-js-1.0
+      Name: !Sub "${AWS::StackName}-rewriteFunction"
+
+  WebsiteRecordSet:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      AliasTarget:
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt WebsiteCloudFrontDistribution.DomainName
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Sub "${PrimarySubDomainName}.${HostedZoneName}"
+      Type: A
+
+  WebsiteRecordSetIPV6:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      AliasTarget:
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt WebsiteCloudFrontDistribution.DomainName
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Sub "${PrimarySubDomainName}.${HostedZoneName}"
+      Type: AAAA
+
+  OriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub "CloudFront for ${PrimarySubDomainName}.${HostedZoneName}"
+
+  AssetsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  AssetsBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref AssetsBucket
+      PolicyDocument:
+        Statement:
+          - Sid: AllowOriginAccessIdentity
+            Effect: Allow
+            Action:
+              - s3:GetObject
+            Resource:
+              - !Sub "${AssetsBucket.Arn}/*"
+            Principal:
+              CanonicalUser: !GetAtt OriginAccessIdentity.S3CanonicalUserId
+          - Sid: AllowSSLRequestsOnly
+            Effect: Deny
+            Action:
+              - s3:*
+            Principal: "*"
+            Resource:
+              - !Sub "${AssetsBucket.Arn}/*"
+            Condition:
+              Bool:
+                "aws:SecureTransport": false
+
+  AssetsBucketParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/assets_bucket"
+      Type: String
+      Value:
+        Ref: AssetsBucket
+
+  WebsiteCloudFrontDistributionParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/website_cloudfront_distribution"
+      Type: String
+      Value:
+        Ref: WebsiteCloudFrontDistribution
+
+  WebsiteCloudFrontDistributionArnParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/website_cloudfront_distribution_arn"
+      Type: String
+      Value: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${WebsiteCloudFrontDistribution}"
+
+Outputs:
+  AssetsBucket:
+    Value:
+      Ref: AssetsBucket
+  WebsiteCloudFrontDistribution:
+    Value:
+      Ref: WebsiteCloudFrontDistribution

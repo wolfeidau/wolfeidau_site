@@ -1,0 +1,99 @@
+baseURL: "https://www.wolfe.id.au/" # if your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
+title: "Mark Wolfe's Blog"
+paginate: 5
+theme: hugo-PaperModX
+googleAnalytics: "UA-10420512-2"
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+
+paginate: 10
+
+minify:
+  disableXML: true
+
+permalinks:
+    post: "/:year/:month/:day/:title/"
+
+languages:
+  en:
+    languageName: "English"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: Archive
+          url: archives
+          weight: 5
+        - name: Resume
+          url: resume/
+          weight: 10          
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Tags
+          url: tags/
+          weight: 10
+        - name: Categories
+          url: categories/
+          weight: 10
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    style: dracula
+    lineNos: false
+    noClasses: false
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  description: "Mark Wolfe's Website"
+  author: Mark Wolfe
+  keywords: ["blog", "resume"]
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  showRelatedPosts: true
+
+  homeInfoParams:
+    Title: "Welcome 👋️"
+    Content: >
+      I'm Mark Wolfe a Software Developer based in Melbourne, Australia.
+
+  images: ["images/avatar.jpg"]
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/wolfeidau"
+    - name: twitter
+      url: "https://twitter.com/wolfeidau"
+    - name: RsS
+      url: "index.xml"
+
+  editPost:
+    URL: "https://github.com/wolfeidau/wolfeidau_website/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link

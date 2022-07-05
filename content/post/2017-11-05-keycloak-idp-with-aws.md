@@ -26,18 +26,18 @@ First thing you need to do is download https://signin.aws.amazon.com/static/saml
 
 Once you login navigate to clients http://0.0.0.0:18080/auth/admin/master/console/#/realms/master/clients then hit the create button and import the `saml-metadata.xml` file, then hit save.
 
-![Keycloak AWS Client Creation](/images/2017-11-05_keycloak-create-aws-client.png)
+{{< figure src="/images/2017-11-05_keycloak-create-aws-client.png" title="Keycloak AWS Client Creation" >}}
 
 Now configure:
 
 * **IDP Initiated SSO URL Name** to `amazon-aws`
 * **Base URL** to `/auth/realms/wolfeidau/protocol/saml/clients/amazon-aws`
 
-![Keycloak AWS Client Configuration](/images/2017-11-05_keycloak-configure-aws-client.png)
+{{< figure src="/images/2017-11-05_keycloak-configure-aws-client.png" title="Keycloak AWS Client Configuration" >}}
 
 Lastly under the Scope tab disable Full Scope Allowed, this will ensure we only pass through the roles configured in our client to AWS.
 
-![Keycloak AWS Client Scope Configuration](/images/2017-11-05_keycloak-configure-aws-client-scopes.png)
+{{< figure src="/images/2017-11-05_keycloak-configure-aws-client-scopes.png" title="Keycloak AWS Client Scope Configuration" >}}
 
 Now you can navigate back to http://0.0.0.0:18080/auth/admin/master/console/#/realms/master/clients and hit the export button next to the aws client.
 

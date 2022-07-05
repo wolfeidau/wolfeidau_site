@@ -19,7 +19,7 @@ AWS Step Functions provides a way of executing flows you have defined, and provi
 
 A simple task management example which polls the status of a task, and reports completion status can be seen as follows:
 
-![Step Function Example](/images/2019-05-11_stepfunction.png)
+{{< figure src="/images/2019-05-11_stepfunction.png" title="Step Function Example" >}}
 
 # Why Step Functions?
 

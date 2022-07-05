@@ -1,0 +1,94 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  AppName:
+    Type: String
+    Description: The name of the application.
+    Default: "cloudfront-website"
+
+  Stage:
+    Type: String
+    Description: The stage where the application is running in, e.g., dev, prod.
+    Default: "dev"
+
+  Branch:
+    Type: String
+    Description: The name of the branch being deployed, this enables parallel deployments per environment if required.
+    Default: "main"
+
+  FullRepositoryName:
+    Type: String
+    Description: This is the full repository name including the org/username.
+    Default: wolfeidau/wolfeidau_site
+
+  StaticWebsiteBucketName:
+    Description: This is name of the bucket which will have the website uploaded to after generation.
+    Type: String
+
+  WebsiteCloudfrontArn:
+    Type: String
+
+Outputs:
+  DeloymentRole:
+    Value: !GetAtt DeloymentRole.Arn
+
+Resources:
+  DeloymentRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRoleWithWebIdentity
+            Principal:
+              Federated: !Ref GithubOidc
+            Condition:
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub repo:${FullRepositoryName}:environment:Production
+
+  StaticWebsiteDeployPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: "root"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: "Allow"
+            Action:
+              - "s3:PutObject"
+              - "s3:PutObjectAcl"
+              - "s3:PutLifecycleConfiguration"
+            Resource:
+              - !Sub "arn:${AWS::Partition}:s3:::${StaticWebsiteBucketName}/*"
+          - Effect: "Allow"
+            Action:
+              - "cloudfront:CreateInvalidation"
+            Resource:
+              - !Ref WebsiteCloudfrontArn
+          - Effect: "Allow"
+            Action:
+              - "ssm:GetParameter"
+              - "ssm:GetParameters"
+              - "ssm:GetParametersByPath"
+            Resource:
+              - !Sub "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/config/${Stage}/${Branch}/${AppName}/assets_bucket"
+              - !Sub "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/config/${Stage}/${Branch}/${AppName}/website_cloudfront_distribution"
+      Roles:
+        - Ref: "DeloymentRole"
+  GithubOidc:
+    Type: AWS::IAM::OIDCProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList:
+        - sts.amazonaws.com
+      ThumbprintList:
+        - 6938fd4d98bab03faadb97b34396831e3780aea1
+
+  DeloymentRoleParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/deployment_role"
+      Type: String
+      Value:
+        Ref: DeloymentRole
