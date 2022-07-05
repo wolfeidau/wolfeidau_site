@@ -1,0 +1,33 @@
+name: 'Push'
+
+# The workflow should only trigger on push events to the main branch
+on:
+  push:
+    branches:
+      - master
+
+# Required to get the ID Token that will be used for OIDC
+permissions:
+  id-token: write
+
+jobs:
+
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.PROD_DEPLOY_REGION }}
+          role-to-assume: ${{ secrets.PROD_DEPLOY_ROLE }}
+          role-session-name: OIDCSession
+      
+      - name: build
+        run: make docker-build
+      
+      - name: upload
+        run: make upload

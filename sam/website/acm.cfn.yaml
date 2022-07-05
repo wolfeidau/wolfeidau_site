@@ -1,0 +1,58 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  AppName:
+    Type: String
+    Description: The name of the application.
+    Default: "cloudfront-website"
+
+  Stage:
+    Type: String
+    Description: The stage where the application is running in, e.g., dev, prod.
+    Default: "dev"
+  
+  Branch:
+    Type: String
+    Description: The name of the branch being deployed, this enables parallel deployments per environment if required.
+    Default: "main"
+
+  PrimarySubDomainName:
+    Description: "Name that is used to create the assets DNS entry."
+    Type: String
+    Default: www
+
+  HostedZoneName:
+    Description: "Name that is used to create the DNS entry."
+    Type: String
+    Default: wolfe.id.au
+
+  HostedZoneId:
+    Type: String
+
+Outputs:
+  ACMCertificate:
+    Value:
+      Ref: ACMCertificate
+
+Resources:
+  ACMCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Sub "${PrimarySubDomainName}.${HostedZoneName}"
+      DomainValidationOptions:
+        - DomainName: !Sub "${PrimarySubDomainName}.${HostedZoneName}"
+          HostedZoneId: !Ref HostedZoneId
+        - DomainName: !Sub "${HostedZoneName}"
+          HostedZoneId: !Ref HostedZoneId          
+      SubjectAlternativeNames:
+        - !Sub "${HostedZoneName}"
+      ValidationMethod: DNS
+
+  ACMCertificateParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/acm_certificate"
+      Type: String
+      Value:
+        Ref: ACMCertificate

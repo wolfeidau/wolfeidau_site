@@ -15,31 +15,31 @@ So without further a do I have gathered together some screenshots on how I got m
 
 *Step 1:* Create a project, in my case I am focused on Mac OS X desktop applications so I select Application from the options.
 
-![New Project Dialogue](/images/GHTestWalkthrough-screen-000.png)
+{{< figure src="/images/GHTestWalkthrough-screen-000.png" title="New Project Dialogue" >}}
 
 *Step 2:* Enter a project name and company, then disable unit tests as this will include OCUnit which I am not currently using. Save it where you keep your projects.
 
-![Project Details Dialogue](/images/GHTestWalkthrough-screen-001.png)
+{{< figure src="/images/GHTestWalkthrough-screen-001.png" title="Project Details Dialogue" >}}
 
 *Step 3:* Now add a new target, you should have a button down the bottom to _Add Target_, again click Mac OS X and select Application from the options and enter the details.
 
-![New Target Details Dialogue](/images/GHTestWalkthrough-screen-005.png)
+{{< figure src="/images/GHTestWalkthrough-screen-005.png" title="New Target Details Dialogue" >}}
 
 *Step 4:* Delete all the files which we don't need.
 
-![New Target Details Dialogue](/images/GHTestWalkthrough-screen-006.png)
+{{< figure src="/images/GHTestWalkthrough-screen-006.png" title="New Target Details Dialogue" >}}
 
 *Step 5:* Remove the main nib file from the `TestAppTests-Info.plist`.
 
-![Editing TestAppTests plist](/images/GHTestWalkthrough-screen-007.png)
+{{< figure src="/images/GHTestWalkthrough-screen-007.png" title="Editing TestAppTests plist" >}}
 
 *Step 6:* Download [GHUnitTestMain.m](https://raw.github.com/gabriel/gh-unit/8cdb46819dbed8a6a7ee6566cfd7ee2524f303dd/Classes-MacOSX/GHUnitTestMain.m) from git hub and then drag and drop it into the `TestAppTests` folder in your xcode. Then add it to the TestAppTests target. 
 
-![Select a target to add the file GHUnitTestMain.m to](/images/GHTestWalkthrough-screen-008.png)
+{{< figure src="/images/GHTestWalkthrough-screen-008.png" title="Select a target to add the file GHUnitTestMain.m to" >}}
 
 *Step 7:* Download the [GHUnit framework](https://github.com/downloads/gabriel/gh-unit/GHUnit-0.4.28.zip) extract it, then copy it to your `/Library/Frameworks`. Then select the TestAppTests target and click the plus button. Search for the GHUnit.framework and add it.
 
-![Add the GHUnit.framework to your project](/images/GHTestWalkthrough-screen-009.png)
+{{< figure src="/images/GHTestWalkthrough-screen-009.png" title="Add the GHUnit.framework to your project" >}}
 
 *Step 8:* Create a new test by creating a new empty file named `SampleTest.m` in the TestAppTests folder in Xcode and add the following code. Also ensure it is added to the TestAppTests target.
 
@@ -75,10 +75,10 @@ So without further a do I have gathered together some screenshots on how I got m
 
 Your project should look as follows.
 
-![Unit test in your project](/images/GHTestWalkthrough-screen-014.png)
+{{< figure src="/images/GHTestWalkthrough-screen-014.png" title="Unit test in your project" >}}
 
 *Step 9:* Now set the active scheme to TestAppTests and click the play button, all going well you should see the following application pop up with your test listed in it ready to run. 
 
-![Unit test application displaying tests to run](/images/GHTestWalkthrough-screen-015.png)
+{{< figure src="/images/GHTestWalkthrough-screen-015.png" title="Unit test application displaying tests to run" >}}
 
 Now that is all setup you should be able to add tests to your hearts content. So far GHUnit has enabled me to test a wide array of routines and frameworks which my application will rely upon.

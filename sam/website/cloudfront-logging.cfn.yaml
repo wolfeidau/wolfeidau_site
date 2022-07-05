@@ -1,0 +1,91 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  AppName:
+    Type: String
+    Description: The name of the application.
+    Default: "cloudfront-website"
+
+  Stage:
+    Type: String
+    Description: The stage where the application is running in, e.g., dev, prod.
+    Default: "dev"
+  
+  Branch:
+    Type: String
+    Description: The name of the branch being deployed, this enables parallel deployments per environment if required.
+    Default: "main"
+
+Outputs:
+  LoggingBucket:
+    Value:
+      Ref: LoggingBucket
+
+  LoggingBucketDomainName:
+    Value: !GetAtt LoggingBucket.DomainName
+
+  LoggingBucketRegionalDomainName:
+    Value: !GetAtt LoggingBucket.RegionalDomainName
+
+Resources:
+
+  LoggingBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+
+  LoggingBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref LoggingBucket
+      PolicyDocument:
+        Id: AccessLogBucketPolicy
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowSSLRequestsOnly
+            Effect: Deny
+            Action:
+              - s3:*
+            Principal: "*"
+            Resource:
+              - !Sub "${LoggingBucket.Arn}/*"
+            Condition:
+              Bool:
+                "aws:SecureTransport": false
+          - Sid: RestrictDeleteActions
+            Action: s3:Delete*
+            Effect: Deny
+            Principal: "*"
+            Resource: 
+            - !Sub "${LoggingBucket.Arn}/*"
+
+  LoggingBucketParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/logging_bucket"
+      Type: String
+      Value:
+        Ref: LoggingBucket
+
+  LoggingBucketDomainParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/logging_bucket_domain"
+      Type: String
+      Value: !GetAtt LoggingBucket.DomainName
+
+  LoggingBucketRegionalDomainParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/logging_bucket_regional_domain"
+      Type: String
+      Value: !GetAtt LoggingBucket.RegionalDomainName

@@ -17,7 +17,7 @@ So why would I use DeepRacer for ROS development?
 
 Below is a picture the RC car chassis which is a really nice size.
 
-![Base RC Car](/images/deepracer_rc_car.png)
+{{< figure src="/images/deepracer_rc_car.png" title="Base RC Car" >}}
 
 ## Logging into your DeepRacer
 
