@@ -5,3 +5,4 @@
 /.bin
 .envrc*
 /resources
+.hugo_build.lock
