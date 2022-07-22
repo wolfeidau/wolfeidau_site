@@ -12,6 +12,7 @@ So why would you ever want to dive into AWS Billing data in the first place?
 1. It is pretty easy for both novices, and experience developers to rack up a sizable bill in AWS, part of the learning experience is figuring out how this happened.
 2. The billing data itself is available in [parquet format](https://parquet.apache.org/), which is a great format to query and dig into with services such as Athena.
 3. This billing data is the only way of figuring out how much a specific AWS resource costs, this again is helpful for the learning experience.
+4. The Cost Explorer in AWS is great if you just want an overview, but having SQL access to the data is better for developers looking to dive a bit deeper.
 
 These points paired with the fact that a basic understanding of data wrangling in AWS is an invaluable skill to have in your repertoire.
 
@@ -30,6 +31,21 @@ Once deployed all you need to do is wait till AWS pushes the first report to the
 {{< figure src="/images/2022-07-02_cur_managment_diagram.png" title="CUR Solution Diagram" >}}
 
 ## Next Steps
+
+To test the solution you can start with a query which shows you `AmazonS3` costs grouped by bucket name and aggregated using `sum`.
+
+```sql
+SELECT line_item_resource_id as bucket_name,
+	round(sum(line_item_blended_cost), 4) AS cost,
+	month
+from "raw_cur_data"
+WHERE year = '2022'
+	and month = '7'
+	AND line_item_product_code = 'AmazonS3'
+GROUP BY line_item_resource_id,
+	month
+ORDER BY cost DESC;
+```
 
 Once you have the solution in place there are some great resources with queries which provide insights from your CUR data, one of the best is [Level 300: AWS CUR Query Library](https://wellarchitectedlabs.com/cost/300_labs/300_cur_queries/) from the [The Well-Architected Labs website](https://wellarchitectedlabs.com/).
 
