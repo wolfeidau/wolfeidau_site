@@ -13,6 +13,7 @@ So why would you ever want to dive into AWS Billing data in the first place?
 2. The billing data itself is available in [parquet format](https://parquet.apache.org/), which is a great format to query and dig into with services such as Athena.
 3. This billing data is the only way of figuring out how much a specific AWS resource costs, this again is helpful for the learning experience.
 4. The Cost Explorer in AWS is great if you just want an overview, but having SQL access to the data is better for developers looking to dive a bit deeper.
+5. The billing service has a feature which records `created_by` for resources, this is only available in the CUR data. If you have already you can enable it via [Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
 
 These points paired with the fact that a basic understanding of data wrangling in AWS is an invaluable skill to have in your repertoire.
 
@@ -55,3 +56,21 @@ The standout queries for me are:
 
 1. [Amazon GuardDuty](https://wellarchitectedlabs.com/cost/300_labs/300_cur_queries/queries/security_identity__compliance/#amazon-guardduty) - This query provides daily unblended cost and usage information about Amazon GuardDuty Usage. The usage amount and cost will be summed.
 2. [Amazon S3](https://wellarchitectedlabs.com/cost/300_labs/300_cur_queries/queries/storage/#amazon-s3) - This query provides daily unblended cost and usage information for Amazon S3. The output will include detailed information about the resource id (bucket name), operation, and usage type. The usage amount and cost will be summed, and rows will be sorted by day (ascending), then cost (descending).
+
+## Cost Allocation Tags
+
+The [Cost Allocation Tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in billing allows you to record data which is included in the CUR. This is a great resource for attributing cost to a user, role or service, or alternatively a cloudformation stack. 
+
+I enable the following AWS tags for collection and inclusion in the CUR.
+
+* `aws:cloudformation:stack-name`
+* `aws:createdBy`
+
+I also enable some of my own custom tags for collection and inclusion in the CUR.
+
+* `application`
+* `component`
+* `branch`
+* `environment`
+
+You can see how these are added in the https://github.com/wolfeidau/aws-billing-store project `Makefile` when the stacks are launched.
