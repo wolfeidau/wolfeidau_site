@@ -23,7 +23,7 @@ The stack I work with professionally is pretty varied, but can be summarized as:
 
 I primarily use zsh as my shell, sticking to a pretty minimal setup tools wise. 
 
-* [Docker](https://www.docker.com/) for containers which I mainly for testing.
+* [Docker](https://www.docker.com/) for containers, which I mainly use for testing.
 * [direnv](https://direnv.net/) which is used to change environment settings in projects.
 * [The Silver Searcher](https://github.com/ggreer/the_silver_searcher) a faster search tool for the cli, `ag` is my goto for locating stuff in files when developing.
 * [Git Hub CLI](https://github.com/cli/cli), makes working with GitHub from the CLI a dream.
