@@ -4,19 +4,19 @@ date = "2022-07-23T22:00:00+10:00"
 tags = [ "golang", "development", "aws", "vscode" ]
 +++
 
-I was inspired by others to capture some of the tools I use working as a software developer professionally, along with a healthy dash of out of work time hacking.
+I was inspired by others to document the tools I use working as a software developer professionally, and hacking on side projects out side of work.
 
-One thing which is maybe a little unusual is I work on an Apple Mac, but my personal machine which I often develop out of hours is a Linux laptop running [PopOS](https://pop.system76.com/). I find using Linux as a desktop ensures I have a good feel for the operating system I use most in production, and I like using it for IoT development as pretty much everything works on it.
+One thing to note is in my day job I work on an Apple Mac, but my personal machine is a Linux laptop running [PopOS](https://pop.system76.com/). I find using Linux as a desktop ensures I have a good feel for the operating system I use most in production, and I like using it for IoT development as pretty much everything works on it.
 
-On a whole over the years I have moved to a more minimal setup, primarily to keep things simple, less is easier to maintain and also easier to share with colleagues.
+On a whole over the years I have moved to a more minimal setup, primarily to keep things simple, **less** is easier to maintain, easier to share, and more likely to be adopted by others.
 
 The stack I work with professionally is pretty varied, but can be summarized as:
 
 * [Amazon Web Services (AWS)](https://aws.amazon.com/), I work primarily this cloud platform in my day job
 * [Cloudformation](https://aws.amazon.com/cloudformation/), native AWS infrastructure deployment
-* [Go](https://go.dev), tooling and apis, backend services
+* [Go](https://go.dev), great language for building tools, apis, and backend services
 * [Python](https://www.python.org/), used for cloud orchestration, scripting and machine learning
-* [NodeJS](https://nodejs.org/en/) using [Typescript](https://www.typescriptlang.org/), for web development
+* [NodeJS](https://nodejs.org/en/) often using [Typescript](https://www.typescriptlang.org/), for frontend development
 * [Git](https://git-scm.com/), used for all things source code
 
 ## CLI Tools
@@ -29,16 +29,17 @@ I primarily use zsh as my shell, sticking to a pretty minimal setup tools wise.
 * [Git Hub CLI](https://github.com/cli/cli), makes working with GitHub from the CLI a dream.
 * [AWS CLI](https://awscli.amazonaws.com/v2/documentation/api/latest/index.html) is used to write scripts and diagnosing what is up with my cloud.
 * [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) for deploying cloudformation in a semi sane way.
+* [nvm](https://github.com/nvm-sh/nvm), nodejs changes a lot so I often need a couple of versions installed to support both new and old software.
 
-Most of my builds done using the good old `Makefile`.
+Most of my builds done using the good old `Makefile` so I always have [make](https://www.gnu.org/software/make/) installed.
 
 ## Editor
 
-I use [vscode](https://code.visualstudio.com/) when developing, it is one of the first things I open each day. I was a vim user but have moved to vscode as I prefer a more out of the box editor, especially as I work a lot of other developers and non tech people and they find it less daunting to learn.
+Currently I use [vscode](https://code.visualstudio.com/) when developing, it is one of the first things I open each day. I was a vim user but moved to vscode as I prefer to use a more approachable editor, especially as I work with developers and "non tech" people and they find it less daunting to learn.
 
-I am trying to help **everyone** code, so using an out of the box tool is **really** helpful when collaborating with people.
+I am trying to help **everyone** code, so using an approachable editor is **really** helpful!
 
-To support this stack I use the following plugins:
+To support the stack I use the following plugins:
 
 * [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker), I really hate misspelling words in my code.
 * [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig), handy way to keep things consistently formatted across editors when working in a team.
