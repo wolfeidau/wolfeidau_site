@@ -45,7 +45,7 @@ Resources:
     Properties:
       DistributionConfig:
         Enabled: true
-        HttpVersion: http2
+        HttpVersion: http2and3
         IPV6Enabled: true
         Aliases:
           - !Sub "${PrimarySubDomainName}.${HostedZoneName}"
