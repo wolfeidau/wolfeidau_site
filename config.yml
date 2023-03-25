@@ -92,6 +92,8 @@ params:
       url: "https://twitter.com/wolfeidau"
     - name: RsS
       url: "index.xml"
+    - name: mastodon
+      url: "https://awscommunity.social/@wolfeidau"
 
   editPost:
     URL: "https://github.com/wolfeidau/wolfeidau_website/content"

@@ -62,7 +62,7 @@ Once Jackson was enabled my ExtJS JSON driven data stores were functioning perfe
 
 The result of this is shown in the following JSON sample which illustrates how a project object containing some dates is encoded.
 
-{{< highlight javascript >}}
+```javascript
 {
     success: true
     message: "Project found."
