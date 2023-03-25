@@ -40,7 +40,7 @@ Configure a proxy in your Maven configuration so that assets can be retrieved, t
 
 Whenever you invoke any tests or calls which invoke `wsdl2java` you will need to pass the proxy settings in as previously described.
 
-{{< highlight bash >}}
+```bash
 $ mvn -Dhttp.proxyHost=proxy -Dhttp.proxyPort=8080 package
 ```
 
