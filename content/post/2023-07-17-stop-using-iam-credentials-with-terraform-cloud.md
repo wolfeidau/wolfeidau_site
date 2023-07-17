@@ -1,5 +1,5 @@
 +++
-title = "Stop using IAM credentials with Terraform Cloud"
+title = "Stop using IAM User Credentials with Terraform Cloud"
 date = "2023-07-17T07:55:22+10:00"
 tags = [ "aws", "cloud", "security", "terraform" ]
 draft = false
