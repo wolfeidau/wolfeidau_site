@@ -5,7 +5,7 @@ tags = [ "aws", "cloud", "security", "terraform" ]
 draft = false
 +++
 
-I recently started using [Terraform Cloud](https://www.terraform.io/) buf found that most of the tutorials for integrating it with [Amazon Web Services (AWS)](https://aws.amazon.com/) suggested using [IAM user credentials](https://aws.amazon.com/iam/features/managing-user-credentials/). This is not ideal as these credentials are long lived and can lead to security issues. 
+I recently started using [Terraform Cloud](https://www.terraform.io/) but discovered that the [getting started tutorial](https://developer.hashicorp.com/terraform/tutorials/cloud-get-started/cloud-create-variable-set#create-a-variable-set) which describes how to integrate it with [Amazon Web Services (AWS)](https://aws.amazon.com/) suggested using [IAM user credentials](https://aws.amazon.com/iam/features/managing-user-credentials/). This is not ideal as these credentials are long-lived and can lead to security issues.
 
 ## What is the problem with IAM User Credentials?
 
@@ -50,7 +50,10 @@ The Terraform Deployment role is as follows:
                 app.terraform.io:sub: !Sub organization:${OrganizationName}:project:${ProjectName}:workspace:${WorkspaceName}:run_phase:*
 ```
 
-Note, the IAM role allows Terraform Cloud to assume the role using the OIDC provider, and limits it to the given organization, project and workspace names.
+**Note:**
+
+* The IAM role allows Terraform Cloud to assume the role using the OIDC provider, and limits it to the given organization, project and workspace names.
+* The policy attached to this role, in my example, only allows Terraform to list s3 buckets; you should customise this based on your needs.
 
 The Open ID Connect Provider is created as follows:
 
@@ -87,6 +90,41 @@ That is it, your now ready to run plans in your Terraform Cloud workspace!
 ## Auditing
 
 Once you have setup both side of this solution you should be able to see events in [AWS CloudTrail](https://aws.amazon.com/cloudtrail/), filter by service `sts.amazonaws.com` and look at the `AssumeRoleWithWebIdentity` events. Each event will contain a record of the Terraform Cloud run, and the name of the project and workspace.
+
+This is a cut down cloudtrail event showing the key information:
+```json
+{
+    "userIdentity": {
+        "type": "WebIdentityUser",
+        "principalId": "arn:aws:iam::12121212121212:oidc-provider/app.terraform.io:aws.workload.identity:organization:test-organization:project:Default Project:workspace:test-terraform-cloud:run_phase:plan",
+        "userName": "organization:test-organization:project:Default Project:workspace:test-terraform-cloud:run_phase:plan",
+        "identityProvider": "arn:aws:iam::12121212121212:oidc-provider/app.terraform.io"
+    },
+    "eventTime": "2023-07-18T00:08:34Z",
+    "eventSource": "sts.amazonaws.com",
+    "eventName": "AssumeRoleWithWebIdentity",
+    "awsRegion": "ap-southeast-2",
+    "sourceIPAddress": "x.x.x.x",
+    "userAgent": "APN/1.0 HashiCorp/1.0 Terraform/1.5.2 (+https://www.terraform.io) terraform-provider-aws/5.7.0 (+https://registry.terraform.io/providers/hashicorp/aws) aws-sdk-go-v2/1.18.1 os/linux lang/go/1.20.5 md/GOOS/linux md/GOARCH/amd64 api/sts/1.19.2",
+    "requestParameters": {
+        "roleArn": "arn:aws:iam::12121212121212:role/terraform-cloud-oidc-acces-TerraformDeploymentRole-NOPE",
+        "roleSessionName": "terraform-run-abc123"
+    },
+    "responseElements": {
+        "subjectFromWebIdentityToken": "organization:test-organization:project:Default Project:workspace:test-terraform-cloud:run_phase:plan",
+        "assumedRoleUser": {
+            "assumedRoleId": "CDE456:terraform-run-abc123",
+            "arn": "arn:aws:sts::12121212121212:assumed-role/terraform-cloud-oidc-acces-TerraformDeploymentRole-NOPE/terraform-run-abc123"
+        },
+        "provider": "arn:aws:iam::12121212121212:oidc-provider/app.terraform.io",
+        "audience": "aws.workload.identity"
+    },
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "recipientAccountId": "12121212121212"
+}
+```
+
 ## Links
 
 * [How to get rid of AWS access keys - Part 1: The easy wins](https://www.wiz.io/blog/how-to-get-rid-of-aws-access-keys-part-1-the-easy-wins)
