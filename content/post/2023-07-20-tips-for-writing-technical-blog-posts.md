@@ -65,3 +65,11 @@ Make sure you share your post on relevant social media channels. This is critica
 Ensure you talk with your peers and colleagues, ask them to give feedback, this is one of my key sources of improvement.
 
 Personally I use twitter, Versent Slack, Hacker News to share my posts. I also share within slack communities I am a member of and ask for feedback from my team.
+
+## Where should you publish your blog?
+
+Personally I prefer to manage my own brand, content and audience. I would recommend self-hosting your blog using a static site generator like [Hugo](https://gohugo.io/). This gives you full control and flexibility to shape your website how you want it.
+
+If you want a managed experience them [ghost](https://ghost.org/) is great, you get to keep control of your website, with a simple interface and good support.
+
+Publishing content on sites like Medium, or Substack doesn’t necessarily increase or improve your readership or views to your own website. When you publish on these sites, you’re boosting their web presence, not your own.
