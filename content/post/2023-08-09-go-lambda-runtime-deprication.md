@@ -21,6 +21,8 @@ The main reason migrating Go Lambda functions to the new runtime is difficult is
 1. Unlike the runtime provided for other languages, the custom runtime doesn't use the `Handler` parameter to determine the function entry point, this value is ignored, but still required. This is a subtle difference can cause issues if developers are unaware or don't read the documentation closely. 
 2. The lambda service doesn't check if the bootstrap entry point exists in the archive, so customers may deploy broken functions if they don't validate this. Sadly, this is NOT very intuitive, and often leads to confusion and errors.
 
+**Note:** As pointed out by [@Aidan W Steele](https://twitter.com/__steele) some deployment tools upload empty archives, then later replace them with an updated archive containing the deployed code, so this could be problematic.
+
 For those interested in what the error looks like if you're missing the bootstrap file, it will return:
 
 ```
@@ -44,7 +46,7 @@ Some of the drawbacks of this are:
 
 So what could AWS do to mitigate some of these issues? Here are a few suggestions:
 
-1. Provide an updated `go2.x` runtime that uses the same entry point convention as the other languages like Node, Python etc. Building on the existing `al2.provided` runtime and improving the user experience would help all languages that use it, as the hard coded `bootstrap` file is not very intuitive.
+1. Provide an updated `go1.al2`, which would match the pattern of Java [update `java8.al2` runtime announced a few years ago](https://aws.amazon.com/blogs/compute/migrating-aws-lambda-functions-to-al2/). This updated runtime would use the same entry point convention as the other languages like Node, Python etc and retain the existing user experience, avoiding the hard coded `bootstrap` file which is not very intuitive.
 2. Add validation to the deployment process to check for the required bootstrap file, and prevent deployment of invalid archives. This would avoid broken functions being deployed.
 
 I am disappointed that AWS did not invest a bit more time in listening to customers around the usability of the `al2.provided` runtime. Customers are used to compiling applications to a binary with a descriptive name, then deploying that binary to AWS, having to output a specific file called `bootstrap` is not very intuitive or discoverable.
@@ -108,3 +110,7 @@ Overall, I think this will negatively the adoption of Go in AWS lambda, at least
 As is often the case, new developers will likely struggle most with the `provided.al2`, then most likely give up and use another language instead of taking the time to understand the custom runtime complexities. 
 
 What are your thoughts on the migration and how AWS could improve the experience?
+
+# Updates
+
+Thanks to [@Aidan W Steele](https://twitter.com/__steele) for the feedback on my `go2.x` suggestion with a much better one of `go1.al2` which would match the pattern of `java8.al2`, and reminder of the various empty zip file shenanigans used in some deployment tools.
