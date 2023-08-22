@@ -5,7 +5,7 @@ tags = [ "aws", "cloud", "docker" ]
 draft = false
 +++
 
-[Amazon Web Services (AWS)](https://aws.amazon.com/) is [deprecating the `go1.x` runtime on Lambda](https://aws.amazon.com/blogs/compute/migrating-aws-lambda-functions-from-the-go1-x-runtime-to-the-custom-runtime-on-amazon-linux-2/), this is currently scheduled for December 31, 2023. Customers need to migrate their Go based lambda functions to the `a12.provided` runtime, which uses [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) as the execution environment. I think this is a bad thing for a couple of reasons:
+[Amazon Web Services (AWS)](https://aws.amazon.com/) is [deprecating the `go1.x` runtime on Lambda](https://aws.amazon.com/blogs/compute/migrating-aws-lambda-functions-from-the-go1-x-runtime-to-the-custom-runtime-on-amazon-linux-2/), this is currently scheduled for December 31, 2023. Customers need to migrate their Go based lambda functions to the `al2.provided` runtime, which uses [Amazon Linux 2](https://aws.amazon.com/amazon-linux-2/) as the execution environment. I think this is a bad thing for a couple of reasons:
 
 1. There is no automated migration path from existing [Go](https://go.dev) Lambda functions to the new custom runtime. Customers will need to manually refactor and migrate each function to this new runtime, which this is time-consuming and error-prone.
 2. This will remove `Go1.x` name from the lambda console, Go will now just be another "custom" runtime instead of a first class supported language. This makes Go development on Lambda seem less official/supported compared to other languages like Node, Python, Java etc.
