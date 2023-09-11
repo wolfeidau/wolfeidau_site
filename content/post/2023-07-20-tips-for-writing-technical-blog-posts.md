@@ -5,7 +5,7 @@ tags = [ "writing", "blogs", "social media", "career" ]
 draft = false
 +++
 
-I was recently asked put together a list of tips for writing technical blog posts. Here are some of my recommendations:
+I was recently asked to put together a list of tips for writing technical blog posts. Here are some of my recommendations:
 
 # Understand SEO
 
@@ -73,3 +73,4 @@ Personally I prefer to manage my own brand, content and audience. I would recomm
 If you want a managed experience them [ghost](https://ghost.org/) is great, you get to keep control of your website, with a simple interface and good support.
 
 Publishing content on sites like Medium, or Substack doesn’t necessarily increase or improve your readership or views to your own website. When you publish on these sites, you’re boosting their web presence, not your own.
+
