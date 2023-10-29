@@ -17,6 +17,12 @@ Parameters:
     Description: The name of the branch being deployed, this enables parallel deployments per environment if required.
     Default: "main"
 
+  RetentionInDays:
+    Description:
+      Retain the cloudfront logs for this many days.
+    Type: Number
+    Default: 365
+
 Outputs:
   LoggingBucket:
     Value:
@@ -45,6 +51,13 @@ Resources:
       NotificationConfiguration:
         EventBridgeConfiguration:
           EventBridgeEnabled: True
+      LifecycleConfiguration:
+        Rules:
+          - Id: DeleteEverything
+            Prefix: ""
+            Status: Enabled
+            ExpirationInDays:
+              Ref: RetentionInDays
 
   LoggingBucketPolicy:
     Type: AWS::S3::BucketPolicy
