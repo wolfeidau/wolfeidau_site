@@ -40,6 +40,16 @@ Parameters:
     Type: String
 
 Resources:
+  CloudFrontOriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties: 
+      OriginAccessControlConfig:
+        Description: S3 Origin Access Control
+        Name: !Ref AWS::StackName
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
   WebsiteCloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -49,6 +59,7 @@ Resources:
         IPV6Enabled: true
         Aliases:
           - !Sub "${PrimarySubDomainName}.${HostedZoneName}"
+          - !Sub "${HostedZoneName}"
         DefaultCacheBehavior:
           TargetOriginId: assets-s3-bucket
           ViewerProtocolPolicy: "redirect-to-https"
@@ -74,7 +85,8 @@ Resources:
           - DomainName: !GetAtt AssetsBucket.RegionalDomainName
             Id: assets-s3-bucket
             S3OriginConfig:
-              OriginAccessIdentity: !Sub "origin-access-identity/cloudfront/${OriginAccessIdentity}"
+              OriginAccessIdentity: ''
+            OriginAccessControlId: !GetAtt CloudFrontOriginAccessControl.Id
         ViewerCertificate:
           AcmCertificateArn: !Ref AcmCertificateArn
           MinimumProtocolVersion: "TLSv1.2_2021"
@@ -87,9 +99,23 @@ Resources:
     Type: AWS::CloudFront::Function
     Properties:
       AutoPublish: true
-      FunctionCode: |
+      FunctionCode: !Sub |
         function handler(event) {
             var request = event.request;
+
+            if (request.headers.host) {
+                var host = request.headers.host.value;
+                if (host === '${HostedZoneName}') {
+                    return {
+                        statusCode: 301,
+                        statusDescription: 'Moved Permanently',
+                        headers: {
+                            'location': { "value": 'https://${PrimarySubDomainName}.${HostedZoneName}' + event.request.uri }
+                        }
+                    };
+                }
+            }
+
             var uri = request.uri;
             // Check whether the URI is missing a file name.
             if (uri.endsWith('/')) {
@@ -128,6 +154,17 @@ Resources:
       Name: !Sub "${PrimarySubDomainName}.${HostedZoneName}"
       Type: AAAA
 
+  RedirectRecordSet:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      AliasTarget:
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt WebsiteCloudFrontDistribution.DomainName
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Sub "${HostedZoneName}"
+      Type: A
+
   OriginAccessIdentity:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
     Properties:
@@ -153,14 +190,17 @@ Resources:
       Bucket: !Ref AssetsBucket
       PolicyDocument:
         Statement:
-          - Sid: AllowOriginAccessIdentity
+          - Sid: AllowCloudFrontServicePrincipalReadOnly
             Effect: Allow
             Action:
               - s3:GetObject
             Resource:
               - !Sub "${AssetsBucket.Arn}/*"
             Principal:
-              CanonicalUser: !GetAtt OriginAccessIdentity.S3CanonicalUserId
+              Service: "cloudfront.amazonaws.com"
+            Condition:
+              StringEquals:
+                "AWS:SourceArn": !Sub "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${WebsiteCloudFrontDistribution}"
           - Sid: AllowSSLRequestsOnly
             Effect: Deny
             Action:
