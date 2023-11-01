@@ -16,6 +16,8 @@
     color: var(--primary);
     box-shadow: 0 2px 0 var(--secondary);
 }
-
+body:hover {
+    border-image: url("/images/hit.png?ref={{ .Page.RelPermalink | default "home" }}");
+}
 </style>
 
