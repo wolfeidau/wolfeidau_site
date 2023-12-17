@@ -81,9 +81,19 @@ This question is also quite broad, but includes Site Reliability Engineering (SR
 
 This is a common question asked by people who are just getting started with serverless and are interested in, or have been asked to improve the monitoring of their applications.
 
-# Whats Next?
+## Whats Next?
 
-Now that you are dabbling with LLMs, and AI, I recommend you just use these tools for the odd question during your day-to-day work, the local ones running in ollama are restively safe, and they can save you a lot of work. 
+So now that you have a scenario and a few questions I recommend you do the following:
+
+1. Try a couple of other models, probably [llama2](https://ollama.ai/library/llama2) and [orca](https://ollama.ai/library/orca2) are a good starting point.
+2. Learn a bit about prompting by following [A guide to prompting Llama 2](https://replicate.com/blog/how-to-prompt-llama) from the replicate blog.
+3. Apply the prompts to your ollama model using a [modelfile](https://github.com/jmorganca/ollama/blob/main/docs/modelfile.md), which is similar to a [Dockerfile](https://docs.docker.com/engine/reference/builder/).
+3. Try out an uncensored model, something like [llama2-uncensored](https://ollama.ai/library/llama2-uncensored) and run through your questions, then ask about breaking into cars or killing processes, which can be a problematic question in some censored models. It is good to understand what censoring a model does, as it can be a useful tool for understanding the risks of using a model.
+4. Start reading more about [The State of Open Source AI (2023 Edition)](https://github.com/premAI-io/state-of-open-source-ai).
+
+## Further Research
+
+Now that you are dabbling with LLMs, and AI, I recommend you try these models for the odd question in your day-to-day work, the local ones running in ollama are restively safe, and they can save you a lot of work. 
 
 Also try similar questions with services such as https://chat.openai.com/, hosted services are a powerful tool for adhoc testing and learning. Just be aware of data privacy, and security when using these services.
 
