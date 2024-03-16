@@ -11,82 +11,87 @@ menu = "nav"
 
 # Mark Wolfe
 
-I have spent the last 5 years working with [Versent](https://versent.com.au/), an AWS premier consulting parter based in Australia. I am an AWS Partner Ambassador, and currently I an engineering lead at [Stax](https://www.stax.io), working on a platform which accelerates customers migration into AWS. This technical role sees me doing my best to support a rapidly growing team, while everyone pushes through compliance and growth challenges. 
+I have spent the last 25 years working in the software industry, across operations, software development and leadership. I have worked across a number of industries with experience in telecommunications, government, internet of things (IoT) and cloud. Most of my career has been walking the line between consulting or product development, having worked between these two specialisations in a number of organisations.
 
-From the very beginning with Versent I have been working in and around AWS, initially working with enterprise customers moving into cloud, then providing direction and support to teams across the business working with customers in AWS.
+More recently I have spent the last 8 years working with Versent, an AWS premier consulting partner based in Australia. I have worked in a number of roles initially in the consulting business, then in a product business called Stax.
 
-I have a passion for starting, coaching and supporting the teams of software developers, my primary goal is keep everything on track while ensuring no one is left behind. Working with Versent I have delivered projects, and products in some of the largest enterprises in Australia, while working with a leading cloud provider in AWS. 
+From the very beginning with Versent I was working in AWS, initially with enterprise customers moving into cloud, then providing direction and support to teams across the business working with customers in AWS.
 
-Prior to Versent I spent two years working at [Ninja Blocks](https://ninjablocks.com/), which is an IoT startup based in Sydney. When I started I was working on keeping the existing systems running, developing new deployment tools and tuning the existing platform, then early in 2014 I was asked to take over as CTO.
+I have a passion for creating and supporting the teams of software developers, my primary goal is keep everything on track while ensuring no one is left behind. I have successfully delivered projects, and products in some of the largest enterprises in Australia, while working with partners like AWS.
 
-As CTO I worked with the team to build the [Ninja Sphere](https://www.kickstarter.com/projects/ninja/ninja-sphere-next-generation-control-of-your-envir), a consumer focused hardware device and cloud services which we launched on kickstarter in November 2013. This project took us ~14 months to build, going from design, firmware / hardware build through to manufacturing and finally shipping. This was one of the most challenging and rewarding projects I have ever worked on.
+More recently I have been focusing on data processing, AI, and Machine Learning in my spare time.
 
-While at Ninja Blocks I to worked across a wide array of disciplines including hardware, software development and business operations. On the engineering side I primarily worked on:
+# Recent Professional Experience
 
-* Real time messaging from the devices to cloud services
-* API Development
-* Linux OS development working with drivers, software packaging, and building the firmware for an ARM based platform
-* Deployment of cloud services on AWS, Google Cloud with Chef, Ansible and Docker
-* Building microservices
-* Compliance testing and certification of hardware
+## Versent 8 yrs
 
-Before Ninja Blocks I worked for 13 years as an architect and consultant at Hammond Street Developments which is a mid sized IT consulting company located out in Melbourne's eastern suburbs. In this role I worked on a large array of projects / contracts within the education, telecommunications and the banking sectors. I got the opportunity to work all over Australia, and New Zealand on many varied and challenging projects.
+* **Lead Engineer - VMR**<br/>
+  Sep 2023 - Present · 7 mos<br/>
+  
+  Uplifting operations for serverless applications, implementing vulnerability management, monitoring and alerting, and supporting the teams.
 
-# Speaking
+* **Stax - Engineering Lead**<br/>
+  Jun 2020 - Sep 2023 · 3 yrs 4 mos<br/>
 
-As a part of the Melbourne Developer community I am one of the co-organisers of the [Go meetup](http://www.meetup.com/golang-mel/).
+  I was one of the founding team members of the product, I was responsible for creating new teams, supporting new developers, and mentoring existing developers. I was also responsible for the product architecture, and development of key parts of the product related to authentication, user interface and also supported the teams while implementing PCI, and SOC2 compliance.
 
-I have spoken at a couple of conferences:
+* **Cloud Practice Director (South)**<br/>
+  Sep 2017 - Jun 2020 · 2 yrs 10 mos<br/>
 
-* February 2015, I presented at API Days Sydney on [UDP based APIs](https://speakerdeck.com/wolfeidau/beyond-http-breaking-free-of-the-web)
-* September 2014, I presented at YOW Connected on [Using Bluetooth Low Energy for Location](https://speakerdeck.com/wolfeidau/using-bluetooth-low-energy-for-location)
+  I supported the creation, onboarding of consulting teams establishing the right skills and processes to work with customers. I also supported the teams with the right tools, architecture and processes to migrate customers into the cloud.
 
-And presented at [Melbjs](http://melbjs.com/), and the Go, NodeJS, .NET, Microservices and docker meetups in Melbourne.
+* **Digital and Cloud Consultant**<br/>
+  Aug 2015 - Jun 2020 · 4 yrs 11 mos<br/>
 
-Most of my recent talks are listed at https://speakerdeck.com/wolfeidau
+  I worked on a variety of projects from proof of concepts to production cloud migrations for large enterprises. I worked with a variety of customers including large enterprises, government, and startups. I mostly supported development teams as their infrastructure moved to the cloud, rebuilding CI/CD, migrating to ec2 and ensuring  this was done in line with compliance and security best practices.
+
+For a full list see https://www.linkedin.com/in/wolfeidau/.
+
 
 # Skills
 
-Working at a startup, and previously as a consultant I have I have used a wide array of languages, tools and platforms, this is best illustrated by my GitHub Profile. More recently I have been focusing on:
+I primarily work on serverless, and container based solutions, with a focus on ensuring developers, operations and security work together to deliver safe and reliable products. I primarily work with AWS, but also work with other cloud services from time to time.
 
-* Building software using:
-  * Go
-  * JavaScript
-  * Bash
-  * C
-* Working on Linux, more specifically:
-  * Ubuntu and Snappy Core
-  * Redhat Linux/Centos/AWS Linux
-  * Yocto Linux
-* Working in Linux:
-  * Packaging software for ubuntu and Redhat
-  * Building kernels using SDKs provided by hardware vendors such as Texas Instruments and Atmel
-  * Automating and building firmwares using Ubuntu, Snappy Core and the Yocto Project
-* Deploying software using:
-  * Ansible
-  * Chef
-  * Docker
-  * Google App Engine
-  * AWS Elastic Beanstalk, mostly with Docker
-* Using a variety of Cloud services such as:
-  * AWS
-  * Google Cloud
-  * Digital Ocean
-  * Scaleway
-* Setting up continuous integration using:
-  * Buildkite
-  * Atlassian Bamboo
-  * Jenkins
-* Working with various network and wireless protocols such as:
-  * IPv4, IPv6 and 6LoWPAN
-  * Bluetooth and Bluetooth Low Energy
-  * Wifi
+More recently I have been working with:
 
-I am also an avid contributor to open source, with a keen interested in networking, authentication, distributed systems and databases. I also work on some embedded systems development at the [Connected Community HackerSpace](http://www.hackmelbourne.org/).
+Building software using:
+* Go
+* JavaScript/Typescript
+* Python
+* Bash
+* C/C++
+* Ruby, Ruby on Rails
 
-Outside of work I do a bit of cycling, fishing and I am currently learning Chinese in my spare time.
+Working on Linux, more specifically:
+* Debian & Ubuntu
+* Alpine Linux
+* Redhat Linux/Centos/AWS Linux
+
+Deploying software using:
+* Cloudformation
+* Terraform
+* Docker
+* Ansible
+
+Using a variety of Cloud services such as:
+* AWS
+* Google Cloud
+
+Setting up continuous integration using:
+* GitHub Actions
+* Buildkite
+* Jenkins
+
+
+I am also an avid contributor to open source, with a keen interested in networking, authentication, distributed systems and databases. I contribute to https://www.apache.org/ projects, specifically [Arrow](https://arrow.apache.org/) and [Iceberg](https://iceberg.apache.org/).
+
+Outside of work I do a enjoy cycling, fishing and playing golf.
 
 For a list of what I have worked on recently see https://github.com/wolfeidau
+
+# Speaking
+
+Most of my recent talks are listed at https://speakerdeck.com/wolfeidau
 
 # Contact
 
