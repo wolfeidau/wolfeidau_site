@@ -15,9 +15,9 @@ I have spent the last 25 years working in the software industry, across operatio
 
 More recently I have spent the last 8 years working with Versent, an AWS premier consulting partner based in Australia. I have worked in a number of roles initially in the consulting business, then in a product business called Stax.
 
-From the very beginning with Versent I was working in AWS, initially with enterprise customers moving into cloud, then providing direction and support to teams across the business working with customers in AWS.
+At Versent, my primary focus was AWS, initially assisting enterprise customers with cloud migrations, then providing direction and support to teams as they worked with customers in AWS.
 
-I have a passion for creating and supporting the teams of software developers, my primary goal is keep everything on track while ensuring no one is left behind. I have successfully delivered projects, and products in some of the largest enterprises in Australia, while working with partners like AWS.
+I have a passion for creating and supporting teams of software developers. My primary goal is to keep projects on track while ensuring no team member is left behind. I have successfully delivered projects and products for some of the largest enterprises in Australia, working in partnership with AWS.
 
 More recently I have been focusing on data processing, AI, and Machine Learning in my spare time.
 
@@ -28,31 +28,36 @@ More recently I have been focusing on data processing, AI, and Machine Learning 
 * **Lead Engineer - VMR**<br/>
   Sep 2023 - Present · 7 mos<br/>
   
-  Uplifting operations for serverless applications, implementing vulnerability management, monitoring and alerting, and supporting the teams.
+  Uplifting operations for serverless applications, reviewing architecture, implementing vulnerability management, monitoring and alerting, and supporting the teams.
 
 * **Stax - Engineering Lead**<br/>
   Jun 2020 - Sep 2023 · 3 yrs 4 mos<br/>
 
-  I was one of the founding team members of the product, I was responsible for creating new teams, supporting new developers, and mentoring existing developers. I was also responsible for the product architecture, and development of key parts of the product related to authentication, user interface and also supported the teams while implementing PCI, and SOC2 compliance.
+  Founding team members of Stax, was responsible for bootstrapping new teams, supporting, and mentoring developers. Also responsible for the product architecture, and development of key parts of the product related to authentication, user interface and also supporting the teams while completing PCI, and SOC2 compliance.
 
 * **Cloud Practice Director (South)**<br/>
   Sep 2017 - Jun 2020 · 2 yrs 10 mos<br/>
 
-  I supported the creation, onboarding of consulting teams establishing the right skills and processes to work with customers. I also supported the teams with the right tools, architecture and processes to migrate customers into the cloud.
+  Supported the creation, onboarding of consulting teams while establishing the right skills and processes to work with customers. Also supported teams in adopting tools, architecture and processes to migrate customers into the cloud.
 
 * **Digital and Cloud Consultant**<br/>
   Aug 2015 - Jun 2020 · 4 yrs 11 mos<br/>
 
-  I worked on a variety of projects from proof of concepts to production cloud migrations for large enterprises. I worked with a variety of customers including large enterprises, government, and startups. I mostly supported development teams as their infrastructure moved to the cloud, rebuilding CI/CD, migrating to ec2 and ensuring  this was done in line with compliance and security best practices.
+  Worked on a variety of projects from proof of concepts to production cloud migrations for large enterprises. Helped a variety of customers including large enterprises, government, and startups migrating into AWS. Supported development teams as their infrastructure moved to the cloud, rebuilding CI/CD, migrating to ec2, containers or serverless, while ensuring this was done in line with compliance and security best practices.
 
 For a full list see https://www.linkedin.com/in/wolfeidau/.
-
 
 # Skills
 
 I primarily work on serverless, and container based solutions, with a focus on ensuring developers, operations and security work together to deliver safe and reliable products. I primarily work with AWS, but also work with other cloud services from time to time.
 
-More recently I have been working with:
+As a member of a team I focus on:
+
+* Communication
+* Writing
+* Data analysis
+* Listening
+* Leadership
 
 Building software using:
 * Go
@@ -69,17 +74,17 @@ Working on Linux, more specifically:
 
 Deploying software using:
 * Cloudformation
-* Terraform
 * Docker
 * Ansible
+* Terraform
 
-Using a variety of Cloud services such as:
-* AWS
+Deploying into Cloud services such as:
+* AWS, with a focus on Containers, Serverless, data streaming services and Networking
 * Google Cloud
 
 Setting up continuous integration using:
-* GitHub Actions
 * Buildkite
+* GitHub Actions
 * Jenkins
 
 
