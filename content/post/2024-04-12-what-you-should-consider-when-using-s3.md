@@ -6,17 +6,17 @@ tags = ["AWS", "s3", "Cloud", "Data Engineering"]
 
 As an [Amazon Web Services (AWS)](https://aws.amazon.com) developer I am often asked what is the best way to organise datasets in [S3](https://aws.amazon.com/s3/), this could be data exported by business systems, or data emitted by AWS services.
 
-Way to often I have seen data just dumped in one massive S3 bucket, and left for someone else to tidy up later, however with a little consideration, and empathy for those dealing with this in the future, we can do better than this.
+Way too often I have seen data just dumped in one massive S3 bucket, and left for someone else to tidy up later, however with a little consideration, and empathy for those dealing with this in the future, we can do better than this.
 
 # Start By Asking a few questions
 
-When I am planning to store a dataset in s3 I typically ask a few questions, one thing to note is I am focusing on the semantics of the data, and the business, not just the bucket(s) configuration!
+When I am planning to store a dataset in s3 I typically ask a few questions, one thing to note is I am focused on the semantics of the data, and the business, not just the bucket(s) technical configuration at this stage.
 
 ## Who will consume this information?
 
-What I am trying to understand here is whether this dataset has any known consumers, with the AWS logs example, this may be an ingestion tool like splunk, which is easier to integrate with if there a few aggregate buckets. 
+What I am trying to understand here is whether this dataset has any known consumers, with the AWS logs example, this may be an ingestion tool like [splunk](https://www.splunk.com/), which is easier to integrate with if there are a few aggregate buckets. 
 
-For datasets which are exported from other systems, or transformed for use in an application, or with an integration it may be easier to combine them one bucket, especially if other factors I cover in the next few questions aren't a concern.
+For datasets which are exported from other systems, or transformed for use in an application, or with an integration it may be easier to combine them into one bucket, especially if other factors I cover in the next few questions aren't a concern.
 
 ## What is the classification for the data?
 
@@ -35,7 +35,7 @@ For an example of data classifications, this is a five-tiered commercial data cl
 
 These classifications would be assigned to a tag, such named `Classification` on your bucket, for more on this see [Categorizing your storage using tags](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html).
 
-In general I recommend keeping different classifications of data separated, for example having raw data and anonymised, or summarised data in the same bucket is **not** a good idea.
+In general I recommend keeping different classifications of data separated, for example having raw data and anonymised, or cleaned data in the same bucket is **not** a good idea.
 
 ## What are the cost implications for keeping this dataset?
 
@@ -49,12 +49,12 @@ For more information on optimising storage costs, see [Optimizing costs for Amaz
 
 This question is related to the previous cost question, but I am trying to understand how challenging the dataset will be to handle over time. External factors such as traffic spikes for log datasets, which are often outside your control, should be taken into consideration as well.
 
-There are two dimensions to this, being size of the data, and the number of objects in the dataset, both can have an impact on how difficult to wrangle dataset will be in the future, and how much it will cost to move, or backup.
+There are two dimensions to this, being the size of the data, and the number of objects in the dataset, both can have an impact on how difficult to wrangle the dataset will be in the future, and how much it will cost to move, or backup.
 
 For more information on how you monitor and manage dataset growth in Amazon S3 I recommend digging into [Amazon S3 Storage Lens](https://aws.amazon.com/s3/storage-lens/).
 
 # Summary
 
-As a general rule I would recommend keeping datasets in separate buckets, with each bucket containing data of a single classification, and ideally a single purpose. This will help to simplify cost control, and make it easier to manage the data in the future.
+As a general rule, I would recommend keeping datasets in separate buckets, with each bucket containing data of a single classification, and ideally a single purpose. This will help to simplify cost control, and make it easier to manage the data in the future.
 
-Getting things right from the start will enable you to make the most of your datasets which is a potential differentiator for your business in this new era of cloud computing, data engineering and AI.
+Getting things right from the start will enable you to make the most of your datasets, which is a potential differentiator for your business in this new era of cloud computing, data engineering and AI.
