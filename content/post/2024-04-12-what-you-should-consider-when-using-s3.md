@@ -4,27 +4,29 @@ date = "2024-04-11T22:07:22+10:00"
 tags = ["AWS", "s3", "Cloud", "Data Engineering"]
 +++
 
-As an [Amazon Web Services (AWS)](https://aws.amazon.com) developer, I am often asked what is the best way to organise datasets in [S3](https://aws.amazon.com/s3/). A dataset could be comprised of data exported by business systems, or data emitted by AWS services, such as [CloudFront logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html), or [CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-working-with-log-files.html).
+As an [Amazon Web Services (AWS)](https://aws.amazon.com) developer, I am often asked what is the best way to organise datasets in [S3](https://aws.amazon.com/s3/). A dataset could comprise data exported by business systems, or data emitted by AWS services, such as [CloudFront logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html), or [CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-working-with-log-files.html).
 
-Way too often I have seen datasets just dumped in one massive S3 bucket, and left for someone else to tidy up later, however with a little consideration, and empathy for those dealing with this in the future, we can do better than this.
+Far too often I have seen datasets just dumped into one massive S3 bucket, and left for someone else to tidy up later, however with a little consideration, and empathy for those dealing with this in the future, we can do better than this.
 
 # Start By Asking a few questions
 
 When I am planning to store a dataset in s3 I typically ask a few questions, one thing to note is I am focused on the semantics of the data, and the business, not just the bucket(s) technical configuration at this stage.
 
-## Who will consume this information?
+## What will consume this information?
 
-What I am trying to understand here is whether this dataset has any known consumers, with the AWS logs example, this may be an ingestion tool like [splunk](https://www.splunk.com/), which is easier to integrate with if there are a few aggregate buckets. 
+What I am trying to understand here is whether this dataset has any known consumers, with the AWS logs example, this may be an ingestion tool like [Splunk](https://www.splunk.com/), which is easier to integrate with if there are a few aggregate buckets. 
 
 For datasets which are exported from other systems, or transformed for use in an application, or with an integration it may be easier to combine them into one bucket, especially if other factors I cover in the next few questions aren't a concern.
+
+As you will see in my following questions, this is a trade off, and I would also review other points below to determine which is the best approach in the long run.
 
 ## What is the classification for the data?
 
 My goal here is to consider the sensitivity of the data, and how it could affect who is granted access. 
 
-Keeping sensitive datasets isolated in their own bucket makes it easier to add controls, and simplifies auditing as there is only one top level identifier, i.e. the bucket name. 
+Keeping sensitive datasets isolated in their own bucket makes it easier to add controls, and simplifies auditing as there is only one top level identifier, i.e., the bucket name. 
 
-One thing to avoid is mixing different data classifications in one bucket, as you then you need to tag all data in that bucket at the highest classification, which could complicate granting access to the data.
+One thing to avoid is mixing different data classifications in one bucket, as you then need to tag all data in that bucket at the highest classification, which could complicate granting access to the data.
 
 For an example of data classifications, this is a five-tiered commercial data classification approach provided in this book [CISSP Security Management and Practices](https://www.pearsonitcertification.com/articles/article.aspx?p=30287&seqNum=9):
 - Sensitive
@@ -49,9 +51,9 @@ For more information on optimising storage costs, see [Optimizing costs for Amaz
 
 This question is related to the previous cost question, but I am trying to understand how challenging the dataset will be to handle over time. External factors such as traffic spikes for log datasets, which are often outside your control, should be taken into consideration as well.
 
-There are two dimensions to this, being the size of the data, and the number of objects in the dataset, both can have an impact on how difficult to wrangle the dataset will be in the future, and how much it will cost to move, or backup.
+There are two dimensions to this, the size of the data, and the number of objects in the dataset, both can have an impact on how difficult to wrangle the dataset will be in the future, and how much it will cost to move, or backup.
 
-For more information on how you monitor and manage dataset growth in Amazon S3 I recommend digging into [Amazon S3 Storage Lens](https://aws.amazon.com/s3/storage-lens/).
+For more information on how to monitor and manage dataset growth in Amazon S3 I recommend digging into [Amazon S3 Storage Lens](https://aws.amazon.com/s3/storage-lens/).
 
 # Summary
 
