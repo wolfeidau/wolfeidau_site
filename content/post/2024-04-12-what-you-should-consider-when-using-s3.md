@@ -57,3 +57,5 @@ For more information on how you monitor and manage dataset growth in Amazon S3 I
 # Summary
 
 As a general rule I would recommend keeping datasets in separate buckets, with each bucket containing data of a single classification, and ideally a single purpose. This will help to simplify cost control, and make it easier to manage the data in the future.
+
+Getting things right from the start will enable you to make the most of your datasets which is a potential differentiator for your business in this new era of cloud computing, data engineering and AI.
