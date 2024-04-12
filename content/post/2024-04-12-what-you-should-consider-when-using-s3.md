@@ -1,12 +1,12 @@
 +++
-title = "What you should consider when storing datasets s3"
+title = "What you should consider when storing datasets in s3"
 date = "2024-04-11T22:07:22+10:00"
 tags = ["AWS", "s3", "Cloud", "Data Engineering"]
 +++
 
-As an [Amazon Web Services (AWS)](https://aws.amazon.com) developer I am often asked what is the best way to organise datasets in [S3](https://aws.amazon.com/s3/), this could be data exported by business systems, or data emitted by AWS services.
+As an [Amazon Web Services (AWS)](https://aws.amazon.com) developer, I am often asked what is the best way to organise datasets in [S3](https://aws.amazon.com/s3/). A dataset could be comprised of data exported by business systems, or data emitted by AWS services, such as [CloudFront logs](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/AccessLogs.html), or [CloudTrail logs](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-working-with-log-files.html).
 
-Way too often I have seen data just dumped in one massive S3 bucket, and left for someone else to tidy up later, however with a little consideration, and empathy for those dealing with this in the future, we can do better than this.
+Way too often I have seen datasets just dumped in one massive S3 bucket, and left for someone else to tidy up later, however with a little consideration, and empathy for those dealing with this in the future, we can do better than this.
 
 # Start By Asking a few questions
 
