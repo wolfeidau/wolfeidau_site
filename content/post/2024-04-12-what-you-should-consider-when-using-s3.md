@@ -22,19 +22,18 @@ For datasets which are exported from other systems, or transformed for use in an
 
 My goal here is to consider the sensitivity of the data, and how it could affect who is granted access. 
 
-Keeping sensitive datasets isolated in their own bucket makes it easier to add controls, and simplifies auditing as there is only top level identifier, i.e. the bucket name. 
+Keeping sensitive datasets isolated in their own bucket makes it easier to add controls, and simplifies auditing as there is only one top level identifier, i.e. the bucket name. 
 
-One thing to consider is if you mix classifications in one bucket then you need to tag all data at the highest classification, which could complicate granting access to the data.
+One thing to avoid is mixing different data classifications in one bucket, as you then you need to tag all data in that bucket at the highest classification, which could complicate granting access to the data.
 
-
-Five-tiered commercial data classification approach according to the book [CISSP Security Management and Practices](https://www.pearsonitcertification.com/articles/article.aspx?p=30287&seqNum=9) you could use in a tag on your datasets is:
+For an example of data classifications, this is a five-tiered commercial data classification approach provided in this book [CISSP Security Management and Practices](https://www.pearsonitcertification.com/articles/article.aspx?p=30287&seqNum=9):
 - Sensitive
 - Confidential
 - Private
 - Proprietary
 - Public
 
-These would be assigned to a tag, such as `Classification` on your bucket, for more on this see [Categorizing your storage using tags](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html).
+These classifications would be assigned to a tag, such named `Classification` on your bucket, for more on this see [Categorizing your storage using tags](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-tagging.html).
 
 In general I recommend keeping different classifications of data separated, for example having raw data and anonymised, or summarised data in the same bucket is **not** a good idea.
 
