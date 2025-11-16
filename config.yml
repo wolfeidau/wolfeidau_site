@@ -1,6 +1,5 @@
 baseURL: "https://www.wolfe.id.au/" # if your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
 title: "Mark Wolfe's Blog"
-paginate: 5
 theme: hugo-PaperModX
 # googleAnalytics: "UA-10420512-2"
 
@@ -12,7 +11,9 @@ buildExpired: false
 enableEmoji: true
 pygmentsUseClasses: true
 
-paginate: 10
+
+pagination:
+  pagerSize: 10
 
 minify:
   disableXML: true
