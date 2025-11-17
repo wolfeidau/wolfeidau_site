@@ -76,10 +76,12 @@ build:
 
 .PHONY: docker-build
 docker-build:
+	@echo "building docker image..."
+	docker build -t hugo-website .
 	docker run --rm -t \
 		-v $(shell pwd):/src \
-		klakegg/hugo:ext \
-		--gc --verbose --minify
+		hugo-website build \
+		--gc --minify
 
 .PHONY: upload
 upload:
