@@ -47,3 +47,8 @@ Key takeaways:
 * Be collaborative with your AI agent, ask questions, sweat the details and be patient as you learn to build up your intuition and confidence with these tools.
 
 One big thing to understand is AI Agents are especially valueble when tackling tasks you aren't familiar with. Tell the agent up front your goal is to solve a problem, and learn how it works, this will help the agent clearly understand the goals and provide the best possible outcomes.
+
+## Links
+
+* [ A recent side project specification written with Claude Code](https://gist.github.com/wolfeidau/0be9b3b56ebca452375404baddf33777)
+* [Claude Code: Best practices for agentic coding](https://www.anthropic.com/engineering/claude-code-best-practices)
