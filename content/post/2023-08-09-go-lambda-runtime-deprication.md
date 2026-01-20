@@ -105,7 +105,7 @@ While the custom runtime provides better performance, and an updated operating s
 
 Personally I am sad to see AWS lambda remove Go as a first class language, as an early adopter of serverless it felt great to have Go supported out of the box. I will miss seeing the gopher logo when browsing functions! 😞🪦
 
-Overall, I think this will negatively the adoption of Go in AWS lambda, at least in the short term, as a lot of developers will find the custom runtime requirements unfamiliar and confusing compared to other runtimes.
+Overall, I think this will negatively the adoption of Go in AWS lambda, at least in the short term, as developers will find the custom runtime requirements unfamiliar and confusing compared to other runtimes.
 
 As is often the case, new developers will likely struggle most with the `provided.al2`, then most likely give up and use another language instead of taking the time to understand the custom runtime complexities. 
 
