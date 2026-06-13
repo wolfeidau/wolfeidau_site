@@ -1,0 +1,117 @@
+baseURL = "https://www.wolfe.id.au/"
+locale = "en-AU"
+title = "Mark Wolfe's Blog"
+
+disablePathToLower = false
+enableEmoji = true
+enableInlineShortcodes = true
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+pygmentsUseClasses = true
+
+[pagination]
+  pagerSize = 10
+
+[permalinks]
+  post = "/:year/:month/:day/:title/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  series = "series"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    style = "github-dark"
+    lineNos = false
+    codeFences = true
+    guessSyntax = true
+    noClasses = false
+
+[privacy]
+  [privacy.vimeo]
+    disabled = false
+    simple = true
+  [privacy.x]
+    disabled = false
+    enableDNT = true
+    simple = true
+  [privacy.instagram]
+    disabled = false
+    simple = true
+  [privacy.youtube]
+    disabled = false
+    privacyEnhanced = true
+
+[services]
+  [services.instagram]
+    disableInlineCSS = true
+  [services.x]
+    disableInlineCSS = true
+
+[module]
+  [[module.imports]]
+    path = "github.com/wolfeidau/hugo-engineering-log"
+
+[params]
+  postsSection = "post"
+  description = "Mark Wolfe's Website"
+  author = "Mark Wolfe"
+  handle = "wolfeidau"
+  role = "Software Developer"
+  focus = "cloud · iot · platform"
+  location = "Melbourne, Australia"
+  timezone = "Australia/Melbourne"
+  since = "2008"
+  shellHome = "wolfe.id.au"
+
+  [[params.nav]]
+    name = "archive"
+    url = "/archives/"
+  [[params.nav]]
+    name = "tags"
+    url = "/tags/"
+  [[params.nav]]
+    name = "resume"
+    url = "/resume/"
+
+  [[params.links]]
+    label = "github"
+    value = "github.com/wolfeidau"
+    href = "https://github.com/wolfeidau"
+  [[params.links]]
+    label = "mastodon"
+    value = "@wolfeidau@awscommunity.social"
+    href = "https://awscommunity.social/@wolfeidau"
+  [[params.links]]
+    label = "twitter"
+    value = "@wolfeidau"
+    href = "https://twitter.com/wolfeidau"
+  [[params.links]]
+    label = "rss"
+    value = "/index.xml"
+    href = "/index.xml"
+
+[[menu.main]]
+  name = "Archive"
+  url = "/archives/"
+  weight = 10
+
+[[menu.main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 20
+
+[[menu.main]]
+  name = "Resume"
+  url = "/resume/"
+  weight = 30
