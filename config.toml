@@ -73,6 +73,7 @@ pygmentsUseClasses = true
   timezone = "Australia/Melbourne"
   since = "2008"
   shellHome = "wolfe.id.au"
+  sourceUrl = "https://github.com/wolfeidau/wolfeidau_site"
 
   [[params.nav]]
     name = "archive"
