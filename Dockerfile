@@ -1,6 +1,6 @@
 FROM golang
 
-ENV HUGO_VERSION=0.152.2
+ENV HUGO_VERSION=0.163.1
 
 # Detect architecture and download the appropriate Hugo binary
 RUN ARCH=$(uname -m) && \

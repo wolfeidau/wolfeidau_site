@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="journal" aria-label="{{ .Title }}">
+  {{- $section := site.Params.postsSection | default "post" }}
+  {{- $pages := where site.RegularPages "Section" $section }}
+  {{- $pages = $pages.ByDate.Reverse }}
+  {{- $total := len $pages }}
+
+  <div class="eyebrow journal-eyebrow">
+    <span class="eyebrow-accent">archive</span> &nbsp;·&nbsp; {{ $total }} entries
+  </div>
+  <ol class="journal-list">
+    {{- range $i, $p := $pages }}
+    {{- $n := sub $total $i }}
+    {{- partial "post-list-item.html" (dict "index" $i "total" $total "post" $p "number" $n) }}
+    {{- end }}
+  </ol>
+</section>
+{{ end }}
