@@ -2,7 +2,6 @@
 title = "AI Is Bringing Mashups Back"
 date = "2026-06-12T08:55:22+10:00"
 tags = ["developer tools", "llms", "ai", "ai agents"]
-draft = true
 +++
 
 A [mashup](https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)) is a term that became popular in the 2010s for applications that combined two or more data sources into a single user interface. Recently, I have seen a steady stream of AI-generated side projects, small apps, slide decks, and useful tools showing up on social media, often built by people who have never tried this before. With the advent of [ChatGPT](https://chatgpt.com/) and [Claude](https://claude.ai/), it has never been easier to integrate disparate data and build something useful.
