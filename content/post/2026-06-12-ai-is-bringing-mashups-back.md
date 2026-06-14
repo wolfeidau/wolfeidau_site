@@ -9,9 +9,9 @@ A [mashup](https://en.wikipedia.org/wiki/Mashup_(web_application_hybrid)) is a t
 
 These mashups are nothing new, but the barrier to entry is much lower, and the scale of what is possible has changed as AI models and tools improve.
 
-I have also seen these mashups at work, which is fantastic because it gives more people the ability to build tools and explore problems without waiting on software engineering teams.
+I have also seen these mashups at work, which is fantastic because it gives more people the ability to build tools and explore problems without waiting for software engineering teams.
 
-This is good for everyone for a few reasons:
+This is useful for a few reasons:
 
 * provides more value from internal data sources
 * includes visualisations that highlight trends or patterns
@@ -26,25 +26,25 @@ This matters for a few reasons:
 1. It is easier than ever to integrate disparate services using APIs.
 2. Agents can respond to queries and follow up with users.
 3. Integrating authentication or data storage is easier than ever.
-4. The explosion of [agent skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) has unlocked even more capabilities, allowing users to package and share repeatable processes.
+4. The growth of [agent skills](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) has unlocked even more capabilities, allowing people to package and share repeatable processes.
 
-Overall, this has led to a Cambrian explosion of mashups, with a wave of new users publishing and sharing their projects.
+Overall, this has led to a Cambrian explosion of mashups, as a wave of new builders publish and share their projects.
 
 ## How will this affect existing SaaS providers?
 
-After chatting with my peers at events such as the [AI Engineer conference in Melbourne](https://webdirections.org/ai-engineer/), it is clear that we are seeing people with domain knowledge and a clear problem to solve build mashups that automate day to day operational tasks and provide improved operational reporting.
+After chatting with my peers at events such as the [AI Engineer conference in Melbourne](https://webdirections.org/ai-engineer/), it is clear that people with domain knowledge and a clear problem to solve are building mashups that automate day to day tasks and provide better operational reporting.
 
-Businesses are building their own portals, combining feeds of data from multiple platforms with tools such as [openclaw](https://openclaw.ai/) to act as the nerve centre for their business. These portals combine APIs, [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers, messaging, and agents to drive day to day operational tasks and provide integrated reporting that would be impossible for any one platform.
+Businesses are building their own portals, combining feeds of data from multiple platforms with tools such as [openclaw](https://openclaw.ai/) to act as the nerve centre for their business. These portals combine APIs, [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) servers, messaging, and agents to drive day to day operational tasks and provide integrated reporting that would be difficult for any one platform to deliver.
 
 For example, a team might combine CRM data, email notifications from an online store, and supplier invoices into a small internal portal that shows business health and triggers follow-up actions through openclaw.
 
 As a side effect of this, SaaS providers are seeing:
 
-1. Less traffic to user interfaces, with people using them mainly when configuring new features or diagnosing more complex issues.
+1. Less traffic to their user interfaces, with people using them mainly when configuring new features or diagnosing more complex issues.
 2. Widespread use of MCP, which provides a more accessible interface for agents.
 3. More API traffic from customers.
 
-I think it is important to understand that the people building these mashups are often just looking to solve their own business problems, typically in ways that are specific to their business.
+I think it is important to understand that the people building these mashups are often just looking to solve their own business problems in ways that are specific to their business.
 
 ## How can platforms better support mashups?
 
