@@ -1,6 +1,7 @@
 APPNAME := wolfeidau-website
 STAGE ?= dev
 BRANCH ?= master
+HUGO_ENVIRONMENT ?= development
 
 .PHONY: deploy-acm 
 deploy-acm:
@@ -72,16 +73,19 @@ deploy-oidc-role:
 
 .PHONY: build
 build:
-	@hugo --gc --verbose --minify
+	@hugo --environment $(HUGO_ENVIRONMENT) --gc --logLevel info --minify
 
 .PHONY: docker-build
 docker-build:
 	@echo "building docker image..."
 	docker build -t hugo-website .
 	docker run --rm -t \
+		-e HUGO_ENVIRONMENT=$(HUGO_ENVIRONMENT) \
+		-e HUGO_PARAMS_POSTHOG_TOKEN \
+		-e HUGO_PARAMS_POSTHOG_APIHOST \
 		-v $(shell pwd):/src \
 		hugo-website build \
-		--gc --minify
+		--environment $(HUGO_ENVIRONMENT) --gc --minify
 
 .PHONY: upload
 upload:
