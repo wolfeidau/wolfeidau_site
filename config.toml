@@ -75,6 +75,10 @@ pygmentsUseClasses = true
   shellHome = "wolfe.id.au"
   sourceUrl = "https://github.com/wolfeidau/wolfeidau_site"
 
+  [params.posthog]
+    defaults = "2026-05-30"
+    personProfiles = "identified_only"
+
   [[params.nav]]
     name = "archive"
     url = "/archives/"

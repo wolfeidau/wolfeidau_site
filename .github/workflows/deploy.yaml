@@ -29,6 +29,10 @@ jobs:
           role-session-name: OIDCSession
       
       - name: build
+        env:
+          HUGO_ENVIRONMENT: production
+          HUGO_PARAMS_POSTHOG_TOKEN: ${{ secrets.POSTHOG_TOKEN }}
+          HUGO_PARAMS_POSTHOG_APIHOST: ${{ secrets.POSTHOG_API_HOST }}
         run: make docker-build
       
       - name: upload
