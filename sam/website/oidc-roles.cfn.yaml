@@ -22,6 +22,11 @@ Parameters:
     Description: This is the full repository name including the org/username.
     Default: wolfeidau/wolfeidau_site
 
+  Environment:
+    Type: String
+    Description: The environment of the deployment.
+    Default: "Production"
+
   StaticWebsiteBucketName:
     Description: This is name of the bucket which will have the website uploaded to after generation.
     Type: String
@@ -44,45 +49,48 @@ Resources:
             Principal:
               Federated: !Ref GithubOidc
             Condition:
-              StringEquals:
+              StringLike:
+                token.actions.githubusercontent.com:job_workflow_ref: "${FullRepositoryName}/.github/workflows/deploy.yaml@refs/heads/master"
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com            
-                token.actions.githubusercontent.com:sub: !Sub repo:${FullRepositoryName}:environment:Production
+                token.actions.githubusercontent.com:repository: !Ref FullRepositoryName
+                token.actions.githubusercontent.com:environment: !Ref Environment
 
   StaticWebsiteDeployPolicy:
     Type: "AWS::IAM::Policy"
     Properties:
-      PolicyName: "root"
+      PolicyName: "static-website-deploy"
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
           - Effect: "Allow"
             Action:
+              - "s3:GetBucketLocation"
               - "s3:ListBucket"
             Resource:
-              - !Sub "arn:${AWS::Partition}:s3:::${StaticWebsiteBucketName}"        
+              - !Sub "arn:${AWS::Partition}:s3:::${StaticWebsiteBucketName}"
+
           - Effect: "Allow"
             Action:
               - "s3:PutObject"
-              - "s3:PutObjectAcl"
-              - "s3:PutLifecycleConfiguration"
               - "s3:DeleteObject"
             Resource:
               - !Sub "arn:${AWS::Partition}:s3:::${StaticWebsiteBucketName}/*"
+
           - Effect: "Allow"
             Action:
               - "cloudfront:CreateInvalidation"
             Resource:
               - !Ref WebsiteCloudfrontArn
+
           - Effect: "Allow"
             Action:
               - "ssm:GetParameter"
-              - "ssm:GetParameters"
-              - "ssm:GetParametersByPath"
             Resource:
               - !Sub "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/config/${Stage}/${Branch}/${AppName}/assets_bucket"
               - !Sub "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/config/${Stage}/${Branch}/${AppName}/website_cloudfront_distribution"
       Roles:
         - Ref: "DeloymentRole"
+  
   GithubOidc:
     Type: AWS::IAM::OIDCProvider
     Properties:
