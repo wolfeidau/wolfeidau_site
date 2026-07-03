@@ -50,7 +50,8 @@ Resources:
               Federated: !Ref GithubOidc
             Condition:
               StringLike:
-                token.actions.githubusercontent.com:job_workflow_ref: "${FullRepositoryName}/.github/workflows/deploy.yaml@refs/heads/master"
+                token.actions.githubusercontent.com:sub: !Sub repo:${FullRepositoryName}:*
+              StringEquals:
                 token.actions.githubusercontent.com:aud: sts.amazonaws.com            
                 token.actions.githubusercontent.com:repository: !Ref FullRepositoryName
                 token.actions.githubusercontent.com:environment: !Ref Environment
