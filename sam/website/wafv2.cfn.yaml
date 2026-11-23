@@ -25,25 +25,10 @@ Parameters:
       - Block
       - Count
 
-  StreamPrefix:
-    Description: "[Optional] The string prefix used for naming files stored in the S3 bucket. If you don't enter any value, then no prefix is used."
-    Type: String
-    Default: "wafv2logs/year=!{timestamp:YYYY}/month=!{timestamp:MM}/day=!{timestamp:dd}/"
-
-  ErrorOutputPrefix:
-    Description: "[Optional] A string that Kinesis Data Firehose evaluates and adds to failed records before writing them to S3 bucket. If you don't enter any value, then no prefix is used."
-    Type: String
-    Default: "Errors/!{firehose:random-string}/!{firehose:error-output-type}/!{timestamp:yyyy/MM/dd}/"
-
-  StreamCompressionFormat:
-    Description: "[Optional] The format used for compressing the incoming events. Three options are available, namely GZIP, ZIP, and SNAPPY. If you don't enter any value, then data compression is disabled."
-    Type: String
-    AllowedValues:
-      - UNCOMPRESSED
-      - GZIP
-      - ZIP
-      - Snappy
-    Default: GZIP
+  LogRetentionInDays:
+    Description: Expire WAF logs after this many days.
+    Type: Number
+    Default: 90
 
 Conditions:
   BlockReputationList: !Equals
@@ -63,6 +48,11 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireLogs
+            Status: Enabled
+            ExpirationInDays: !Ref LogRetentionInDays
 
   WAFv2LogsBucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -76,6 +66,7 @@ Resources:
               - s3:*
             Principal: "*"
             Resource:
+              - !GetAtt WAFv2LogsBucket.Arn
               - !Sub "${WAFv2LogsBucket.Arn}/*"
             Condition:
               Bool:
@@ -148,9 +139,10 @@ Resources:
           Enabled: true
           LogGroupName: !Ref WAFv2FirehoseLogGroup
           LogStreamName: !Ref WAFv2FirehoseLogStream
-        CompressionFormat: !Ref StreamCompressionFormat
-        Prefix: !Ref StreamPrefix
-        ErrorOutputPrefix: !Ref ErrorOutputPrefix
+        CompressionFormat: GZIP
+        # yyyy is calendar year; YYYY is week-based year and misfiles late-December logs
+        Prefix: "wafv2logs/year=!{timestamp:yyyy}/month=!{timestamp:MM}/day=!{timestamp:dd}/"
+        ErrorOutputPrefix: "Errors/!{firehose:random-string}/!{firehose:error-output-type}/!{timestamp:yyyy/MM/dd}/"
         RoleARN: !GetAtt WAFv2FirehoseS3Role.Arn
 
   WebACL:

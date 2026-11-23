@@ -73,6 +73,7 @@ Resources:
               - s3:*
             Principal: "*"
             Resource:
+              - !GetAtt LoggingBucket.Arn
               - !Sub "${LoggingBucket.Arn}/*"
             Condition:
               Bool:
