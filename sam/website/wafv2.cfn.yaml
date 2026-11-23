@@ -1,0 +1,196 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  AppName:
+    Type: String
+    Description: The name of the application.
+    Default: "cloudfront-website"
+
+  Stage:
+    Type: String
+    Description: The stage where the application is running in, e.g., dev, prod.
+    Default: "dev"
+
+  Branch:
+    Type: String
+    Description: The name of the branch being deployed, this enables parallel deployments per environment if required.
+    Default: "main"
+
+  ReputationListEffect:
+    Description: Block or count requests with bad reputation.
+    Type: String
+    Default: Count
+    AllowedValues:
+      - Block
+      - Count
+
+  StreamPrefix:
+    Description: "[Optional] The string prefix used for naming files stored in the S3 bucket. If you don't enter any value, then no prefix is used."
+    Type: String
+    Default: "wafv2logs/year=!{timestamp:YYYY}/month=!{timestamp:MM}/day=!{timestamp:dd}/"
+
+  ErrorOutputPrefix:
+    Description: "[Optional] A string that Kinesis Data Firehose evaluates and adds to failed records before writing them to S3 bucket. If you don't enter any value, then no prefix is used."
+    Type: String
+    Default: "Errors/!{firehose:random-string}/!{firehose:error-output-type}/!{timestamp:yyyy/MM/dd}/"
+
+  StreamCompressionFormat:
+    Description: "[Optional] The format used for compressing the incoming events. Three options are available, namely GZIP, ZIP, and SNAPPY. If you don't enter any value, then data compression is disabled."
+    Type: String
+    AllowedValues:
+      - UNCOMPRESSED
+      - GZIP
+      - ZIP
+      - Snappy
+    Default: GZIP
+
+Conditions:
+  BlockReputationList: !Equals
+    - !Ref ReputationListEffect
+    - Block
+
+Resources:
+  WAFv2LogsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  WAFv2LogsBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WAFv2LogsBucket
+      PolicyDocument:
+        Statement:
+          - Sid: AllowSSLRequestsOnly
+            Effect: Deny
+            Action:
+              - s3:*
+            Principal: "*"
+            Resource:
+              - !Sub "${WAFv2LogsBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: false
+
+  WAFv2LogsBucketParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/waflogs_bucket"
+      Type: String
+      Value: !Ref WAFv2LogsBucket
+
+  WAFv2FirehoseLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 14
+
+  WAFv2FirehoseLogStream:
+    Type: AWS::Logs::LogStream
+    Properties:
+      LogGroupName: !Ref WAFv2FirehoseLogGroup
+
+  WAFv2FirehoseS3Role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: firehose.amazonaws.com
+
+  WAFv2FirehoseToS3Policy:
+    Type: AWS::IAM::Policy
+    Properties:
+      Roles:
+        - !Ref WAFv2FirehoseS3Role
+      PolicyName: firehose-to-s3
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - s3:PutObject
+              - s3:AbortMultipartUpload
+              - s3:GetBucketLocation
+              - s3:GetObject
+              - s3:ListBucket
+              - s3:ListBucketMultipartUploads
+              - s3:PutEncryptionConfiguration
+            Resource:
+              - !Sub "${WAFv2LogsBucket.Arn}"
+              - !Sub "${WAFv2LogsBucket.Arn}/*"
+          - Effect: Allow
+            Action: logs:PutLogEvents
+            Resource: !GetAtt WAFv2FirehoseLogGroup.Arn
+
+  WAFv2Firehose:
+    Type: AWS::KinesisFirehose::DeliveryStream
+    DependsOn: WAFv2FirehoseToS3Policy
+    Properties:
+      DeliveryStreamName: !Sub "aws-waf-logs-${AppName}-${Stage}-${Branch}"
+      DeliveryStreamType: DirectPut
+      ExtendedS3DestinationConfiguration:
+        BucketARN: !GetAtt WAFv2LogsBucket.Arn
+        BufferingHints:
+          IntervalInSeconds: 300
+          SizeInMBs: 128
+        CloudWatchLoggingOptions:
+          Enabled: true
+          LogGroupName: !Ref WAFv2FirehoseLogGroup
+          LogStreamName: !Ref WAFv2FirehoseLogStream
+        CompressionFormat: !Ref StreamCompressionFormat
+        Prefix: !Ref StreamPrefix
+        ErrorOutputPrefix: !Ref ErrorOutputPrefix
+        RoleARN: !GetAtt WAFv2FirehoseS3Role.Arn
+
+  WebACL:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      DefaultAction:
+        Allow: {}
+      Description: !Sub "A collection of rules for ${AWS::StackName}."
+      Name: !Ref AWS::StackName
+      Rules:
+        - Name: AWSReputationList
+          Priority: 1
+          OverrideAction: !If
+            - BlockReputationList
+            - None: {}
+            - Count: {}
+          VisibilityConfig:
+            SampledRequestsEnabled: true
+            CloudWatchMetricsEnabled: true
+            MetricName: !Sub "${AWS::StackName}-AWSReputationList"
+          Statement:
+            ManagedRuleGroupStatement:
+              VendorName: AWS
+              Name: AWSManagedRulesAmazonIpReputationList
+      Scope: CLOUDFRONT
+      VisibilityConfig:
+        CloudWatchMetricsEnabled: true
+        MetricName: !Sub "${AWS::StackName}-DefaultActionAllow"
+        SampledRequestsEnabled: true
+
+  WebACLArnParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/web_acl_arn"
+      Type: String
+      Value: !GetAtt WebACL.Arn
+
+  WebACLLoggingConfiguration:
+    Type: AWS::WAFv2::LoggingConfiguration
+    Properties:
+      ResourceArn: !GetAtt WebACL.Arn
+      LogDestinationConfigs:
+        - !GetAtt WAFv2Firehose.Arn

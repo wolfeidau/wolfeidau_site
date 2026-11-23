@@ -2,12 +2,21 @@ APPNAME := wolfeidau-website
 STAGE ?= dev
 BRANCH ?= master
 HUGO_ENVIRONMENT ?= development
+# e.g. make deploy-waf CFN_FLAGS=--no-execute-changeset to create a change set for review
+CFN_FLAGS ?=
+WAF_REPUTATION_LIST_EFFECT ?= Block
+
+# Fail fast if any named variable is empty; an empty parameter override would
+# silently change prod (e.g. detach the WAF or rewrite DNS records).
+require = $(foreach v,$(1),$(if $(strip $($(v))),,$(error $(v) is empty or unset)))
 
 .PHONY: deploy-acm 
 deploy-acm:
-	@sam deploy \
+	$(call require,PRIMARY_SUB_DOMAIN_NAME HOSTED_ZONE_NAME HOSTED_ZONE_ID)
+	@aws cloudformation deploy \
 		--region us-east-1 \
 		--no-fail-on-empty-changeset \
+		$(CFN_FLAGS) \
 		--template-file sam/website/acm.cfn.yaml \
 		--capabilities CAPABILITY_IAM \
 		--stack-name $(APPNAME)-$(STAGE)-$(BRANCH)-acm-certificate \
@@ -22,8 +31,9 @@ deploy-acm:
 
 .PHONY: deploy-logging 
 deploy-logging:
-	@sam deploy \
+	@aws cloudformation deploy \
 		--no-fail-on-empty-changeset \
+		$(CFN_FLAGS) \
 		--template-file sam/website/cloudfront-logging.cfn.yaml \
 		--capabilities CAPABILITY_IAM \
 		--stack-name $(APPNAME)-$(STAGE)-$(BRANCH)-cloudfront-logging \
@@ -33,13 +43,32 @@ deploy-logging:
 			Stage=$(STAGE) \
 			Branch=$(BRANCH)
 
+.PHONY: deploy-waf
+deploy-waf:
+	@aws cloudformation deploy \
+		--region us-east-1 \
+		--no-fail-on-empty-changeset \
+		$(CFN_FLAGS) \
+		--template-file sam/website/wafv2.cfn.yaml \
+		--capabilities CAPABILITY_IAM \
+		--stack-name $(APPNAME)-$(STAGE)-$(BRANCH)-wafv2 \
+		--tags "environment=$(STAGE)" "branch=$(BRANCH)" "application=$(APPNAME)" \
+		--parameter-overrides \
+			AppName=$(APPNAME) \
+			Stage=$(STAGE) \
+			Branch=$(BRANCH) \
+			ReputationListEffect=$(WAF_REPUTATION_LIST_EFFECT)
+
 .PHONY: deploy-cloudfront-website
 deploy-cloudfront-website:
 	$(eval ACM_CERTIFICATE_ARN := $(shell aws --region us-east-1 ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/acm_certificate' --query 'Parameter.Value' --output text))
 	$(eval LOGGING_BUCKET_DOMAIN := $(shell aws ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/logging_bucket_regional_domain' --query 'Parameter.Value' --output text))
+	$(eval WEB_ACL_ARN := $(shell aws --region us-east-1 ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/web_acl_arn' --query 'Parameter.Value' --output text))
+	$(call require,PRIMARY_SUB_DOMAIN_NAME HOSTED_ZONE_NAME HOSTED_ZONE_ID ACM_CERTIFICATE_ARN LOGGING_BUCKET_DOMAIN WEB_ACL_ARN)
 
-	@sam deploy \
+	@aws cloudformation deploy \
 		--no-fail-on-empty-changeset \
+		$(CFN_FLAGS) \
 		--template-file sam/website/cloudfront-static-website.cfn.yaml \
 		--capabilities CAPABILITY_IAM \
 		--stack-name $(APPNAME)-$(STAGE)-$(BRANCH)-static-website \
@@ -52,14 +81,17 @@ deploy-cloudfront-website:
 			HostedZoneName=$(HOSTED_ZONE_NAME) \
 			HostedZoneId=$(HOSTED_ZONE_ID) \
 			AcmCertificateArn=$(ACM_CERTIFICATE_ARN) \
-			LoggingBucketDomain=$(LOGGING_BUCKET_DOMAIN)
+			LoggingBucketDomain=$(LOGGING_BUCKET_DOMAIN) \
+			WebAclArn=$(WEB_ACL_ARN)
 
 .PHONY: deploy-oidc-role
 deploy-oidc-role:
 	$(eval ASSETS_BUCKET := $(shell aws ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/assets_bucket' --query 'Parameter.Value' --output text))
 	$(eval WEBSITE_CLOUDFRONT_ARN := $(shell aws ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/website_cloudfront_distribution_arn' --query 'Parameter.Value' --output text))
-	@sam deploy \
+	$(call require,ASSETS_BUCKET WEBSITE_CLOUDFRONT_ARN)
+	@aws cloudformation deploy \
 		--no-fail-on-empty-changeset \
+		$(CFN_FLAGS) \
 		--template-file sam/website/oidc-roles.cfn.yaml \
 		--capabilities CAPABILITY_IAM \
 		--stack-name $(APPNAME)-$(STAGE)-$(BRANCH)-deploy-oidc-role \
