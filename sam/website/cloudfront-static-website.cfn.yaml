@@ -59,7 +59,7 @@ Resources:
     Properties:
       DistributionConfig:
         Enabled: true
-        HttpVersion: http2
+        HttpVersion: http2and3
         IPV6Enabled: true
         Aliases:
           - !Sub "${PrimarySubDomainName}.${HostedZoneName}"
@@ -70,18 +70,21 @@ Resources:
           Compress: True
           # Managed-CachingOptimized, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
           CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          # Managed-SecurityHeadersPolicy (HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy), see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-response-headers-policies.html
+          ResponseHeadersPolicyId: 67f7725c-6f97-4210-82d7-5512b31e9d03
           FunctionAssociations:
             - EventType: viewer-request
               FunctionARN: !GetAtt RewriteFunction.FunctionMetadata.FunctionARN
         DefaultRootObject: index.html
+        # S3 returns 403 for missing objects as CloudFront can't list the bucket, so treat both as not found.
         CustomErrorResponses:
           - ErrorCachingMinTTL: 900
             ErrorCode: 403
-            ResponseCode: 200
-            ResponsePagePath: /403.html
+            ResponseCode: 404
+            ResponsePagePath: /404.html
           - ErrorCachingMinTTL: 900
             ErrorCode: 404
-            ResponseCode: 200
+            ResponseCode: 404
             ResponsePagePath: /404.html
         Origins:
           - DomainName: !GetAtt AssetsBucket.RegionalDomainName
@@ -103,6 +106,21 @@ Resources:
     Properties:
       AutoPublish: true
       FunctionCode: !Sub |
+        function querystring(qs) {
+            var parts = [];
+            for (var name in qs) {
+                var param = qs[name];
+                if (param.multiValue) {
+                    param.multiValue.forEach(function (item) { parts.push(name + '=' + item.value); });
+                } else if (param.value === '') {
+                    parts.push(name);
+                } else {
+                    parts.push(name + '=' + param.value);
+                }
+            }
+            return parts.length ? '?' + parts.join('&') : '';
+        }
+
         function handler(event) {
             var request = event.request;
 
@@ -113,7 +131,7 @@ Resources:
                         statusCode: 301,
                         statusDescription: 'Moved Permanently',
                         headers: {
-                            'location': { "value": 'https://${PrimarySubDomainName}.${HostedZoneName}' + event.request.uri }
+                            'location': { "value": 'https://${PrimarySubDomainName}.${HostedZoneName}' + request.uri + querystring(request.querystring) }
                         }
                     };
                 }
@@ -123,7 +141,7 @@ Resources:
             // Check whether the URI is missing a file name.
             if (uri.endsWith('/')) {
                 request.uri += 'index.html';
-            } 
+            }
             // Check whether the URI is missing a file extension.
             else if (!uri.includes('.')) {
                 request.uri += '/index.html';
@@ -132,7 +150,7 @@ Resources:
         }
       FunctionConfig:
         Comment: "Rewrite requests and append index.html"
-        Runtime: cloudfront-js-1.0
+        Runtime: cloudfront-js-2.0
       Name: !Sub "${AWS::StackName}-rewriteFunction"
 
   WebsiteRecordSet:
@@ -167,6 +185,17 @@ Resources:
       HostedZoneId: !Ref HostedZoneId
       Name: !Sub "${HostedZoneName}"
       Type: A
+
+  RedirectRecordSetIPV6:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      AliasTarget:
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt WebsiteCloudFrontDistribution.DomainName
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Sub "${HostedZoneName}"
+      Type: AAAA
 
   AssetsBucket:
     Type: AWS::S3::Bucket
