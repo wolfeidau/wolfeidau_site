@@ -67,11 +67,9 @@ Resources:
         DefaultCacheBehavior:
           TargetOriginId: assets-s3-bucket
           ViewerProtocolPolicy: "redirect-to-https"
-          # "Managed-CachingDisabled" from https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
           Compress: True
-          ForwardedValues:
-            QueryString: false
-          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6 # Managed-CachingOptimized
+          # Managed-CachingOptimized, see https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
           FunctionAssociations:
             - EventType: viewer-request
               FunctionARN: !GetAtt RewriteFunction.FunctionMetadata.FunctionARN
@@ -170,12 +168,6 @@ Resources:
       Name: !Sub "${HostedZoneName}"
       Type: A
 
-  OriginAccessIdentity:
-    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
-    Properties:
-      CloudFrontOriginAccessIdentityConfig:
-        Comment: !Sub "CloudFront for ${PrimarySubDomainName}.${HostedZoneName}"
-
   AssetsBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -212,6 +204,7 @@ Resources:
               - s3:*
             Principal: "*"
             Resource:
+              - !GetAtt AssetsBucket.Arn
               - !Sub "${AssetsBucket.Arn}/*"
             Condition:
               Bool:
