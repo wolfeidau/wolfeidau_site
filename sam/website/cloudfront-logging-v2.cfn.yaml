@@ -115,10 +115,11 @@ Resources:
     Properties:
       DeliverySourceName: !Ref DeliverySource
       DeliveryDestinationArn: !GetAtt DeliveryDestination.Arn
-      S3EnableHiveCompatiblePath: false
-      # Partition keys are written explicitly (Hive-style) so Athena partition
-      # projection can be added later.
-      S3SuffixPath: "DistributionId={DistributionId}/year={yyyy}/month={MM}/day={dd}/hour={HH}"
+      # Hive-compatible paths render each variable as key=value
+      # (e.g. distributionid=E.../year=2026/month=11/...) for Athena partition projection.
+      # Literal "key=" text in the suffix path is rejected by the service.
+      S3EnableHiveCompatiblePath: true
+      S3SuffixPath: "{distributionid}/{yyyy}/{MM}/{dd}/{HH}"
 
   LogsBucketParam:
     Type: AWS::SSM::Parameter
