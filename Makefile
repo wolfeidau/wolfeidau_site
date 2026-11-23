@@ -78,6 +78,22 @@ deploy-logging-v2:
 			Branch=$(BRANCH) \
 			DistributionArn=$(DISTRIBUTION_ARN)
 
+.PHONY: deploy-posthog-proxy
+deploy-posthog-proxy:
+	$(call require,POSTHOG_PROXY_SUB_DOMAIN_NAME HOSTED_ZONE_NAME HOSTED_ZONE_ID)
+	@aws cloudformation deploy \
+		--region us-east-1 \
+		--no-fail-on-empty-changeset \
+		$(CFN_FLAGS) \
+		--template-file sam/website/posthog-proxy.cfn.yaml \
+		--capabilities CAPABILITY_IAM \
+		--stack-name $(APPNAME)-$(STAGE)-$(BRANCH)-posthog-proxy \
+		--tags "environment=$(STAGE)" "branch=$(BRANCH)" "application=$(APPNAME)" \
+		--parameter-overrides \
+			ProxySubDomainName=$(POSTHOG_PROXY_SUB_DOMAIN_NAME) \
+			HostedZoneName=$(HOSTED_ZONE_NAME) \
+			HostedZoneId=$(HOSTED_ZONE_ID)
+
 .PHONY: deploy-cloudfront-website
 deploy-cloudfront-website:
 	$(eval ACM_CERTIFICATE_ARN := $(shell aws --region us-east-1 ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/acm_certificate' --query 'Parameter.Value' --output text))
