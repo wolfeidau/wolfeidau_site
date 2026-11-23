@@ -107,7 +107,7 @@ Resources:
     Properties:
       Name: !Sub "${AppName}-${Stage}-${Branch}-cloudfront-s3"
       DestinationResourceArn: !GetAtt LogsBucket.Arn
-      OutputFormat: Parquet
+      OutputFormat: parquet
 
   Delivery:
     Type: AWS::Logs::Delivery
