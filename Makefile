@@ -81,9 +81,8 @@ deploy-logging-v2:
 .PHONY: deploy-cloudfront-website
 deploy-cloudfront-website:
 	$(eval ACM_CERTIFICATE_ARN := $(shell aws --region us-east-1 ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/acm_certificate' --query 'Parameter.Value' --output text))
-	$(eval LOGGING_BUCKET_DOMAIN := $(shell aws ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/logging_bucket_regional_domain' --query 'Parameter.Value' --output text))
 	$(eval WEB_ACL_ARN := $(shell aws --region us-east-1 ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/web_acl_arn' --query 'Parameter.Value' --output text))
-	$(call require,PRIMARY_SUB_DOMAIN_NAME HOSTED_ZONE_NAME HOSTED_ZONE_ID ACM_CERTIFICATE_ARN LOGGING_BUCKET_DOMAIN WEB_ACL_ARN)
+	$(call require,PRIMARY_SUB_DOMAIN_NAME HOSTED_ZONE_NAME HOSTED_ZONE_ID ACM_CERTIFICATE_ARN WEB_ACL_ARN)
 
 	@aws cloudformation deploy \
 		--no-fail-on-empty-changeset \
@@ -100,7 +99,6 @@ deploy-cloudfront-website:
 			HostedZoneName=$(HOSTED_ZONE_NAME) \
 			HostedZoneId=$(HOSTED_ZONE_ID) \
 			AcmCertificateArn=$(ACM_CERTIFICATE_ARN) \
-			LoggingBucketDomain=$(LOGGING_BUCKET_DOMAIN) \
 			WebAclArn=$(WEB_ACL_ARN)
 
 .PHONY: deploy-oidc-role
