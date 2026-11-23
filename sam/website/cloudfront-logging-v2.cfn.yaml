@@ -1,0 +1,135 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  AppName:
+    Type: String
+    Description: The name of the application.
+    Default: "cloudfront-website"
+
+  Stage:
+    Type: String
+    Description: The stage where the application is running in, e.g., dev, prod.
+    Default: "dev"
+
+  Branch:
+    Type: String
+    Description: The name of the branch being deployed, this enables parallel deployments per environment if required.
+    Default: "main"
+
+  DistributionArn:
+    Type: String
+    Description: ARN of the CloudFront distribution to collect access logs from.
+
+  LogRetentionInDays:
+    Type: Number
+    Description: Expire CloudFront access logs after this many days.
+    Default: 90
+
+Resources:
+  LogsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      LifecycleConfiguration:
+        Rules:
+          - Id: ExpireLogs
+            Status: Enabled
+            ExpirationInDays: !Ref LogRetentionInDays
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 1
+
+  LogsBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref LogsBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowSSLRequestsOnly
+            Effect: Deny
+            Principal: "*"
+            Action: s3:*
+            Resource:
+              - !GetAtt LogsBucket.Arn
+              - !Sub "${LogsBucket.Arn}/*"
+            Condition:
+              Bool:
+                aws:SecureTransport: false
+
+          - Sid: AWSLogDeliveryWrite
+            Effect: Allow
+            Principal:
+              Service: delivery.logs.amazonaws.com
+            Action: s3:PutObject
+            Resource: !Sub "${LogsBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                s3:x-amz-acl: bucket-owner-full-control
+                aws:SourceAccount: !Ref AWS::AccountId
+              ArnLike:
+                aws:SourceArn: !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:delivery-source:*"
+
+          - Sid: AWSLogDeliveryAclCheck
+            Effect: Allow
+            Principal:
+              Service: delivery.logs.amazonaws.com
+            Action:
+              - s3:GetBucketAcl
+              - s3:ListBucket
+            Resource: !GetAtt LogsBucket.Arn
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+              ArnLike:
+                aws:SourceArn: !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:delivery-source:*"
+
+  DeliverySource:
+    Type: AWS::Logs::DeliverySource
+    Properties:
+      Name: !Sub "${AppName}-${Stage}-${Branch}-cloudfront"
+      ResourceArn: !Ref DistributionArn
+      LogType: ACCESS_LOGS
+
+  DeliveryDestination:
+    Type: AWS::Logs::DeliveryDestination
+    Properties:
+      Name: !Sub "${AppName}-${Stage}-${Branch}-cloudfront-s3"
+      DestinationResourceArn: !GetAtt LogsBucket.Arn
+      OutputFormat: Parquet
+
+  Delivery:
+    Type: AWS::Logs::Delivery
+    DependsOn: LogsBucketPolicy
+    Properties:
+      DeliverySourceName: !Ref DeliverySource
+      DeliveryDestinationArn: !GetAtt DeliveryDestination.Arn
+      S3EnableHiveCompatiblePath: false
+      # Partition keys are written explicitly (Hive-style) so Athena partition
+      # projection can be added later.
+      S3SuffixPath: "DistributionId={DistributionId}/year={yyyy}/month={MM}/day={dd}/hour={HH}"
+
+  LogsBucketParam:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Sub "/config/${Stage}/${Branch}/${AppName}/cloudfront_logs_bucket"
+      Type: String
+      Value: !Ref LogsBucket
+
+Outputs:
+  LogsBucket:
+    Value: !Ref LogsBucket
+
+  DeliverySource:
+    Value: !Ref DeliverySource

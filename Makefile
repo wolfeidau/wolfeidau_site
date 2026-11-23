@@ -59,6 +59,25 @@ deploy-waf:
 			Branch=$(BRANCH) \
 			ReputationListEffect=$(WAF_REPUTATION_LIST_EFFECT)
 
+.PHONY: deploy-logging-v2
+deploy-logging-v2:
+	$(eval DISTRIBUTION_ARN := $(shell aws --region us-west-2 ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/website_cloudfront_distribution_arn' --query 'Parameter.Value' --output text))
+	$(call require,DISTRIBUTION_ARN)
+
+	@aws cloudformation deploy \
+		--region us-east-1 \
+		--no-fail-on-empty-changeset \
+		$(CFN_FLAGS) \
+		--template-file sam/website/cloudfront-logging-v2.cfn.yaml \
+		--capabilities CAPABILITY_IAM \
+		--stack-name $(APPNAME)-$(STAGE)-$(BRANCH)-cloudfront-logging-v2 \
+		--tags "environment=$(STAGE)" "branch=$(BRANCH)" "application=$(APPNAME)" \
+		--parameter-overrides \
+			AppName=$(APPNAME) \
+			Stage=$(STAGE) \
+			Branch=$(BRANCH) \
+			DistributionArn=$(DISTRIBUTION_ARN)
+
 .PHONY: deploy-cloudfront-website
 deploy-cloudfront-website:
 	$(eval ACM_CERTIFICATE_ARN := $(shell aws --region us-east-1 ssm get-parameter --name '/config/${STAGE}/${BRANCH}/${APPNAME}/acm_certificate' --query 'Parameter.Value' --output text))
