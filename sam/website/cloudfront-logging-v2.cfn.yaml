@@ -120,6 +120,45 @@ Resources:
       # Literal "key=" text in the suffix path is rejected by the service.
       S3EnableHiveCompatiblePath: true
       S3SuffixPath: "{distributionid}/{yyyy}/{MM}/{dd}/{HH}"
+      # Default fields minus cs(Cookie) and fle-* (unused), plus country, ASN,
+      # millisecond timestamp and origin first/last byte latency.
+      # Allowed fields: aws logs describe-configuration-templates --region us-east-1
+      RecordFields:
+        - "date"
+        - "time"
+        - "x-edge-location"
+        - "sc-bytes"
+        - "c-ip"
+        - "cs-method"
+        - "cs(Host)"
+        - "cs-uri-stem"
+        - "sc-status"
+        - "cs(Referer)"
+        - "cs(User-Agent)"
+        - "cs-uri-query"
+        - "x-edge-result-type"
+        - "x-edge-request-id"
+        - "x-host-header"
+        - "cs-protocol"
+        - "cs-bytes"
+        - "time-taken"
+        - "x-forwarded-for"
+        - "ssl-protocol"
+        - "ssl-cipher"
+        - "x-edge-response-result-type"
+        - "cs-protocol-version"
+        - "c-port"
+        - "time-to-first-byte"
+        - "x-edge-detailed-result-type"
+        - "sc-content-type"
+        - "sc-content-len"
+        - "sc-range-start"
+        - "sc-range-end"
+        - "timestamp(ms)"
+        - "c-country"
+        - "asn"
+        - "origin-fbl"
+        - "origin-lbl"
 
   LogsBucketParam:
     Type: AWS::SSM::Parameter
