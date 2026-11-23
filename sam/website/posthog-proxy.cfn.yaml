@@ -1,0 +1,185 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  Reverse proxy for PostHog (US region) on a custom subdomain, so analytics requests
+  are first party. Deploy in us-east-1 as the ACM certificate must live there for CloudFront.
+  See https://posthog.com/docs/advanced/proxy/cloudfront
+
+Parameters:
+  ProxySubDomainName:
+    Description: "Sub domain for the proxy. Avoid names ad blockers match on (analytics, tracking, telemetry, posthog, ph)."
+    Type: String
+
+  HostedZoneName:
+    Description: "Name that is used to create the DNS entry."
+    Type: String
+    Default: wolfe.id.au
+
+  HostedZoneId:
+    Description: "Hosted zone id that is used to create the DNS entry and validate the certificate."
+    Type: String
+
+Resources:
+  ProxyCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Sub "${ProxySubDomainName}.${HostedZoneName}"
+      DomainValidationOptions:
+        - DomainName: !Sub "${ProxySubDomainName}.${HostedZoneName}"
+          HostedZoneId: !Ref HostedZoneId
+      ValidationMethod: DNS
+
+  # Cache key includes Origin and Authorization; TTLs follow the origin's Cache-Control,
+  # so capture and flags responses are never cached unless PostHog says so.
+  ProxyCachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        Name: !Sub "${AWS::StackName}-cache"
+        DefaultTTL: 0
+        MinTTL: 0
+        MaxTTL: 31536000
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          EnableAcceptEncodingBrotli: true
+          HeadersConfig:
+            HeaderBehavior: whitelist
+            Headers:
+              - Origin
+              - Authorization
+          CookiesConfig:
+            CookieBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: all
+
+  # PostHog rejects requests missing viewer headers (400 missing_required_headers);
+  # Host must not be forwarded so the origin sees its own hostname.
+  ProxyOriginRequestPolicy:
+    Type: AWS::CloudFront::OriginRequestPolicy
+    Properties:
+      OriginRequestPolicyConfig:
+        Name: !Sub "${AWS::StackName}-origin-request"
+        HeadersConfig:
+          HeaderBehavior: allExcept
+          Headers:
+            - Host
+        CookiesConfig:
+          CookieBehavior: none
+        QueryStringsConfig:
+          QueryStringBehavior: all
+
+  # Drop Authorization headers that are not PostHog keys so they neither reach PostHog
+  # nor fragment the cache.
+  AuthorizationFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      AutoPublish: true
+      FunctionCode: |
+        function handler(event) {
+            var request = event.request;
+            var authorization = request.headers.authorization;
+            if (authorization && !/^Bearer ph[csx]_/.test(authorization.value)) {
+                delete request.headers.authorization;
+            }
+            return request;
+        }
+      FunctionConfig:
+        Comment: "Strip non PostHog Authorization headers"
+        Runtime: cloudfront-js-2.0
+      Name: !Sub "${AWS::StackName}-authorization"
+
+  # No WAF: PostHog event and recording bodies exceed WAF body inspection limits.
+  ProxyDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        Aliases:
+          - !Sub "${ProxySubDomainName}.${HostedZoneName}"
+        Origins:
+          - Id: posthog-api
+            DomainName: us.i.posthog.com
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols:
+                - TLSv1.2
+          - Id: posthog-assets
+            DomainName: us-assets.i.posthog.com
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols:
+                - TLSv1.2
+        DefaultCacheBehavior:
+          TargetOriginId: posthog-api
+          ViewerProtocolPolicy: https-only
+          Compress: true
+          AllowedMethods: [GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE]
+          CachedMethods: [GET, HEAD, OPTIONS]
+          CachePolicyId: !Ref ProxyCachePolicy
+          OriginRequestPolicyId: !Ref ProxyOriginRequestPolicy
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: !GetAtt AuthorizationFunction.FunctionMetadata.FunctionARN
+        CacheBehaviors:
+          # SDK bundle (array.js and lazy loaded extensions).
+          - PathPattern: /static/*
+            TargetOriginId: posthog-assets
+            ViewerProtocolPolicy: https-only
+            Compress: true
+            AllowedMethods: [GET, HEAD, OPTIONS]
+            CachedMethods: [GET, HEAD, OPTIONS]
+            CachePolicyId: !Ref ProxyCachePolicy
+            OriginRequestPolicyId: !Ref ProxyOriginRequestPolicy
+            # Managed-CORS-with-preflight-and-SecurityHeadersPolicy
+            ResponseHeadersPolicyId: eaab4381-ed33-4a86-88ca-d9558dc6cd63
+            FunctionAssociations:
+              - EventType: viewer-request
+                FunctionARN: !GetAtt AuthorizationFunction.FunctionMetadata.FunctionARN
+          # Remote config; served by the assets origin to keep its short Cache-Control.
+          - PathPattern: /array/*
+            TargetOriginId: posthog-assets
+            ViewerProtocolPolicy: https-only
+            Compress: true
+            AllowedMethods: [GET, HEAD, OPTIONS]
+            CachedMethods: [GET, HEAD, OPTIONS]
+            CachePolicyId: !Ref ProxyCachePolicy
+            OriginRequestPolicyId: !Ref ProxyOriginRequestPolicy
+            # Managed-CORS-with-preflight-and-SecurityHeadersPolicy
+            ResponseHeadersPolicyId: eaab4381-ed33-4a86-88ca-d9558dc6cd63
+            FunctionAssociations:
+              - EventType: viewer-request
+                FunctionARN: !GetAtt AuthorizationFunction.FunctionMetadata.FunctionARN
+        ViewerCertificate:
+          AcmCertificateArn: !Ref ProxyCertificate
+          MinimumProtocolVersion: "TLSv1.2_2021"
+          SslSupportMethod: sni-only
+
+  ProxyRecordSet:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      AliasTarget:
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt ProxyDistribution.DomainName
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Sub "${ProxySubDomainName}.${HostedZoneName}"
+      Type: A
+
+  ProxyRecordSetIPV6:
+    Type: "AWS::Route53::RecordSet"
+    Properties:
+      AliasTarget:
+        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-route53-aliastarget.html
+        HostedZoneId: Z2FDTNDATAQYW2
+        DNSName: !GetAtt ProxyDistribution.DomainName
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Sub "${ProxySubDomainName}.${HostedZoneName}"
+      Type: AAAA
+
+Outputs:
+  ProxyDistributionId:
+    Value: !Ref ProxyDistribution
+  ProxyDistributionDomainName:
+    Value: !GetAtt ProxyDistribution.DomainName
