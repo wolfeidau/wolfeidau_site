@@ -39,6 +39,10 @@ Parameters:
     Description: "Bucket domain name used for cloudfront logs."
     Type: String
 
+  WebAclArn:
+    Description: "ARN of the Web ACL for cloudfront."
+    Type: String
+
 Resources:
   CloudFrontOriginAccessControl:
     Type: AWS::CloudFront::OriginAccessControl
@@ -94,6 +98,7 @@ Resources:
         Logging:
           Bucket: !Ref LoggingBucketDomain
           Prefix: "Website"
+        WebACLId: !Ref WebAclArn
 
   RewriteFunction:
     Type: AWS::CloudFront::Function
