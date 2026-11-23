@@ -35,10 +35,6 @@ Parameters:
     Description: "ARN of the ACM certificate for cloudfront, this must be created in us-east-1."
     Type: String
 
-  LoggingBucketDomain:
-    Description: "Bucket domain name used for cloudfront logs."
-    Type: String
-
   WebAclArn:
     Description: "ARN of the Web ACL for cloudfront."
     Type: String
@@ -96,9 +92,6 @@ Resources:
           AcmCertificateArn: !Ref AcmCertificateArn
           MinimumProtocolVersion: "TLSv1.2_2021"
           SslSupportMethod: sni-only
-        Logging:
-          Bucket: !Ref LoggingBucketDomain
-          Prefix: "Website"
         WebACLId: !Ref WebAclArn
 
   RewriteFunction:
